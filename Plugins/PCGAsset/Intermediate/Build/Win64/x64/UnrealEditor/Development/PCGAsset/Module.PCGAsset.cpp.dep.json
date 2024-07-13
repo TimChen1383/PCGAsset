@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\unrealprojects\\pcgassets\\plugins\\pcgasset\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\pcgasset\\module.pcgasset.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\unrealprojects\\pcgassets\\intermediate\\build\\win64\\x64\\pcgassetseditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\unrealprojects\\pcgassets\\plugins\\pcgasset\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\pcgasset\\definitions.pcgasset.h",
+            "c:\\unrealprojects\\pcgassets\\plugins\\pcgasset\\intermediate\\build\\win64\\unrealeditor\\inc\\pcgasset\\uht\\pcgasset.init.gen.cpp"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
