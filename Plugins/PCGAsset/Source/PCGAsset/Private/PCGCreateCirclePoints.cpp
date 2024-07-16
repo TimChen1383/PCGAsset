@@ -15,7 +15,8 @@
 
 /*******************************************
 To do list:
-- when circle point counts more than 40, it will not be a full circle (generate a gap)
+- when circle point counts more than 40, it will not be a full circle (generate a gap) - close Loop?
+- add sine wave to the circle
 - Sine wave works very weird. Suppose to generate star shape base on frequency 1,2,3,4,5...(but it generated a weird shape)
 - choose the point to face center or face tangent
 - direction face in, direction face out

@@ -10,6 +10,7 @@
 			"PCGCreateCirclePoints.cpp.obj",
 			"PCGPerlinNoise2D.cpp.obj",
 			"PCGPointArray.cpp.obj",
+			"PCGRandom90Rotate.cpp.obj",
 			"PCGRotateAroundCenter.cpp.obj",
 			"PCGScaleAffect.cpp.obj",
 			"PCGSineWave.cpp.obj",

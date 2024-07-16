@@ -8,6 +8,7 @@
 			"PCGConnectSplinebyID.cpp.obj",
 			"PCGCreateCable.cpp.obj",
 			"PCGCreateCirclePoints.cpp.obj",
+			"PCGOctree.cpp.obj",
 			"PCGPerlinNoise2D.cpp.obj",
 			"PCGPointArray.cpp.obj",
 			"PCGRandom90Rotate.cpp.obj",
