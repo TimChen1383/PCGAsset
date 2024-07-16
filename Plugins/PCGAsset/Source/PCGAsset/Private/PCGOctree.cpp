@@ -97,9 +97,12 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		//Test remove first point and last point - the output points get populate during Async Point Processing
 		OutputPoints.RemoveAt(0);
 		OutputPoints.RemoveAt(OutputPoints.Num()-1);
+
+		//This doesn't work! I think I forgot to add it to the OutputPoints
 		//Test add 1 point - if I use the constructor, I guess all the attribute will be set to 0?
 		FPCGPoint NewPoint = FPCGPoint();
 		NewPoint.Transform.SetLocation(FVector(0,0,800));
+		OutputPoints.Add(NewPoint);
 		
 	}
 	
