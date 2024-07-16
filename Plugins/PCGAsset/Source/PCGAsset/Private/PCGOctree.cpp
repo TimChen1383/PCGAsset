@@ -67,7 +67,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		//How to remove 1 point? This function should remove 2 points
 		//const FPCGPoint& LastPoint = OutputPoints.Last();
 		//const FPCGPoint& FirstPoint = OutputPoints[0];
-		OutputPoints.RemoveAt(0);
+		OutputPoints.RemoveAt(1);
 		OutputPoints.RemoveAt(OutputPoints.Num()-1);
 
 		
