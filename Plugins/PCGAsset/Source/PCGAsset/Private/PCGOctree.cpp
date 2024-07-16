@@ -63,9 +63,6 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		OutputPointData->InitializeFromData(InputPointData);
 		TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
 		Output.Data = OutputPointData;
-
-
-
 		
 
 		//Run Point Loop. Data will reference back after the function loop through all PCG points
@@ -97,11 +94,12 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		}
 		);
 
-		//How to remove 1 point? This function should remove 2 points
-		//const FPCGPoint& LastPoint = OutputPoints.Last();
-		//const FPCGPoint& FirstPoint = OutputPoints[0];
+		//Test remove first point and last point - the output points get populate during Async Point Processing
 		OutputPoints.RemoveAt(0);
 		OutputPoints.RemoveAt(OutputPoints.Num()-1);
+		//Test add 1 point - if I use the constructor, I guess all the attribute will be set to 0?
+		FPCGPoint NewPoint = FPCGPoint();
+		NewPoint.Transform.SetLocation(FVector(0,0,800));
 		
 	}
 	
