@@ -94,15 +94,62 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		}
 		);
 
-		//Test remove first point and last point - the output points get populate during Async Point Processing
-		OutputPoints.RemoveAt(0);
-		OutputPoints.RemoveAt(OutputPoints.Num()-1);
+		//Remove a random chosen point - the output points get populate during Async Point Processing
+		int32 ChosenPointID = FMath::RandRange(0, OutputPoints.Num()-1);
+		const FPCGPoint& ChosenPoint= OutputPoints[ChosenPointID];
+		FVector ChosenPointLocation = ChosenPoint.Transform.GetLocation();
+		FVector ChosenPointScale = ChosenPoint.Transform.GetScale3D();
+		//ChosenPoint.BoundsMax;
+		OutputPoints.RemoveAt(ChosenPointID);
 
-		//This doesn't work! I think I forgot to add it to the OutputPoints
-		//Test add 1 point - if I use the constructor, I guess all the attribute will be set to 0?
-		FPCGPoint NewPoint = FPCGPoint();
-		NewPoint.Transform.SetLocation(FVector(0,0,800));
-		OutputPoints.Add(NewPoint);
+		//Test add 1st point
+		FPCGPoint NewPoint1 = FPCGPoint();
+		NewPoint1.Transform.SetLocation(ChosenPointLocation + FVector(50,50,50));
+		NewPoint1.Transform.SetScale3D(ChosenPointScale * 0.5);
+		OutputPoints.Add(NewPoint1);
+
+		//Test add 2nd point
+		FPCGPoint NewPoint2 = FPCGPoint();
+		NewPoint2.Transform.SetLocation(ChosenPointLocation + FVector(50,-50,50));
+		NewPoint2.Transform.SetScale3D(ChosenPointScale * 0.5);
+		OutputPoints.Add(NewPoint2);
+
+		//Test add 3rd point
+		FPCGPoint NewPoint3 = FPCGPoint();
+		NewPoint3.Transform.SetLocation(ChosenPointLocation + FVector(-50,50,50));
+		NewPoint3.Transform.SetScale3D(ChosenPointScale * 0.5);
+		OutputPoints.Add(NewPoint3);
+
+		//Test add 4th point
+		FPCGPoint NewPoint4 = FPCGPoint();
+		NewPoint4.Transform.SetLocation(ChosenPointLocation + FVector(-50,-50,50));
+		NewPoint4.Transform.SetScale3D(ChosenPointScale * 0.5);
+		OutputPoints.Add(NewPoint4);
+		
+		//Test add 5th point
+		FPCGPoint NewPoint5 = FPCGPoint();
+		NewPoint5.Transform.SetLocation(ChosenPointLocation + FVector(50,50,-50));
+		NewPoint5.Transform.SetScale3D(ChosenPointScale * 0.5);
+		OutputPoints.Add(NewPoint5);
+
+		//Test add 6th point
+		FPCGPoint NewPoint6 = FPCGPoint();
+		NewPoint6.Transform.SetLocation(ChosenPointLocation + FVector(50,-50,-50));
+		NewPoint6.Transform.SetScale3D(ChosenPointScale * 0.5);
+		OutputPoints.Add(NewPoint6);
+
+		//Test add 7th point
+		FPCGPoint NewPoint7 = FPCGPoint();
+		NewPoint7.Transform.SetLocation(ChosenPointLocation + FVector(-50,50,-50));
+		NewPoint7.Transform.SetScale3D(ChosenPointScale * 0.5);
+		OutputPoints.Add(NewPoint7);
+
+		//Test add 8th point
+		FPCGPoint NewPoint8 = FPCGPoint();
+		NewPoint8.Transform.SetLocation(ChosenPointLocation + FVector(-50,-50,-50));
+		NewPoint8.Transform.SetScale3D(ChosenPointScale * 0.5);
+		OutputPoints.Add(NewPoint8);
+		
 		
 	}
 	
