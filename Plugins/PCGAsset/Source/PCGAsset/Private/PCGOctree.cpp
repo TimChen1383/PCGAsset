@@ -102,51 +102,51 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		//ChosenPoint.BoundsMax;
 		OutputPoints.RemoveAt(ChosenPointID);
 
-		//Test add 1st point
+		//Test add 1st point - I don't know why it's 25 not 50!?
 		FPCGPoint NewPoint1 = FPCGPoint();
-		NewPoint1.Transform.SetLocation(ChosenPointLocation + FVector(50,50,50));
+		NewPoint1.Transform.SetLocation(ChosenPointLocation + FVector(25,25,25));
 		NewPoint1.Transform.SetScale3D(ChosenPointScale * 0.5);
 		OutputPoints.Add(NewPoint1);
 
 		//Test add 2nd point
 		FPCGPoint NewPoint2 = FPCGPoint();
-		NewPoint2.Transform.SetLocation(ChosenPointLocation + FVector(50,-50,50));
+		NewPoint2.Transform.SetLocation(ChosenPointLocation + FVector(25,-50,50));
 		NewPoint2.Transform.SetScale3D(ChosenPointScale * 0.5);
 		OutputPoints.Add(NewPoint2);
 
 		//Test add 3rd point
 		FPCGPoint NewPoint3 = FPCGPoint();
-		NewPoint3.Transform.SetLocation(ChosenPointLocation + FVector(-50,50,50));
+		NewPoint3.Transform.SetLocation(ChosenPointLocation + FVector(-25,25,25));
 		NewPoint3.Transform.SetScale3D(ChosenPointScale * 0.5);
 		OutputPoints.Add(NewPoint3);
 
 		//Test add 4th point
 		FPCGPoint NewPoint4 = FPCGPoint();
-		NewPoint4.Transform.SetLocation(ChosenPointLocation + FVector(-50,-50,50));
+		NewPoint4.Transform.SetLocation(ChosenPointLocation + FVector(-25,-25,25));
 		NewPoint4.Transform.SetScale3D(ChosenPointScale * 0.5);
 		OutputPoints.Add(NewPoint4);
 		
 		//Test add 5th point
 		FPCGPoint NewPoint5 = FPCGPoint();
-		NewPoint5.Transform.SetLocation(ChosenPointLocation + FVector(50,50,-50));
+		NewPoint5.Transform.SetLocation(ChosenPointLocation + FVector(25,25,-25));
 		NewPoint5.Transform.SetScale3D(ChosenPointScale * 0.5);
 		OutputPoints.Add(NewPoint5);
 
 		//Test add 6th point
 		FPCGPoint NewPoint6 = FPCGPoint();
-		NewPoint6.Transform.SetLocation(ChosenPointLocation + FVector(50,-50,-50));
+		NewPoint6.Transform.SetLocation(ChosenPointLocation + FVector(25,-25,-25));
 		NewPoint6.Transform.SetScale3D(ChosenPointScale * 0.5);
 		OutputPoints.Add(NewPoint6);
 
 		//Test add 7th point
 		FPCGPoint NewPoint7 = FPCGPoint();
-		NewPoint7.Transform.SetLocation(ChosenPointLocation + FVector(-50,50,-50));
+		NewPoint7.Transform.SetLocation(ChosenPointLocation + FVector(-25,25,-25));
 		NewPoint7.Transform.SetScale3D(ChosenPointScale * 0.5);
 		OutputPoints.Add(NewPoint7);
 
 		//Test add 8th point
 		FPCGPoint NewPoint8 = FPCGPoint();
-		NewPoint8.Transform.SetLocation(ChosenPointLocation + FVector(-50,-50,-50));
+		NewPoint8.Transform.SetLocation(ChosenPointLocation + FVector(-25,-25,-25));
 		NewPoint8.Transform.SetScale3D(ChosenPointScale * 0.5);
 		OutputPoints.Add(NewPoint8);
 		
