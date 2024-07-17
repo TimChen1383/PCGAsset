@@ -110,7 +110,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 
 		//Test add 2nd point
 		FPCGPoint NewPoint2 = FPCGPoint();
-		NewPoint2.Transform.SetLocation(ChosenPointLocation + FVector(25,-50,50));
+		NewPoint2.Transform.SetLocation(ChosenPointLocation + FVector(25,-25,25));
 		NewPoint2.Transform.SetScale3D(ChosenPointScale * 0.5);
 		OutputPoints.Add(NewPoint2);
 
