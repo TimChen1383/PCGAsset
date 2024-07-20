@@ -38,7 +38,7 @@ TArray<FPCGPoint> UPCGOctreeSettings::DividePoint(TArray<FPCGPoint>& DivideSourc
 	//This will be the final Output point back to main function - no matter divide 1 time or multiple times
 	TArray<FPCGPoint> DividedPoints;
 	
-	for(int32 PointDivideNum = 0; PointDivideNum<(PointsDivideNums-1); PointDivideNum++)
+	for(int32 PointDivideNum = 0; PointDivideNum < PointsDivideNums; PointDivideNum++)
 	{
 		//Choosing only 1 point from source Point
 		int32 ChosenPointID = FMath::RandRange(0, (DivideSourcePoints.Num()-1-PointDivideNum));
