@@ -40,7 +40,12 @@ public:
 	//Control the Perlin noise height and scale
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	FVector CustomOffset = FVector::Zero();
-	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	int32 SelectedPointCount = 5;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	int32 DivideNum = 2;
+	UFUNCTION()
+	static TArray<FPCGPoint> DividePoint(TArray<FPCGPoint>& DivideSourcePoints);
 };
 
 //Override PCG Execution

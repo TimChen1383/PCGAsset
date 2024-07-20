@@ -18,6 +18,7 @@
 /**********************************************************************
 To do list
 - Should be able to choose whether to change the height location directly or set to a density attribute
+- I think change from .Transform to .Density I should be able to store the Perlin Noise attribute into attribute
 
 ***********************************************************************/
 

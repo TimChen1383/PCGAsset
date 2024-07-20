@@ -12,6 +12,15 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGOctree"
 
+/**********************************************************************
+To do list
+- The divide process should be packed into a function and reuse it
+- randomly pick several points and run the divide process - I should be able to decide how many point I want to subdivide
+- I should be able to decide how many times I should divide
+- If I don't set the scale but output them as different pin, I should be able to use these point to spawn different scale module
+
+
+***********************************************************************/
 
 UPCGOctreeSettings::UPCGOctreeSettings()
 {
@@ -21,6 +30,62 @@ UPCGOctreeSettings::UPCGOctreeSettings()
 FPCGElementPtr UPCGOctreeSettings::CreateElement() const
 {
 	return MakeShared<FPCGOctreeElement>();
+}
+
+//Define how we divide 1 point into 8 points - We should input Output Points as DivideSourcePoints
+TArray<FPCGPoint> UPCGOctreeSettings::DividePoint(TArray<FPCGPoint>& DivideSourcePoints)
+{
+	//Choosing only 1 point from source Point
+	int32 ChosenPointID = FMath::RandRange(0, DivideSourcePoints.Num()-1);
+	const FPCGPoint& ChosenPoint= DivideSourcePoints[ChosenPointID];
+	FVector ChosenPointLocation = ChosenPoint.Transform.GetLocation();
+	FVector ChosenPointScale = ChosenPoint.Transform.GetScale3D();
+	//Remove point - can't be const because I need to remove 1 point
+	DivideSourcePoints.RemoveAt(ChosenPointID);
+	//This will be the final Output point back to main function - no matter divide 1 time or multiple times
+	TArray<FPCGPoint> DividedPoints;
+	//Add 1st point - I don't know why it's 25 not 50!?
+	FPCGPoint NewPoint1 = FPCGPoint();
+	NewPoint1.Transform.SetLocation(ChosenPointLocation + FVector(25,25,25));
+	NewPoint1.Transform.SetScale3D(ChosenPointScale * 0.5);
+	DividedPoints.Add(NewPoint1);
+	//Add 2nd point
+	FPCGPoint NewPoint2 = FPCGPoint();
+	NewPoint2.Transform.SetLocation(ChosenPointLocation + FVector(25,-25,25));
+	NewPoint2.Transform.SetScale3D(ChosenPointScale * 0.5);
+	DividedPoints.Add(NewPoint2);
+	//Add 3rd point
+	FPCGPoint NewPoint3 = FPCGPoint();
+	NewPoint3.Transform.SetLocation(ChosenPointLocation + FVector(-25,25,25));
+	NewPoint3.Transform.SetScale3D(ChosenPointScale * 0.5);
+	DividedPoints.Add(NewPoint3);
+	//Add 4th point
+	FPCGPoint NewPoint4 = FPCGPoint();
+	NewPoint4.Transform.SetLocation(ChosenPointLocation + FVector(-25,-25,25));
+	NewPoint4.Transform.SetScale3D(ChosenPointScale * 0.5);
+	DividedPoints.Add(NewPoint4);
+	//Add 5th point
+	FPCGPoint NewPoint5 = FPCGPoint();
+	NewPoint5.Transform.SetLocation(ChosenPointLocation + FVector(25,25,-25));
+	NewPoint5.Transform.SetScale3D(ChosenPointScale * 0.5);
+	DividedPoints.Add(NewPoint5);
+	//Add 6th point
+	FPCGPoint NewPoint6 = FPCGPoint();
+	NewPoint6.Transform.SetLocation(ChosenPointLocation + FVector(25,-25,-25));
+	NewPoint6.Transform.SetScale3D(ChosenPointScale * 0.5);
+	DividedPoints.Add(NewPoint6);
+	//Add 7th point
+	FPCGPoint NewPoint7 = FPCGPoint();
+	NewPoint7.Transform.SetLocation(ChosenPointLocation + FVector(-25,25,-25));
+	NewPoint7.Transform.SetScale3D(ChosenPointScale * 0.5);
+	DividedPoints.Add(NewPoint7);
+	//Add 8th point
+	FPCGPoint NewPoint8 = FPCGPoint();
+	NewPoint8.Transform.SetLocation(ChosenPointLocation + FVector(-25,-25,-25));
+	NewPoint8.Transform.SetScale3D(ChosenPointScale * 0.5);
+	DividedPoints.Add(NewPoint8);
+	//return back the new point for adding back to the Output Points
+	return DividedPoints;
 }
 
 bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
@@ -35,6 +100,8 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
 	const FVector& CustomOffset = Settings->CustomOffset;
+	const int32& SelectedPointCount = Settings->SelectedPointCount;
+	const int32& DivideNum = Settings->DivideNum;
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -65,7 +132,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		Output.Data = OutputPointData;
 		
 
-		//Run Point Loop. Data will reference back after the function loop through all PCG points
+		//Not essential for this node
 		FPCGAsync::AsyncPointProcessing(Context, InputPoints.Num(), OutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
 		//Pass the function as parameter. This is a 2 inputs function: Index and PCG Point. Definition below
 		{
@@ -94,118 +161,9 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		}
 		);
 
-
-		//Choosing point
-		int32 FirstChosenPointID = FMath::RandRange(0, OutputPoints.Num()-1);
-		const FPCGPoint& FirstChosenPoint= OutputPoints[FirstChosenPointID];
-		FVector FirstChosenPointLocation = FirstChosenPoint.Transform.GetLocation();
-		FVector FirstChosenPointScale = FirstChosenPoint.Transform.GetScale3D();
-		//ChosenPoint.BoundsMax;
-
-		
-		/////First Divide
-		//Remove point
-		OutputPoints.RemoveAt(FirstChosenPointID);
-		//Store points for secondary divide
-		TArray<FPCGPoint> SecondaryPoints;
-		//Add 1st point - I don't know why it's 25 not 50!?
-		FPCGPoint FirstNewPoint1 = FPCGPoint();
-		FirstNewPoint1.Transform.SetLocation(FirstChosenPointLocation + FVector(25,25,25));
-		FirstNewPoint1.Transform.SetScale3D(FirstChosenPointScale * 0.5);
-		//OutputPoints.Add(FirstNewPoint1);
-		SecondaryPoints.Add(FirstNewPoint1);
-		//Add 2nd point
-		FPCGPoint FirstNewPoint2 = FPCGPoint();
-		FirstNewPoint2.Transform.SetLocation(FirstChosenPointLocation + FVector(25,-25,25));
-		FirstNewPoint2.Transform.SetScale3D(FirstChosenPointScale * 0.5);
-		//OutputPoints.Add(FirstNewPoint2);
-		SecondaryPoints.Add(FirstNewPoint2);
-		//Add 3rd point
-		FPCGPoint FirstNewPoint3 = FPCGPoint();
-		FirstNewPoint3.Transform.SetLocation(FirstChosenPointLocation + FVector(-25,25,25));
-		FirstNewPoint3.Transform.SetScale3D(FirstChosenPointScale * 0.5);
-		//OutputPoints.Add(FirstNewPoint3);
-		SecondaryPoints.Add(FirstNewPoint3);
-		//Add 4th point
-		FPCGPoint FirstNewPoint4 = FPCGPoint();
-		FirstNewPoint4.Transform.SetLocation(FirstChosenPointLocation + FVector(-25,-25,25));
-		FirstNewPoint4.Transform.SetScale3D(FirstChosenPointScale * 0.5);
-		//OutputPoints.Add(FirstNewPoint4);
-		SecondaryPoints.Add(FirstNewPoint4);
-		//Add 5th point
-		FPCGPoint FirstNewPoint5 = FPCGPoint();
-		FirstNewPoint5.Transform.SetLocation(FirstChosenPointLocation + FVector(25,25,-25));
-		FirstNewPoint5.Transform.SetScale3D(FirstChosenPointScale * 0.5);
-		//OutputPoints.Add(FirstNewPoint5);
-		SecondaryPoints.Add(FirstNewPoint5);
-		//Add 6th point
-		FPCGPoint FirstNewPoint6 = FPCGPoint();
-		FirstNewPoint6.Transform.SetLocation(FirstChosenPointLocation + FVector(25,-25,-25));
-		FirstNewPoint6.Transform.SetScale3D(FirstChosenPointScale * 0.5);
-		//OutputPoints.Add(FirstNewPoint6);
-		SecondaryPoints.Add(FirstNewPoint6);
-		//Add 7th point
-		FPCGPoint FirstNewPoint7 = FPCGPoint();
-		FirstNewPoint7.Transform.SetLocation(FirstChosenPointLocation + FVector(-25,25,-25));
-		FirstNewPoint7.Transform.SetScale3D(FirstChosenPointScale * 0.5);
-		//OutputPoints.Add(FirstNewPoint7);
-		SecondaryPoints.Add(FirstNewPoint7);
-		//Add 8th point
-		FPCGPoint FirstNewPoint8 = FPCGPoint();
-		FirstNewPoint8.Transform.SetLocation(FirstChosenPointLocation + FVector(-25,-25,-25));
-		FirstNewPoint8.Transform.SetScale3D(FirstChosenPointScale * 0.5);
-		//OutputPoints.Add(FirstNewPoint8);
-		SecondaryPoints.Add(FirstNewPoint8);
-
-		/////Secondary Divide
-		int32 SecondChosenPointID = FMath::RandRange(0, SecondaryPoints.Num()-1);
-		const FPCGPoint& SecondChosenPoint = SecondaryPoints[SecondChosenPointID];
-		FVector SecondChosenPointLocation = SecondChosenPoint.Transform.GetLocation();
-		FVector SecondChosenPointScale = SecondChosenPoint.Transform.GetScale3D();
-		//Remove point - This doesn't remove the point. We need to remove from OutputPoints
-		SecondaryPoints.RemoveAt(SecondChosenPointID);
-		//Add 1st point - I don't know why it's 25 not 50!?
-		FPCGPoint SecondNewPoint1 = FPCGPoint();
-		SecondNewPoint1.Transform.SetLocation(SecondChosenPointLocation + FVector(12.5,12.5,12.5));
-		SecondNewPoint1.Transform.SetScale3D(SecondChosenPointScale * 0.5);
-		SecondaryPoints.Add(SecondNewPoint1);
-		//Add 2nd point
-		FPCGPoint SecondNewPoint2 = FPCGPoint();
-		SecondNewPoint2.Transform.SetLocation(SecondChosenPointLocation + FVector(12.5,-12.5,12.5));
-		SecondNewPoint2.Transform.SetScale3D(SecondChosenPointScale * 0.5);
-		SecondaryPoints.Add(SecondNewPoint2);
-		//Add 3rd point
-		FPCGPoint SecondNewPoint3 = FPCGPoint();
-		SecondNewPoint3.Transform.SetLocation(SecondChosenPointLocation + FVector(-12.5,12.5,12.5));
-		SecondNewPoint3.Transform.SetScale3D(SecondChosenPointScale * 0.5);
-		SecondaryPoints.Add(SecondNewPoint3);
-		//Add 4th point
-		FPCGPoint SecondNewPoint4 = FPCGPoint();
-		SecondNewPoint4.Transform.SetLocation(SecondChosenPointLocation + FVector(-12.5,-12.5,12.5));
-		SecondNewPoint4.Transform.SetScale3D(SecondChosenPointScale * 0.5);
-		SecondaryPoints.Add(SecondNewPoint4);
-		//Add 5th point
-		FPCGPoint SecondNewPoint5 = FPCGPoint();
-		SecondNewPoint5.Transform.SetLocation(SecondChosenPointLocation + FVector(12.5,12.5,-12.5));
-		SecondNewPoint5.Transform.SetScale3D(SecondChosenPointScale * 0.5);
-		SecondaryPoints.Add(SecondNewPoint5);
-		//Add 6th point
-		FPCGPoint SecondNewPoint6 = FPCGPoint();
-		SecondNewPoint6.Transform.SetLocation(SecondChosenPointLocation + FVector(12.5,-12.5,-12.5));
-		SecondNewPoint6.Transform.SetScale3D(SecondChosenPointScale * 0.5);
-		SecondaryPoints.Add(SecondNewPoint6);
-		//Add 7th point
-		FPCGPoint SecondNewPoint7 = FPCGPoint();
-		SecondNewPoint7.Transform.SetLocation(SecondChosenPointLocation + FVector(-12.5,12.5,-12.5));
-		SecondNewPoint7.Transform.SetScale3D(SecondChosenPointScale * 0.5);
-		SecondaryPoints.Add(SecondNewPoint7);
-		//Add 8th point
-		FPCGPoint SecondNewPoint8 = FPCGPoint();
-		SecondNewPoint8.Transform.SetLocation(SecondChosenPointLocation + FVector(-12.5,-12.5,-12.5));
-		SecondNewPoint8.Transform.SetScale3D(SecondChosenPointScale * 0.5);
-		SecondaryPoints.Add(SecondNewPoint8);
-
-		OutputPoints.Append(SecondaryPoints);
+		//Function > input a reference to an array > randomly pick 1 point from the array > remove it > divide it
+		TArray<FPCGPoint> DividedPoints = UPCGOctreeSettings::DividePoint(OutputPoints);
+		OutputPoints.Append(DividedPoints);
 		
 	}
 	
