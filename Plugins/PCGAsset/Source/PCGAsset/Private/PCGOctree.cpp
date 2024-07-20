@@ -176,20 +176,18 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 			//First divide
 			TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
 			OutputPoints.Append(FinalPoints);
-			
-			if(DivideNum>=2)
-			{
-				//Secondary divide
-				TArray<FPCGPoint> FinalPoints2 = UPCGOctreeSettings::DividePoint(FinalPoints,4);
-				OutputPoints.Append(FinalPoints2);
-				
-				if(DivideNum>=3)
-				{
-					//Third divide
-					TArray<FPCGPoint> FinalPoints3 = UPCGOctreeSettings::DividePoint(FinalPoints2,4);
-					OutputPoints.Append(FinalPoints3);
-				}
-			}
+			//Secondary divide
+			TArray<FPCGPoint> FinalPoints2 = UPCGOctreeSettings::DividePoint(FinalPoints,4);
+			OutputPoints.Append(FinalPoints2);
+			//Third divide
+			TArray<FPCGPoint> FinalPoints3 = UPCGOctreeSettings::DividePoint(FinalPoints2,4);
+			OutputPoints.Append(FinalPoints3);
+			//if(DivideNum>=2)
+			//{
+				//if(DivideNum>=3)
+				//{
+				//}
+			//}
 		}
 	}
 	
