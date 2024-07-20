@@ -42,8 +42,8 @@ public:
 	FVector CustomOffset = FVector::Zero();
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 SelectedPointCount = 4;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	int32 DivideNum = 2;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable), meta=(ClampMin=0, ClampMax=3))
+	int32 DivideNum = 3;
 	UFUNCTION()
 	static TArray<FPCGPoint> DividePoint(TArray<FPCGPoint>& DivideSourcePoints, int32 PointsDivideNums);
 };

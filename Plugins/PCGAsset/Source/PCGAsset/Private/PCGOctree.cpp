@@ -14,15 +14,11 @@
 
 /**********************************************************************
 To do list
-- I should be able to decide how many times I should divide
-
 - If I don't set the scale but output them as different pin, I should be able to use these point to spawn different scale module
 - temp solution - just do a point filter to found out the points with different scale
 
-- How to calculate the relationship of scale?
-- Scale: First loop /2 /2
-- Scale : Second loop /2 /2 /2
-- I guess I can use the bounds information
+- use random stream for random value
+
 ***********************************************************************/
 
 UPCGOctreeSettings::UPCGOctreeSettings()
@@ -175,16 +171,26 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		}
 		);
 		
-		//Function > input a reference to an array > randomly pick 1 point from the array > remove it > divide it
-		TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
-		//Secondary divide
-		TArray<FPCGPoint> FinalPoints2 = UPCGOctreeSettings::DividePoint(FinalPoints,4);
-		//Third divide
-		TArray<FPCGPoint> FinalPoints3 = UPCGOctreeSettings::DividePoint(FinalPoints2,4);
-		OutputPoints.Append(FinalPoints);
-		OutputPoints.Append(FinalPoints2);
-		OutputPoints.Append(FinalPoints3);
-		
+		if(DivideNum>=1)
+		{
+			//First divide
+			TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
+			OutputPoints.Append(FinalPoints);
+			
+			if(DivideNum>=2)
+			{
+				//Secondary divide
+				TArray<FPCGPoint> FinalPoints2 = UPCGOctreeSettings::DividePoint(FinalPoints,4);
+				OutputPoints.Append(FinalPoints2);
+				
+				if(DivideNum>=3)
+				{
+					//Third divide
+					TArray<FPCGPoint> FinalPoints3 = UPCGOctreeSettings::DividePoint(FinalPoints2,4);
+					OutputPoints.Append(FinalPoints3);
+				}
+			}
+		}
 	}
 	
 	return true;

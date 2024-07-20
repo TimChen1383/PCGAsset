@@ -115,6 +115,8 @@ struct Z_Construct_UClass_UPCGOctreeSettings_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DivideNum_MetaData[] = {
 		{ "Category", "Settings" },
+		{ "ClampMax", "3" },
+		{ "ClampMin", "0" },
 		{ "ModuleRelativePath", "Public/PCGOctree.h" },
 		{ "PCG_Overridable", "" },
 	};
@@ -182,10 +184,10 @@ UPCGOctreeSettings::~UPCGOctreeSettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGOctree_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGOctreeSettings, UPCGOctreeSettings::StaticClass, TEXT("UPCGOctreeSettings"), &Z_Registration_Info_UClass_UPCGOctreeSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGOctreeSettings), 1380928647U) },
+		{ Z_Construct_UClass_UPCGOctreeSettings, UPCGOctreeSettings::StaticClass, TEXT("UPCGOctreeSettings"), &Z_Registration_Info_UClass_UPCGOctreeSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGOctreeSettings), 2002340045U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGOctree_h_3773512371(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGOctree_h_44726812(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGOctree_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGOctree_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
