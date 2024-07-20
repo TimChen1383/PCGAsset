@@ -177,10 +177,13 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		
 		//Function > input a reference to an array > randomly pick 1 point from the array > remove it > divide it
 		TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
-		//Secondary divide - this is wrong result
+		//Secondary divide
 		TArray<FPCGPoint> FinalPoints2 = UPCGOctreeSettings::DividePoint(FinalPoints,4);
+		//Third divide
+		TArray<FPCGPoint> FinalPoints3 = UPCGOctreeSettings::DividePoint(FinalPoints2,4);
 		OutputPoints.Append(FinalPoints);
 		OutputPoints.Append(FinalPoints2);
+		OutputPoints.Append(FinalPoints3);
 		
 	}
 	
