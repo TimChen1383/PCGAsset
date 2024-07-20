@@ -16,7 +16,7 @@
 To do list
 - If I don't set the scale but output them as different pin, I should be able to use these point to spawn different scale module
 - temp solution - just do a point filter to found out the points with different scale
-
+- currently the if condition of how many time we are going to divide doesn't work
 - use random stream for random value
 
 ***********************************************************************/
@@ -170,25 +170,26 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 			return true;
 		}
 		);
+		//First divide
+		TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
+		OutputPoints.Append(FinalPoints);
+		//Secondary divide
+		TArray<FPCGPoint> FinalPoints2 = UPCGOctreeSettings::DividePoint(FinalPoints,4);
+		OutputPoints.Append(FinalPoints2);
+		//Third divide
+		TArray<FPCGPoint> FinalPoints3 = UPCGOctreeSettings::DividePoint(FinalPoints2,4);
+		OutputPoints.Append(FinalPoints3);
 		
-		if(DivideNum>=1)
-		{
-			//First divide
-			TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
-			OutputPoints.Append(FinalPoints);
-			//Secondary divide
-			TArray<FPCGPoint> FinalPoints2 = UPCGOctreeSettings::DividePoint(FinalPoints,4);
-			OutputPoints.Append(FinalPoints2);
-			//Third divide
-			TArray<FPCGPoint> FinalPoints3 = UPCGOctreeSettings::DividePoint(FinalPoints2,4);
-			OutputPoints.Append(FinalPoints3);
+		//if(DivideNum>=1)
+		//{
+			
 			//if(DivideNum>=2)
 			//{
 				//if(DivideNum>=3)
 				//{
 				//}
 			//}
-		}
+		//}
 	}
 	
 	return true;
