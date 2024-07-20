@@ -41,11 +41,11 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	FVector CustomOffset = FVector::Zero();
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	int32 SelectedPointCount = 5;
+	int32 SelectedPointCount = 4;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 DivideNum = 2;
 	UFUNCTION()
-	static TArray<FPCGPoint> DividePoint(TArray<FPCGPoint>& DivideSourcePoints);
+	static TArray<FPCGPoint> DividePoint(TArray<FPCGPoint>& DivideSourcePoints, int32 PointsDivideNums);
 };
 
 //Override PCG Execution
