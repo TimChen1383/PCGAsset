@@ -41,7 +41,7 @@ TArray<FPCGPoint> UPCGOctreeSettings::DividePoint(TArray<FPCGPoint>& DivideSourc
 	//This will be the final Output point back to main function - no matter divide 1 time or multiple times
 	TArray<FPCGPoint> DividedPoints;
 	
-	if(PointsDivideNums < 1 || DividedPoints.Num() < PointsDivideNums)
+	if(PointsDivideNums < 1 || DivideSourcePoints.Num() < PointsDivideNums)
 	{
 		UE_LOG(LogTemp, Error, TEXT("PointsDivideNums need to be greater than 0"));
 		//Do nothing - the point will not be divided
