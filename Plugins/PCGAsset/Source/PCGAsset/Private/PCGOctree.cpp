@@ -41,9 +41,7 @@ TArray<FPCGPoint> UPCGOctreeSettings::DividePoint(TArray<FPCGPoint>& DivideSourc
 	//This will be the final Output point back to main function - no matter divide 1 time or multiple times
 	TArray<FPCGPoint> DividedPoints;
 	
-	if(PointsDivideNums < 1
-		//|| DivideSourcePoints.Num() < PointsDivideNums
-		)
+	if(PointsDivideNums < 1 || DivideSourcePoints.Num() < PointsDivideNums)
 	{
 		UE_LOG(LogTemp, Error, TEXT("PointsDivideNums need to be greater than 0"));
 		//Do nothing - the point will not be divided
@@ -147,6 +145,35 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		OutputPointData->InitializeFromData(InputPointData);
 		TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
 		Output.Data = OutputPointData;
+		
+		//Run Point Loop. Data will reference back after the function loop through all PCG points
+		FPCGAsync::AsyncPointProcessing(Context, InputPoints.Num(), OutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
+		//Pass the function as parameter. This is a 2 inputs function: Index and PCG Point. Definition below
+		{
+			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
+			const FPCGPoint& InputPoint = InputPoints[Index];
+			OutPoint = InputPoint;
+
+			/*******************************************
+			Actual Point adjustment - start
+			********************************************/
+			
+			//This is the final output transform data. Initialize it first
+			FTransform SourceTransform = InputPoint.Transform;
+			FTransform FinalTransform = InputPoint.Transform;
+			FVector FinalPosition = FVector(SourceTransform.GetLocation() + CustomOffset);
+			FinalTransform.SetLocation(FinalPosition);
+
+			/*******************************************
+			Actual Point adjustment - end
+			********************************************/
+			
+			//Assign back 
+			OutPoint.Transform = FinalTransform;
+			
+			return true;
+		}
+		);
 		
 		//Function > input a reference to an array > randomly pick 1 point from the array > remove it > divide it
 		TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
