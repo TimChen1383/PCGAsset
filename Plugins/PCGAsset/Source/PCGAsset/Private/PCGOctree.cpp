@@ -50,7 +50,6 @@ TArray<FPCGPoint> UPCGOctreeSettings::DividePoint(TArray<FPCGPoint>& DivideSourc
 	{
 		for(int32 PointDivideNum = 0; PointDivideNum < PointsDivideNums; PointDivideNum++)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Running"));
 			//Choose 1 point from Source Point to divide
 			int32 ChosenPointID = FMath::RandRange(0, (DivideSourcePoints.Num()-1-PointDivideNum));
 			const FPCGPoint& ChosenPoint= DivideSourcePoints[ChosenPointID];
@@ -60,42 +59,42 @@ TArray<FPCGPoint> UPCGOctreeSettings::DividePoint(TArray<FPCGPoint>& DivideSourc
 			DivideSourcePoints.RemoveAt(ChosenPointID);
 			//Add 1st point - the cube is 100*100, 50 will be center, 25 will be octree point
 			FPCGPoint NewPoint1 = FPCGPoint();
-			NewPoint1.Transform.SetLocation(ChosenPointLocation + FVector(25,25,25));
+			NewPoint1.Transform.SetLocation(ChosenPointLocation + (ChosenPointScale/4));
 			NewPoint1.Transform.SetScale3D(ChosenPointScale * 0.5);
 			DividedPoints.Add(NewPoint1);
 			//Add 2nd point
 			FPCGPoint NewPoint2 = FPCGPoint();
-			NewPoint2.Transform.SetLocation(ChosenPointLocation + FVector(25,-25,25));
+			NewPoint2.Transform.SetLocation(ChosenPointLocation + (ChosenPointScale/4));
 			NewPoint2.Transform.SetScale3D(ChosenPointScale * 0.5);
 			DividedPoints.Add(NewPoint2);
 			//Add 3rd point
 			FPCGPoint NewPoint3 = FPCGPoint();
-			NewPoint3.Transform.SetLocation(ChosenPointLocation + FVector(-25,25,25));
+			NewPoint3.Transform.SetLocation(ChosenPointLocation + (ChosenPointScale/4));
 			NewPoint3.Transform.SetScale3D(ChosenPointScale * 0.5);
 			DividedPoints.Add(NewPoint3);
 			//Add 4th point
 			FPCGPoint NewPoint4 = FPCGPoint();
-			NewPoint4.Transform.SetLocation(ChosenPointLocation + FVector(-25,-25,25));
+			NewPoint4.Transform.SetLocation(ChosenPointLocation + (ChosenPointScale/4));
 			NewPoint4.Transform.SetScale3D(ChosenPointScale * 0.5);
 			DividedPoints.Add(NewPoint4);
 			//Add 5th point
 			FPCGPoint NewPoint5 = FPCGPoint();
-			NewPoint5.Transform.SetLocation(ChosenPointLocation + FVector(25,25,-25));
+			NewPoint5.Transform.SetLocation(ChosenPointLocation + (ChosenPointScale/4));
 			NewPoint5.Transform.SetScale3D(ChosenPointScale * 0.5);
 			DividedPoints.Add(NewPoint5);
 			//Add 6th point
 			FPCGPoint NewPoint6 = FPCGPoint();
-			NewPoint6.Transform.SetLocation(ChosenPointLocation + FVector(25,-25,-25));
+			NewPoint6.Transform.SetLocation(ChosenPointLocation + (ChosenPointScale/4));
 			NewPoint6.Transform.SetScale3D(ChosenPointScale * 0.5);
 			DividedPoints.Add(NewPoint6);
 			//Add 7th point
 			FPCGPoint NewPoint7 = FPCGPoint();
-			NewPoint7.Transform.SetLocation(ChosenPointLocation + FVector(-25,25,-25));
+			NewPoint7.Transform.SetLocation(ChosenPointLocation + (ChosenPointScale/4));
 			NewPoint7.Transform.SetScale3D(ChosenPointScale * 0.5);
 			DividedPoints.Add(NewPoint7);
 			//Add 8th point
 			FPCGPoint NewPoint8 = FPCGPoint();
-			NewPoint8.Transform.SetLocation(ChosenPointLocation + FVector(-25,-25,-25));
+			NewPoint8.Transform.SetLocation(ChosenPointLocation + (ChosenPointScale/4));
 			NewPoint8.Transform.SetScale3D(ChosenPointScale * 0.5);
 			DividedPoints.Add(NewPoint8);
 		}
@@ -177,7 +176,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		
 		//Function > input a reference to an array > randomly pick 1 point from the array > remove it > divide it
 		TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
-		//Secondary divide
+		//Secondary divide - this is wrong result
 		FinalPoints = UPCGOctreeSettings::DividePoint(FinalPoints,4);
 		OutputPoints.Append(FinalPoints);
 		
