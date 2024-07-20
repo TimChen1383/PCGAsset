@@ -55,7 +55,7 @@ TArray<FPCGPoint> UPCGOctreeSettings::DividePoint(TArray<FPCGPoint>& DivideSourc
 			const FPCGPoint& ChosenPoint= DivideSourcePoints[ChosenPointID];
 			FVector ChosenPointLocation = ChosenPoint.Transform.GetLocation();
 			FVector ChosenPointScale = ChosenPoint.Transform.GetScale3D();
-			float NewScale  = ChosenPointScale.X;
+			float NewScale  = (ChosenPointScale.X/4);
 			//Remove point Source Point
 			DivideSourcePoints.RemoveAt(ChosenPointID);
 			//Add 1st point - the cube is 100*100, 50 will be center, 25 will be octree point
@@ -178,7 +178,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		//Function > input a reference to an array > randomly pick 1 point from the array > remove it > divide it
 		TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
 		//Secondary divide - this is wrong result
-		FinalPoints = UPCGOctreeSettings::DividePoint(FinalPoints,4);
+		//FinalPoints = UPCGOctreeSettings::DividePoint(FinalPoints,4);
 		OutputPoints.Append(FinalPoints);
 		
 	}
