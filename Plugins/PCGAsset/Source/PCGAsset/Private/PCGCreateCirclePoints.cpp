@@ -21,6 +21,8 @@ To do list:
 - choose the point to face center or face tangent
 - direction face in, direction face out
 - rotate along circle
+- Do something like this : https://www.youtube.com/watch?v=s7bJrqeDQCY&ab_channel=MustafaMahirAtar
+- How to achieve this : https://www.youtube.com/watch?v=_vP2vukNEZo&ab_channel=Qworco-UnrealEngine
 ********************************************/
 
 //Override PCG Settings' default value

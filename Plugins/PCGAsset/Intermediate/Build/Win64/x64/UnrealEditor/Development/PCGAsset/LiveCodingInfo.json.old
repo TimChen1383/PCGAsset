@@ -1,0 +1,24 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.PCGAsset.cpp.obj": [
+			"PCGAsset.init.gen.cpp.obj",
+			"PCGCellularAutomata.gen.cpp.obj",
+			"ApplyLocalTransform.cpp.obj",
+			"PCGAsset.cpp.obj",
+			"PCGCellularAutomata.cpp.obj",
+			"PCGConnectSplinebyID.cpp.obj",
+			"PCGCreateCable.cpp.obj",
+			"PCGCreateCirclePoints.cpp.obj",
+			"PCGOctree.cpp.obj",
+			"PCGPerlinNoise2D.cpp.obj",
+			"PCGPointArray.cpp.obj",
+			"PCGRandom90Rotate.cpp.obj",
+			"PCGRotateAroundCenter.cpp.obj",
+			"PCGScaleAffect.cpp.obj",
+			"PCGSineWave.cpp.obj",
+			"PCGTemplate.cpp.obj",
+			"PCGVoronoi.cpp.obj"
+		]
+	}
+}

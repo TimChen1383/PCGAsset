@@ -14,9 +14,10 @@
 
 /**********************************************************************
 To do list
+- There are some mesh overlap. Not sure why
+
 - If I don't set the scale but output them as different pin, I should be able to use these point to spawn different scale module
 - temp solution - just do a point filter to found out the points with different scale
-- currently the if condition of how many time we are going to divide doesn't work
 - use random stream for random value
 
 ***********************************************************************/

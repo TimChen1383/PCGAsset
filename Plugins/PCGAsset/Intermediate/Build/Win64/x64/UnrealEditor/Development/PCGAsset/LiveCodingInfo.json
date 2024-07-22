@@ -5,6 +5,7 @@
 			"PCGAsset.init.gen.cpp.obj",
 			"ApplyLocalTransform.cpp.obj",
 			"PCGAsset.cpp.obj",
+			"PCGCellularAutomata.cpp.obj",
 			"PCGConnectSplinebyID.cpp.obj",
 			"PCGCreateCable.cpp.obj",
 			"PCGCreateCirclePoints.cpp.obj",
@@ -15,7 +16,8 @@
 			"PCGRotateAroundCenter.cpp.obj",
 			"PCGScaleAffect.cpp.obj",
 			"PCGSineWave.cpp.obj",
-			"PCGTemplate.cpp.obj"
+			"PCGTemplate.cpp.obj",
+			"PCGVoronoi.cpp.obj"
 		]
 	}
 }
