@@ -154,7 +154,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 			}
 
 			//Apply the new points value back to original points
-			OutputPoints = TempOutputPoints;
+			//OutputPoints = TempOutputPoints;
 		}
 		
 	}
