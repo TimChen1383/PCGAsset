@@ -121,21 +121,22 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						for(int32 x = k-1; x <= k+1; k++)
 						{
 							//Check if the checking point is inside All Point Grid
-							//if(0<x && x<GridWidthPointCounts && 0<y && y<GridHeightPointCounts)
-							//{
+							if(x<0 || x>GridWidthPointCounts || y<0 || y>GridHeightPointCounts)
+							{
+								//condition: outside the bounds - make it become wall
+								NeighborWallCounts++;
+							}
+							else
+							{
 								//Make sure it's not center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
-								//if(y != j || x != k)
-								//{
-									//if(TempOutputPoints[x*GridWidthPointCounts+y].Density == 1)
-									//{
-										//NeighborWallCounts++;
-									//}
-								//}
-							//}
-							//else
-							//{
-								//NeighborWallCounts++;
-							//}
+								if(y != j || x != k)
+								{
+									if(TempOutputPoints[x*GridWidthPointCounts+y].Density == 1)
+									{
+										NeighborWallCounts++;
+									}
+								}
+							}
 						}
 					}
 
