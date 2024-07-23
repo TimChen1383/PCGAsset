@@ -97,6 +97,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 		}
 		);
 
+
+		/***
 		//How many Cellular Automata iteration I want to run
 		for(int32 i = 1; i < IterationCounts; i++)
 		{
@@ -135,15 +137,19 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						}
 					}
 
-					if(NeighborWallCounts > 4)
+					if(k*GridWidthPointCounts+k <= GridWidthPointCounts*GridWidthPointCounts)
 					{
-						TempOutputPoints[k*GridWidthPointCounts+k].Density = 1;
+						if(NeighborWallCounts > 4)
+						{
+							TempOutputPoints[k*GridWidthPointCounts+k].Density = 1;
+						}
+						else
+						{
+							TempOutputPoints[k*GridWidthPointCounts+k].Density = 0;
+						}
 						
 					}
-					else
-					{
-						TempOutputPoints[k*GridWidthPointCounts+k].Density = 0;
-					}
+					
 				}
 				
 			}
@@ -151,7 +157,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 			//Apply the new points value back to original points
 			OutputPoints = TempOutputPoints;
 		}
-		
+		***/
 	}
 	
 	return true;
