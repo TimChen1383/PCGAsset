@@ -128,13 +128,13 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 							}
 							else
 							{
-								//Make sure it's not center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
+								//Make sure it's not the center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
 								if(y != j || x != k)
 								{
-									//if(TempOutputPoints[x*GridWidthPointCounts+y].Density == 1)
-									//{
-										//NeighborWallCounts++;
-									//}
+									if(TempOutputPoints[(x*GridWidthPointCounts)+y].Density == 1)
+									{
+										NeighborWallCounts++;
+									}
 								}
 							}
 						}
