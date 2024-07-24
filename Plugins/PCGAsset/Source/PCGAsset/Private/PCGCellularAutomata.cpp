@@ -105,7 +105,10 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 		for(int32 i = 1; i < IterationCounts; i++)
 		{
 			//Make a temporary copy of all the points
-			//TArray<FPCGPoint> TempOutputPoints = OutputPoints;
+			TArray<FPCGPoint> TempOutputPoints = OutputPoints;
+			UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempOutputPoints.Num());
+			UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
+
 			//looping grids from left to right
 			for(int32 j = 1; j < GridHeightPointCounts; j++)
 			{
@@ -132,10 +135,10 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								if(y != j || x != k)
 								{
 									int32 TempNum = (x*GridWidthPointCounts)+y;
-									if(OutputPoints[TempNum].Density == 1)
-									{
-										NeighborWallCounts++;
-									}
+									//if(TempOutputPoints[TempNum].Density == 1)
+									//{
+										//NeighborWallCounts++;
+									//}
 								}
 							}
 						}
