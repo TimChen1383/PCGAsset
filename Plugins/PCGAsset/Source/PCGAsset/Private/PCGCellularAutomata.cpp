@@ -136,7 +136,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								{
 									int32 TempNum = (x*GridWidthPointCounts)+y;
 									//Is it because double?? but the UE log is 1??
-									if(TempOutputPoints[1].Density == TempOutputPoints[2].Density)
+									//if(TempOutputPoints[1].Density == TempOutputPoints[2].Density)
+									if( 2 > 1)
 									{
 										//NeighborWallCounts++;
 									}
