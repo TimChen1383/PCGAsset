@@ -139,7 +139,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 									//if(TempOutputPoints[1].Density == TempOutputPoints[2].Density)
 									if( 2 > 1)
 									{
-										//NeighborWallCounts++;
+										NeighborWallCounts++;
 									}
 									else
 									{
@@ -154,24 +154,24 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						}
 					}
 
-					//if(k*GridWidthPointCounts+k <= GridWidthPointCounts*GridWidthPointCounts)
-					//{
-					//	if(NeighborWallCounts > 4)
-					//	{
-					//		TempOutputPoints[k*GridWidthPointCounts+k].Density = 1;
-					//	}
-					//	else
-					//	{
-					//		TempOutputPoints[k*GridWidthPointCounts+k].Density = 0;
-					//	}
-					//}
+					if(k*GridWidthPointCounts+k <= GridWidthPointCounts*GridWidthPointCounts)
+					{
+						if(NeighborWallCounts > 4)
+						{
+							TempOutputPoints[k*GridWidthPointCounts+k].Density = 1;
+						}
+						else
+						{
+							TempOutputPoints[k*GridWidthPointCounts+k].Density = 0;
+						}
+					}
 					
 				}
 				
 			}
 
 			//Apply the new points value back to original points
-			//OutputPoints = TempOutputPoints;
+			OutputPoints = TempOutputPoints;
 		}
 		
 	}
