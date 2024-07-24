@@ -158,11 +158,15 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					{
 						if(NeighborWallCounts > 4)
 						{
-							TempOutputPoints[k*GridWidthPointCounts+k].Density = 1;
+							//I think this will cause issue as well
+							//TempOutputPoints[k*GridWidthPointCounts+k].Density = 1;
+							TempOutputPoints[2].Density = 1;
 						}
 						else
 						{
-							TempOutputPoints[k*GridWidthPointCounts+k].Density = 0;
+							//I think this will cause issue as well
+							//TempOutputPoints[k*GridWidthPointCounts+k].Density = 0;
+							TempOutputPoints[2].Density = 0;
 						}
 					}
 					
@@ -171,7 +175,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 			}
 
 			//Apply the new points value back to original points
-			OutputPoints = TempOutputPoints;
+			//Will assign the value back cause the issue?
+			//OutputPoints = TempOutputPoints;
 		}
 		
 	}
