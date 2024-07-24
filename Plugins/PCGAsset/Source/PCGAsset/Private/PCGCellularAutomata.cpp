@@ -132,7 +132,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								if(y != j || x != k)
 								{
 									int32 TempNum = (x*GridWidthPointCounts)+y;
-									if(TempOutputPoints[TempNum].Density == 1)
+									if(TempOutputPoints[0].Density == 1)
 									{
 										NeighborWallCounts++;
 									}
