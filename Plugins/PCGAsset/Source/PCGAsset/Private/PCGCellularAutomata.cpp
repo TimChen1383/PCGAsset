@@ -100,6 +100,11 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 
 
 		
+		/***
+		 Where may the issue come from?
+		 - the value of j and k
+		 - TempOutputPoints array - can't get access to the data??
+		***/
 		
 		//How many Cellular Automata iteration I want to run
 		for(int32 i = 1; i <= IterationCounts; i++)
@@ -154,21 +159,21 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						}
 					}
 
-					if(k*GridWidthPointCounts+k <= GridWidthPointCounts*GridWidthPointCounts)
-					{
+					//if(k*GridWidthPointCounts+k <= GridWidthPointCounts*GridWidthPointCounts)
+					//{
 						if(NeighborWallCounts > 4)
 						{
 							//I think this will cause issue as well
 							//TempOutputPoints[k*GridWidthPointCounts+k].Density = 1;
-							TempOutputPoints[2].Density = 1;
+							//TempOutputPoints[2].Density = 1;
 						}
 						else
 						{
 							//I think this will cause issue as well
 							//TempOutputPoints[k*GridWidthPointCounts+k].Density = 0;
-							TempOutputPoints[2].Density = 0;
+							//TempOutputPoints[2].Density = 0;
 						}
-					}
+					//}
 					
 				}
 				
@@ -176,7 +181,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 
 			//Apply the new points value back to original points
 			//Will assign the value back cause the issue?
-			//OutputPoints = TempOutputPoints;
+			OutputPoints = TempOutputPoints;
 		}
 		
 	}
