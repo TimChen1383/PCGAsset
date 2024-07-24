@@ -141,7 +141,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								{
 									int32 TempNum = (x*GridWidthPointCounts)+y;
 									//Is it because double?? but the UE log is 1??
-									//if(TempOutputPoints[1].Density == TempOutputPoints[2].Density)
+									//if(TempOutputPoints[TempNum].Density == 1)
 									if( 2 > 1)
 									{
 										NeighborWallCounts++;
@@ -159,8 +159,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						}
 					}
 
-					//if(k*GridWidthPointCounts+k <= GridWidthPointCounts*GridWidthPointCounts)
-					//{
+					if(k*GridWidthPointCounts+k <= GridWidthPointCounts*GridWidthPointCounts)
+					{
 						if(NeighborWallCounts > 4)
 						{
 							//I think this will cause issue as well
@@ -173,14 +173,14 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 							//TempOutputPoints[k*GridWidthPointCounts+k].Density = 0;
 							//TempOutputPoints[2].Density = 0;
 						}
-					//}
+					}
 					
 				}
 				
 			}
 
 			//Apply the new points value back to original points
-			//Will assign the value back cause the issue?
+			//Will assign the value back cause the issue? Looks like not the issue
 			OutputPoints = TempOutputPoints;
 		}
 		
