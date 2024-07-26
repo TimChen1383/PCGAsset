@@ -12,6 +12,18 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGCellularAutomata"
 
+
+/**********************************************************************
+To do list
+- For loop keep crashing
+	- it's okay to get access to the density data of output point
+	- it's okay to get access to the density data of the copy of output point
+	- it's okay to run the if condition
+	- maybe the number of array is out of the range?
+
+***********************************************************************/
+
+
 UPCGCellularAutomataSettings::UPCGCellularAutomataSettings()
 {
 	bUseSeed = true;
@@ -114,35 +126,33 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempOutputPoints.Num());
 			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
 
-			if(TempOutputPoints[0].Density == 1)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("First Point Density is 1"));
-			}
-			else
-			{
+			//if(TempOutputPoints[0].Density == 1)
+			//{
+				//UE_LOG(LogTemp, Warning, TEXT("First Point Density is 1"));
+			//}
+			//else
+			//{
 				//nothing
-				UE_LOG(LogTemp, Warning, TEXT("First Point Density is 0"));
-			}
-
-
-
-			/**
+				//UE_LOG(LogTemp, Warning, TEXT("First Point Density is 0"));
+			//}
+			
+			
 			//looping grids from left to right
-			for(int32 j = 1; j < GridHeightPointCounts; j++)
+			for(int32 GridHeightPointCount = 1; GridHeightPointCount < GridHeightPointCounts; GridHeightPointCount++)
 			{
 				//looping grids from bottom to top
-				for(int32 k = 1; k < GridWidthPointCounts; k++)
+				for(int32 GridWidthPointCount = 1; GridWidthPointCount < GridWidthPointCounts; GridWidthPointCount++)
 				{
 					//the counter that count the neighbor wall count
 					int32 NeighborWallCounts = 0;
 					//looping grid's neighbor, from left to right
-					for(int32 y = j-1; y <= j+1; y++)
+					for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
 					{
 						//looping grid's neighbor, from bottom to top
-						for(int32 x = k-1; x <= k+1; k++)
+						for(int32 WidthCheckPoint = GridWidthPointCount-1; WidthCheckPoint <= GridWidthPointCount+1; GridWidthPointCount++)
 						{
 							//Check if the checking point is inside All Point Grid
-							if(x<0 || x>GridWidthPointCounts || y<0 || y>GridHeightPointCounts)
+							if(WidthCheckPoint<0 || WidthCheckPoint>GridWidthPointCounts || HeightCheckPoint<0 || HeightCheckPoint>GridHeightPointCounts)
 							{
 								//condition: outside the bounds - make it become wall
 								NeighborWallCounts++;
@@ -150,9 +160,9 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 							else
 							{
 								//Make sure it's not the center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
-								if(y != j || x != k)
+								if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
 								{
-									int32 TempNum = (x*GridWidthPointCounts)+y;
+									int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
 									//Is it because double?? but the UE log is 1??
 									//if(TempOutputPoints[TempNum].Density == 1)
 									//test if I can get access to the density value of original output points
@@ -175,27 +185,27 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						}
 					}
 
-					if(k*GridWidthPointCounts+k <= GridWidthPointCounts*GridWidthPointCounts)
-					{
-						if(NeighborWallCounts > 4)
-						{
+					//if(GridWidthPointCount*GridWidthPointCount+GridWidthPointCount <= GridWidthPointCounts*GridWidthPointCounts)
+					//{
+						//if(NeighborWallCounts > 4)
+						//{
 							//I think this will cause issue as well
 							//TempOutputPoints[k*GridWidthPointCounts+k].Density = 1;
 							//TempOutputPoints[2].Density = 1;
-						}
-						else
-						{
+						//}
+						//else
+						//{
 							//I think this will cause issue as well
 							//TempOutputPoints[k*GridWidthPointCounts+k].Density = 0;
 							//TempOutputPoints[2].Density = 0;
-						}
-					}
+						//}
+					//}
 					
 				}
 				
 			}
 
-			**/
+			
 
 			//Apply the new points value back to original points
 			//Will assign the value back cause the issue? Looks like not the issue
