@@ -166,16 +166,17 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 									//Is it because double?? but the UE log is 1??
 									//if(TempOutputPoints[TempNum].Density == 1)
 									//test if I can get access to the density value of original output points
-									if(OutputPoints[0].Density == 1)
-									{
-										NeighborWallCounts++;
-										UE_LOG(LogTemp, Warning, TEXT("First Point Density is 1"));
-									}
-									else
-									{
+
+									//if(OutputPoints[0].Density == 1)
+									//{
+										//NeighborWallCounts++;
+										//UE_LOG(LogTemp, Warning, TEXT("First Point Density is 1"));
+									//}
+									//else
+									//{
 										//nothing
-										UE_LOG(LogTemp, Warning, TEXT("First Point Density is 0"));
-									}
+										//UE_LOG(LogTemp, Warning, TEXT("First Point Density is 0"));
+									//}
 								}
 								else
 								{
