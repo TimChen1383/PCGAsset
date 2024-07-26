@@ -151,7 +151,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 							else
 							{
 								//Make sure it's not the center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
-								if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
+								if(2>1)
+								//if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
 								{
 									//int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
 									UE_LOG(LogTemp, Warning, TEXT("Test Message"));
