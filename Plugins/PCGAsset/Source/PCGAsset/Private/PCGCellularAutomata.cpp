@@ -20,7 +20,7 @@ To do list
 	- it's okay to get access to the density data of the copy of output point
 	- it's okay to run the if condition
 	- I can get access to the density data outside for loop but I can't do it outside for loop. Why? Even only get first point will crash
-	- 
+	- Is it because too many for loop? Looks like it freeze even with just printing UE LOG
 	- 
 
 ***********************************************************************/

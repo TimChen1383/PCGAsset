@@ -43,9 +43,9 @@ public:
 
 	//need to know the size of entire grid - by default set to 30*30 grids
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	int32 GridWidthPointCounts = 30;
+	int32 GridWidthPointCounts = 10;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	int32 GridHeightPointCounts = 30;
+	int32 GridHeightPointCounts = 10;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 IterationCounts = 6;
 
