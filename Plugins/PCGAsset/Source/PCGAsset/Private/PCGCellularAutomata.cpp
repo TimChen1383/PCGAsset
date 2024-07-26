@@ -129,26 +129,19 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 				{
 					//the counter that count the neighbor wall count
 					int32 NeighborWallCounts = 0;
-
-					
-
-
-					//Issue start from HERE!!
-
-					
 					
 					//looping grid's neighbor, from left to right
 					for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
 					{
-						UE_LOG(LogTemp, Warning, TEXT("Test Message"));
 
-						/**
+						//Issue start from HERE!!
+						
 						//looping grid's neighbor, from bottom to top
 						for(int32 WidthCheckPoint = (GridWidthPointCount-1); WidthCheckPoint <= (GridWidthPointCount+1); GridWidthPointCount++)
 						{
 							UE_LOG(LogTemp, Warning, TEXT("Test Message"));
 
-							
+							/**
 							//Check if the checking point is inside All Point Grid
 							if(WidthCheckPoint<0 || WidthCheckPoint>GridWidthPointCounts || HeightCheckPoint<0 || HeightCheckPoint>GridHeightPointCounts)
 							{
@@ -186,9 +179,9 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 									//nothing
 								}
 							}
-							
+							**/
 						}
-						**/
+						
 					}
 
 					
