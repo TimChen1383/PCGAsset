@@ -23,6 +23,9 @@ To do list
 	- Is it because too many for loop? Looks like it freeze even with just printing UE LOG
 	- Something wrong happen to for loop. It even freeze with 25 points, 1 iteration
 - Am I using the wrong if? if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
+- looks like the code freeze start from looping neighbor
+
+
 ***********************************************************************/
 
 
@@ -110,40 +113,36 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 			return true;
 		}
 		);
-
-
-
 		
-		/***
-		 Where may the issue come from?
-		 - the value of j and k - looks like the value of j and k is not a problem
-		 - TempOutputPoints array - can't get access to the data??
-		***/
 		
 		//How many Cellular Automata iteration I want to run
 		for(int32 i = 1; i <= IterationCounts; i++)
 		{
 			//Make a temporary copy of all the points
 			TArray<FPCGPoint> TempOutputPoints = OutputPoints;
-			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempOutputPoints.Num());
-			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
 			
 			//looping grids from left to right
-			for(int32 GridHeightPointCount = 1; GridHeightPointCount < GridHeightPointCounts; GridHeightPointCount++)
+			for(int32 GridHeightPointCount = 1; GridHeightPointCount <= GridHeightPointCounts; GridHeightPointCount++)
 			{
 				//looping grids from bottom to top
-				for(int32 GridWidthPointCount = 1; GridWidthPointCount < GridWidthPointCounts; GridWidthPointCount++)
+				for(int32 GridWidthPointCount = 1; GridWidthPointCount <= GridWidthPointCounts; GridWidthPointCount++)
 				{
 					//the counter that count the neighbor wall count
 					int32 NeighborWallCounts = 0;
 
-					UE_LOG(LogTemp, Warning, TEXT("Test Message"));
+					
 
 
-					/**
+					//Issue start from HERE!!
+
+					
+					
 					//looping grid's neighbor, from left to right
 					for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
 					{
+						UE_LOG(LogTemp, Warning, TEXT("Test Message"));
+
+						/**
 						//looping grid's neighbor, from bottom to top
 						for(int32 WidthCheckPoint = (GridWidthPointCount-1); WidthCheckPoint <= (GridWidthPointCount+1); GridWidthPointCount++)
 						{
@@ -189,9 +188,10 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 							}
 							
 						}
+						**/
 					}
 
-					**/
+					
 					//if(GridWidthPointCount*GridWidthPointCount+GridWidthPointCount <= GridWidthPointCounts*GridWidthPointCounts)
 					//{
 						//if(NeighborWallCounts > 4)
