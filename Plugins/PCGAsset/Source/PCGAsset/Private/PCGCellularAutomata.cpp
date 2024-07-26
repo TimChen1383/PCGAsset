@@ -102,7 +102,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 		
 		/***
 		 Where may the issue come from?
-		 - the value of j and k
+		 - the value of j and k - looks like the value of j and k is not a problem
 		 - TempOutputPoints array - can't get access to the data??
 		***/
 		
@@ -111,8 +111,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 		{
 			//Make a temporary copy of all the points
 			TArray<FPCGPoint> TempOutputPoints = OutputPoints;
-			UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempOutputPoints.Num());
-			UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
+			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempOutputPoints.Num());
+			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
 
 			//looping grids from left to right
 			for(int32 j = 1; j < GridHeightPointCounts; j++)
@@ -142,13 +142,16 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 									int32 TempNum = (x*GridWidthPointCounts)+y;
 									//Is it because double?? but the UE log is 1??
 									//if(TempOutputPoints[TempNum].Density == 1)
-									if( 2 > 1)
+									//test if I can get access to the density value of original output points
+									if(OutputPoints[0].Density == 1)
 									{
 										NeighborWallCounts++;
+										UE_LOG(LogTemp, Warning, TEXT("First Point Density is 1"));
 									}
 									else
 									{
 										//nothing
+										UE_LOG(LogTemp, Warning, TEXT("First Point Density is 0"));
 									}
 								}
 								else
