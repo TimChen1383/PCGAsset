@@ -19,7 +19,9 @@ To do list
 	- it's okay to get access to the density data of output point
 	- it's okay to get access to the density data of the copy of output point
 	- it's okay to run the if condition
-	- maybe the number of array is out of the range?
+	- I can get access to the density data outside for loop but I can't do it outside for loop. Why? Even only get first point will crash
+	- 
+	- 
 
 ***********************************************************************/
 
@@ -125,17 +127,6 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 			TArray<FPCGPoint> TempOutputPoints = OutputPoints;
 			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempOutputPoints.Num());
 			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
-
-			//if(TempOutputPoints[0].Density == 1)
-			//{
-				//UE_LOG(LogTemp, Warning, TEXT("First Point Density is 1"));
-			//}
-			//else
-			//{
-				//nothing
-				//UE_LOG(LogTemp, Warning, TEXT("First Point Density is 0"));
-			//}
-			
 			
 			//looping grids from left to right
 			for(int32 GridHeightPointCount = 1; GridHeightPointCount < GridHeightPointCounts; GridHeightPointCount++)
@@ -162,9 +153,9 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								//Make sure it's not the center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
 								if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
 								{
-									int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
-
-									UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
+									//int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
+									UE_LOG(LogTemp, Warning, TEXT("Test Message"));
+									//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
 
 									
 									//Is it because double?? but the UE log is 1??
