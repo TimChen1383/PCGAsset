@@ -163,6 +163,10 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
 								{
 									int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
+
+									UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
+
+									
 									//Is it because double?? but the UE log is 1??
 									//if(TempOutputPoints[TempNum].Density == 1)
 									//test if I can get access to the density value of original output points
