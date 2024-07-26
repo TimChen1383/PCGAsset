@@ -111,10 +111,10 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 		{
 			//Make a temporary copy of all the points
 			TArray<FPCGPoint> TempOutputPoints = OutputPoints;
-			UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempOutputPoints.Num());
-			UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
+			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempOutputPoints.Num());
+			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
 
-			if(OutputPoints[0].Density == 1)
+			if(TempOutputPoints[0].Density == 1)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("First Point Density is 1"));
 			}
