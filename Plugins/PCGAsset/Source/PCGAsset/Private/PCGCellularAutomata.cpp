@@ -21,8 +21,8 @@ To do list
 	- it's okay to run the if condition
 	- I can get access to the density data outside for loop but I can't do it outside for loop. Why? Even only get first point will crash
 	- Is it because too many for loop? Looks like it freeze even with just printing UE LOG
-	- 
-
+	- Something wrong happen to for loop. It even freeze with 25 points, 1 iteration
+- Am I using the wrong if? if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
 ***********************************************************************/
 
 
@@ -140,7 +140,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
 					{
 						//looping grid's neighbor, from bottom to top
-						for(int32 WidthCheckPoint = GridWidthPointCount-1; WidthCheckPoint <= GridWidthPointCount+1; GridWidthPointCount++)
+						for(int32 WidthCheckPoint = (GridWidthPointCount-1); WidthCheckPoint <= (GridWidthPointCount+1); GridWidthPointCount++)
 						{
 							//Check if the checking point is inside All Point Grid
 							if(WidthCheckPoint<0 || WidthCheckPoint>GridWidthPointCounts || HeightCheckPoint<0 || HeightCheckPoint>GridHeightPointCounts)
