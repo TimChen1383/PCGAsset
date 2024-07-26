@@ -111,9 +111,22 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 		{
 			//Make a temporary copy of all the points
 			TArray<FPCGPoint> TempOutputPoints = OutputPoints;
-			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempOutputPoints.Num());
-			//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
+			UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempOutputPoints.Num());
+			UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
 
+			if(OutputPoints[0].Density == 1)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("First Point Density is 1"));
+			}
+			else
+			{
+				//nothing
+				UE_LOG(LogTemp, Warning, TEXT("First Point Density is 0"));
+			}
+
+
+
+			/**
 			//looping grids from left to right
 			for(int32 j = 1; j < GridHeightPointCounts; j++)
 			{
@@ -181,6 +194,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 				}
 				
 			}
+
+			**/
 
 			//Apply the new points value back to original points
 			//Will assign the value back cause the issue? Looks like not the issue
