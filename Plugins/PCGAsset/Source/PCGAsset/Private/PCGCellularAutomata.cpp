@@ -129,6 +129,13 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 				{
 					//the counter that count the neighbor wall count
 					int32 NeighborWallCounts = 0;
+
+					int32 CurrentPointNum = GridWidthPointCount*GridWidthPointCounts + GridHeightPointCount;
+					UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), CurrentPointNum);
+
+
+
+
 					
 					//looping grid's neighbor, from left to right
 					for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
@@ -154,7 +161,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 									//The number is wrong. It's between 0-30 but we only have 25 points
 									//Try to print current point and it's neighbor points. Easier for debugging
 									int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
-									UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
+									//UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
 
 									/**
 									if(TempNum >= 0 && TempNum <= TempOutputPoints.Num())
