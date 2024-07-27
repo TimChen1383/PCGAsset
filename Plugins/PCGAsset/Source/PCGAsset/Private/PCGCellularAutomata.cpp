@@ -131,7 +131,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					int32 NeighborWallCounts = 0;
 
 					//Print current point number for debugging
-					int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCount + GridWidthPointCount;
+					int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
 					UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
 
 
