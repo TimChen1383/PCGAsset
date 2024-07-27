@@ -141,7 +141,9 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 							{
 								//condition: outside the bounds - make it become wall
 								NeighborWallCounts++;
+								UE_LOG(LogTemp, Warning, TEXT("Hello World"));
 							}
+							/**
 							else
 							{
 								//Make sure it's not the center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
@@ -162,12 +164,12 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 									//nothing
 								}
 							}
-							
+							**/
 						}
 						
 					}
 
-					UE_LOG(LogTemp, Warning, TEXT("Hello World"));
+					
 					
 					
 					//if(GridWidthPointCount*GridWidthPointCount+GridWidthPointCount <= GridWidthPointCounts*GridWidthPointCounts)
