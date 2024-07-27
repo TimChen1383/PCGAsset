@@ -148,7 +148,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
 								{
 									int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
-									if(TempOutputPoints[0].Density == 1)
+									if(TempOutputPoints[TempNum].Density == 1)
 									{
 										NeighborWallCounts++;
 										UE_LOG(LogTemp, Warning, TEXT("Hello World"));
