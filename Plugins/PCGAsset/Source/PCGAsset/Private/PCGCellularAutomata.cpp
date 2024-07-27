@@ -136,13 +136,14 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						UE_LOG(LogTemp, Warning, TEXT("Test Message"));
 
 						//Issue start from HERE!!
-
-						/**
+						
+						
 						//looping grid's neighbor, from bottom to top
-						for(int32 WidthCheckPoint = (GridWidthPointCount-1); WidthCheckPoint <= (GridWidthPointCount+1); GridWidthPointCount++)
+						for(int32 WidthCheckPoint = (GridWidthPointCount-1); WidthCheckPoint <= (GridWidthPointCount+1); WidthCheckPoint++)
 						{
 							UE_LOG(LogTemp, Warning, TEXT("Test Message"));
 
+							/**
 							//Check if the checking point is inside All Point Grid
 							if(WidthCheckPoint<0 || WidthCheckPoint>GridWidthPointCounts || HeightCheckPoint<0 || HeightCheckPoint>GridHeightPointCounts)
 							{
@@ -180,9 +181,9 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 									//nothing
 								}
 							}
-							
+							**/
 						}
-						**/
+						
 					}
 
 					
