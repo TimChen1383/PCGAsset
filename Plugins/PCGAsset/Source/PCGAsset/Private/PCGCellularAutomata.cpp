@@ -147,26 +147,19 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								//Make sure it's not the center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
 								if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
 								{
+									//Looks like this TempNum is more than the actual point counts
 									int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
-									if(TempOutputPoints[TempNum].Density == 1)
+									UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempNum);
+									if(TempNum >= 0 && TempNum <= TempOutputPoints.Num())
 									{
-										NeighborWallCounts++;
-										UE_LOG(LogTemp, Warning, TEXT("Hello World"));
+										if(TempOutputPoints[TempNum].Density == 1)
+										{
+											NeighborWallCounts++;
+										}
 									}
-									else
-									{
-										//nothing
-									}
-									
-								}
-								else
-								{
-									//nothing
 								}
 							}
-							
 						}
-						
 					}
 
 					
