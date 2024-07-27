@@ -150,6 +150,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 									//Looks like this TempNum is more than the actual point counts
 									int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
 									UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), TempNum);
+
+									/**
 									if(TempNum >= 0 && TempNum <= TempOutputPoints.Num())
 									{
 										if(TempOutputPoints[TempNum].Density == 1)
@@ -157,6 +159,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 											NeighborWallCounts++;
 										}
 									}
+									**/
 								}
 							}
 						}
