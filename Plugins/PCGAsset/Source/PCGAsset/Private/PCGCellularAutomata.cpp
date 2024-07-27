@@ -141,14 +141,22 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 							{
 								//condition: outside the bounds - make it become wall
 								NeighborWallCounts++;
-								UE_LOG(LogTemp, Warning, TEXT("Hello World"));
+								
+								
 							}
-							/**
+
+
+
+
+							
 							else
 							{
 								//Make sure it's not the center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
 								if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
 								{
+									UE_LOG(LogTemp, Warning, TEXT("Hello World"));
+
+									/**
 									int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
 									if(TempOutputPoints[TempNum].Density == 1)
 									{
@@ -158,13 +166,14 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 									{
 										//nothing
 									}
+									**/
 								}
 								else
 								{
 									//nothing
 								}
 							}
-							**/
+							
 						}
 						
 					}
