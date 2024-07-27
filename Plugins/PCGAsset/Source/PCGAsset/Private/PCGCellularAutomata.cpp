@@ -133,47 +133,28 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					//looping grid's neighbor, from left to right
 					for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
 					{
-						UE_LOG(LogTemp, Warning, TEXT("Test Message"));
-
-						//Issue start from HERE!!
-						
-						
 						//looping grid's neighbor, from bottom to top
 						for(int32 WidthCheckPoint = (GridWidthPointCount-1); WidthCheckPoint <= (GridWidthPointCount+1); WidthCheckPoint++)
 						{
-							UE_LOG(LogTemp, Warning, TEXT("Test Message"));
-
-							/**
 							//Check if the checking point is inside All Point Grid
 							if(WidthCheckPoint<0 || WidthCheckPoint>GridWidthPointCounts || HeightCheckPoint<0 || HeightCheckPoint>GridHeightPointCounts)
 							{
 								//condition: outside the bounds - make it become wall
-								//NeighborWallCounts++;
+								NeighborWallCounts++;
 							}
 							else
 							{
 								//Make sure it's not the center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
-								//if(2>1)
 								if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
 								{
 									int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
-									UE_LOG(LogTemp, Warning, TEXT("Test Message"));
-									//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %f"), TempOutputPoints[2].Density);
-
-									
-									//Is it because double?? but the UE log is 1??
-									//if(TempOutputPoints[TempNum].Density == 1)
-									//test if I can get access to the density value of original output points
-
-									if(OutputPoints[0].Density == 1)
+									if(TempOutputPoints[TempNum].Density == 1)
 									{
 										NeighborWallCounts++;
-										UE_LOG(LogTemp, Warning, TEXT("First Point Density is 1"));
 									}
 									else
 									{
 										//nothing
-										UE_LOG(LogTemp, Warning, TEXT("First Point Density is 0"));
 									}
 								}
 								else
@@ -181,11 +162,13 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 									//nothing
 								}
 							}
-							**/
+							
 						}
 						
 					}
 
+					UE_LOG(LogTemp, Warning, TEXT("Hello World"));
+					
 					
 					//if(GridWidthPointCount*GridWidthPointCount+GridWidthPointCount <= GridWidthPointCounts*GridWidthPointCounts)
 					//{
