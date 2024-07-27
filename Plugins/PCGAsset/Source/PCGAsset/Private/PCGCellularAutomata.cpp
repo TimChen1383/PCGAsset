@@ -130,8 +130,9 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					//the counter that count the neighbor wall count
 					int32 NeighborWallCounts = 0;
 
-					int32 CurrentPointNum = GridWidthPointCount*GridWidthPointCounts + GridHeightPointCount;
-					UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), CurrentPointNum);
+					//Print current point number for debugging
+					int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCount + GridWidthPointCount;
+					UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
 
 
 
