@@ -138,7 +138,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 
 
 					//I am able to print current point in right order
-					//Try print the checking point in the right order
+					//Try print the checking point in the right order - currently the checking point is wrong
 
 
 
@@ -150,7 +150,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						for(int32 WidthCheckPoint = (GridWidthPointCount-1); WidthCheckPoint <= (GridWidthPointCount+1); WidthCheckPoint++)
 						{
 							//Check if the checking point is inside All Point Grid
-							if(WidthCheckPoint<0 || WidthCheckPoint>GridWidthPointCounts || HeightCheckPoint<0 || HeightCheckPoint>GridHeightPointCounts)
+							if(HeightCheckPoint<0 || HeightCheckPoint>GridHeightPointCounts || WidthCheckPoint<0 || WidthCheckPoint>GridWidthPointCounts  )
 							{
 								//condition: outside the bounds - make it become wall
 								NeighborWallCounts++;
@@ -166,7 +166,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								{
 									//The number is wrong. It's between 0-30 but we only have 25 points
 									//Try to print current point and it's neighbor points. Easier for debugging
-									int32 TempNum = (WidthCheckPoint*GridWidthPointCounts)+HeightCheckPoint;
+									int32 TempNum = (HeightCheckPoint*GridWidthPointCounts)+WidthCheckPoint;
 									UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
 
 									/**
