@@ -138,7 +138,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 
 
 					//I am able to print current point in right order
-					//Try print the checking point in the right order - currently the checking point is wrong
+					//Try print the checking point in the right order - currently the checking point is wrong but very close!!
+					//Incorrectly print current point
 
 
 
@@ -158,7 +159,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 							else
 							{
 								//Make sure it's not the center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
-								if(HeightCheckPoint == GridHeightPointCount && WidthCheckPoint == GridWidthPointCounts)
+								if(HeightCheckPoint == GridHeightPointCount && WidthCheckPoint == GridWidthPointCount)
 								{
 									//Center check point do nothing
 								}
