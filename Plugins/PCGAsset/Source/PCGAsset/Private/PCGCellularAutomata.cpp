@@ -133,16 +133,6 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					//Print current point number for debugging
 					int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
 					UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
-
-
-
-
-					//I am able to print current point in right order
-					//Try print the checking point in the right order - currently the checking point is wrong but very close!!
-					//most of them are correct but the corner point is wrong. EX: Point 4 is wrong
-
-
-
 					
 					//looping grid's neighbor, from left to right
 					for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
@@ -165,56 +155,38 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								}
 								else
 								{
-									//The number is wrong. It's between 0-30 but we only have 25 points
-									//Try to print current point and it's neighbor points. Easier for debugging
-									int32 TempNum = (HeightCheckPoint*GridWidthPointCounts)+WidthCheckPoint;
+									int32 TempNum = (HeightCheckPoint*GridWidthPointCounts) + WidthCheckPoint;
 									UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
-
-									/**
-									if(TempNum >= 0 && TempNum <= TempOutputPoints.Num())
+									if(TempOutputPoints[TempNum].Density == 1)
 									{
-										if(TempOutputPoints[TempNum].Density == 1)
-										{
-											NeighborWallCounts++;
-										}
+										NeighborWallCounts++;
 									}
-									**/
 								}
 							}
 						}
 					}
+					
+					//The checking points are all correct now!!
+					//I forgot what are the code down below
 
-					
-					
-					
-					//if(GridWidthPointCount*GridWidthPointCount+GridWidthPointCount <= GridWidthPointCounts*GridWidthPointCounts)
-					//{
-						//if(NeighborWallCounts > 4)
-						//{
-							//I think this will cause issue as well
-							//TempOutputPoints[k*GridWidthPointCounts+k].Density = 1;
-							//TempOutputPoints[2].Density = 1;
-						//}
-						//else
-						//{
-							//I think this will cause issue as well
-							//TempOutputPoints[k*GridWidthPointCounts+k].Density = 0;
-							//TempOutputPoints[2].Density = 0;
-						//}
-					//}
-					
+					//I guess: check if current point is inside the range
+					//After checking the neighbor points, change the density value of current point
+					if(GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount <= GridWidthPointCounts * GridWidthPointCounts)
+					{
+						if(NeighborWallCounts > 4)
+						{
+							TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 1;
+						}
+						else
+						{
+							TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 0;
+						}
+					}
 				}
-				
 			}
-
-			
-
 			//Apply the new points value back to original points
-			//Will assign the value back cause the issue? Looks like not the issue
-			//OutputPoints = TempOutputPoints;
+			OutputPoints = TempOutputPoints;
 		}
-		
 	}
-	
 	return true;
 }
