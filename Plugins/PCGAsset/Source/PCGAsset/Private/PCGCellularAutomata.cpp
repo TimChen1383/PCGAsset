@@ -120,7 +120,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 			return true;
 		}
 		);
-		/**
+		
 		
 		//How many Cellular Automata iteration I want to run
 		for(int32 i = 1; i <= IterationCounts; i++)
@@ -194,7 +194,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 			}
 		}
 
-		**/
+		
 	}
 	return true;
 }
