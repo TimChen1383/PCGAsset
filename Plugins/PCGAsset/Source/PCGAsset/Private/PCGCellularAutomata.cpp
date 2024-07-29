@@ -15,15 +15,7 @@
 
 /**********************************************************************
 To do list
-- For loop keep crashing
-	- it's okay to get access to the density data of output point
-	- it's okay to get access to the density data of the copy of output point
-	- it's okay to run the if condition
-	- I can get access to the density data outside for loop but I can't do it outside for loop. Why? Even only get first point will crash
-	- Is it because too many for loop? Looks like it freeze even with just printing UE LOG
-	- Something wrong happen to for loop. It even freeze with 25 points, 1 iteration
-- Am I using the wrong if? if(HeightCheckPoint != GridHeightPointCount || WidthCheckPoint != GridWidthPointCounts)
-- looks like the code freeze start from looping neighbor
+- the node won't crash now. However seems like the value change of density is not much??
 
 
 ***********************************************************************/
@@ -132,7 +124,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 
 					//Print current point number for debugging
 					int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
-					UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
+					//UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
 					
 					//looping grid's neighbor, from left to right
 					for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
@@ -156,7 +148,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								else
 								{
 									int32 TempNum = (HeightCheckPoint*GridWidthPointCounts) + WidthCheckPoint;
-									UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
+									//UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
 									if(TempOutputPoints[TempNum].Density == 1)
 									{
 										NeighborWallCounts++;
@@ -166,10 +158,6 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						}
 					}
 					
-					//The checking points are all correct now!!
-					//I forgot what are the code down below
-
-					//I guess: check if current point is inside the range
 					//After checking the neighbor points, change the density value of current point
 					if(GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount <= GridWidthPointCounts * GridWidthPointCounts)
 					{
@@ -179,7 +167,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						}
 						else
 						{
-							TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 0;
+							//TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 0;
+							TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 1;
 						}
 					}
 				}
