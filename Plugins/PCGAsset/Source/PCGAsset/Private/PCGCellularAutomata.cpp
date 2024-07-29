@@ -123,7 +123,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					int32 NeighborWallCounts = 0;
 
 					//Print current point number for debugging
-					int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
+					//int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
 					//UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
 					
 					//looping grid's neighbor, from left to right
@@ -159,8 +159,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					}
 					
 					//After checking the neighbor points, change the density value of current point
-					if(GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount <= GridWidthPointCounts * GridWidthPointCounts)
-					{
+					//if(GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount <= GridWidthPointCounts * GridWidthPointCounts)
+					//{
 						if(NeighborWallCounts > 4)
 						{
 							TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 1;
@@ -169,9 +169,10 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						{
 							TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 0;
 						}
-					}
+					//}
 				}
 			}
+
 			//Apply the new points value back to original points
 			OutputPoints = TempOutputPoints;
 		}
