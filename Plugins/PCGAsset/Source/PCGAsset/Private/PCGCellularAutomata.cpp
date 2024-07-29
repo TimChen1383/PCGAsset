@@ -17,7 +17,7 @@
 To do list
 - the node won't crash now. However seems like the value change of density is not much??
 - the check point already print correctly, why the density is still not correct
-
+- The value almost didn't change - I guess the issue is come from output points
 
 ***********************************************************************/
 
@@ -164,20 +164,18 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					{
 						if(NeighborWallCounts > 4)
 						{
-							TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 1;
-							UE_LOG(LogTemp, Warning, TEXT("Change Value to : 1"));
+							OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
 						}
 						else
 						{
-							TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 0;
-							UE_LOG(LogTemp, Warning, TEXT("Change Value to : 0"));
+							OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
 						}
 					}
 				}
 			}
 
 			//Apply the new points value back to original points
-			OutputPoints = TempOutputPoints;
+			//OutputPoints = TempOutputPoints;
 		}
 	}
 	return true;
