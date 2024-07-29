@@ -18,6 +18,8 @@ To do list
 - the node won't crash now. However seems like the value change of density is not much??
 - the check point already print correctly, why the density is still not correct
 - The value almost didn't change - I guess the issue is come from output points
+- Looks like first look is correct but second loop is already wrong
+
 
 ***********************************************************************/
 
@@ -124,8 +126,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					int32 NeighborWallCounts = 0;
 
 					//Print current point number for debugging
-					//int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
-					//UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
+					int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
+					UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
 					
 					//looping grid's neighbor, from left to right
 					for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
@@ -149,7 +151,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								else
 								{
 									int32 TempNum = (HeightCheckPoint*GridWidthPointCounts) + WidthCheckPoint;
-									//UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
+									UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
 									if(TempOutputPoints[TempNum].Density == 1)
 									{
 										NeighborWallCounts++;
@@ -160,7 +162,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					}
 
 					//Debug neighbor count
-					UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
+					//UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
 
 					
 					//After checking the neighbor points, change the density value of current point
