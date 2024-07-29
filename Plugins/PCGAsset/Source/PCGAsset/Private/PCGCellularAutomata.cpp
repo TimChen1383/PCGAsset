@@ -19,7 +19,7 @@ To do list
 - the check point already print correctly, why the density is still not correct
 - The value almost didn't change - I guess the issue is come from output points
 - Looks like first look is correct but second loop is already wrong
-
+- The multiple iteration loop print correctly
 
 ***********************************************************************/
 
@@ -126,8 +126,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					int32 NeighborWallCounts = 0;
 
 					//Print current point number for debugging
-					int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
-					UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
+					//int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
+					//UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
 					
 					//looping grid's neighbor, from left to right
 					for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
@@ -151,7 +151,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								else
 								{
 									int32 TempNum = (HeightCheckPoint*GridWidthPointCounts) + WidthCheckPoint;
-									UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
+									//UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
 									if(TempOutputPoints[TempNum].Density == 1)
 									{
 										NeighborWallCounts++;
@@ -164,19 +164,20 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					//Debug neighbor count
 					//UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
 
+					//Debug output point order
+					int32 OutputPointOrder = (GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount;
+					UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), OutputPointOrder);
 					
-					//After checking the neighbor points, change the density value of current point
-					if(GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount <= GridWidthPointCounts * GridWidthPointCounts)
+					//Change the density value of current point
+					if(NeighborWallCounts > 4)
 					{
-						if(NeighborWallCounts > 4)
-						{
-							OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-						}
-						else
-						{
-							OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-						}
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
 					}
+					else
+					{
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+					}
+					
 				}
 			}
 		}
