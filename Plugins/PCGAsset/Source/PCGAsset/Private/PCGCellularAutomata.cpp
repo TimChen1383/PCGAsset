@@ -162,11 +162,11 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					}
 
 					//Debug neighbor count
-					//UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
+					UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
 
-					//Debug output point order
-					int32 OutputPointOrder = (GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount;
-					UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), OutputPointOrder);
+					//Debug output point order - this is correct
+					//int32 OutputPointOrder = (GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount;
+					//UE_LOG(LogTemp, Warning, TEXT("Output Point Order : %d"), OutputPointOrder);
 					
 					//Change the density value of current point
 					if(NeighborWallCounts > 4)
