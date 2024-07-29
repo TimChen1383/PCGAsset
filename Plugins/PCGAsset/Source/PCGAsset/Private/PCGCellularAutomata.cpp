@@ -158,6 +158,10 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 							}
 						}
 					}
+
+					//Debug neighbor count
+					UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
+
 					
 					//After checking the neighbor points, change the density value of current point
 					if(GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount <= GridWidthPointCounts * GridWidthPointCounts)
@@ -173,9 +177,6 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					}
 				}
 			}
-
-			//Apply the new points value back to original points
-			//OutputPoints = TempOutputPoints;
 		}
 	}
 	return true;
