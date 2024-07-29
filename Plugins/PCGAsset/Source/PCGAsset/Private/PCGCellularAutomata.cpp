@@ -161,14 +161,14 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					//After checking the neighbor points, change the density value of current point
 					if(GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount <= GridWidthPointCounts * GridWidthPointCounts)
 					{
-						if(NeighborWallCounts > 4)
+						if(NeighborWallCounts >= 4)
 						{
 							TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 1;
 						}
 						else
 						{
-							//TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 0;
-							TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 1;
+							TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 0;
+							//TempOutputPoints[GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount].Density = 1;
 						}
 					}
 				}

@@ -47,7 +47,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 GridHeightPointCounts = 5;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	int32 IterationCounts = 1;
+	int32 IterationCounts = 10;
 
 
 };
