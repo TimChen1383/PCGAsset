@@ -51,6 +51,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 	const int32& GridWidthPointCounts = Settings->GridWidthPointCounts;
 	const int32& GridHeightPointCounts = Settings->GridHeightPointCounts;
 	const int32& IterationCounts = Settings->IterationCounts;
+	const int32& IncreaseSpeed = Settings->IncreaseSpeed;
+	const float& RandomDensityPercentage = Settings->RandomDensityPercentage;
 
 
 
@@ -100,7 +102,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 			FVector FinalPosition = FVector(SourceTransform.GetLocation() + CustomOffset);
 			FinalTransform.SetLocation(FinalPosition);
 
-			if(InputPoint.Density > 0.5)
+			//Change point density to 0 and 1 only
+			if(InputPoint.Density > RandomDensityPercentage)
 			{
 				OutPoint.Density = 1.0;
 			}
@@ -180,8 +183,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					
 					
 					//Change the density value of current point - this method increase too fast
-					/**
-					if(NeighborWallCounts > 4)
+					
+					if(NeighborWallCounts > IncreaseSpeed)
 					{
 						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
 					}
@@ -189,9 +192,11 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					{
 						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
 					}
-					**/
+					
 
 
+					/**
+					//Random density - but this not really make sense
 					if(NeighborWallCounts < 2)
 					{
 						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
@@ -224,7 +229,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					{
 						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
 					}
-					
+					**/
 					
 				}
 			}
