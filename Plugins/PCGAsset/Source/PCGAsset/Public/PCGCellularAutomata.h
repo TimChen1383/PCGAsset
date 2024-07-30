@@ -48,6 +48,8 @@ public:
 	int32 GridHeightPointCounts = 5;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 IterationCounts = 12;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ClampMin = "1", ClampMax = "7"))
+	int32 IncrementSpeed = 4;
 
 
 };
