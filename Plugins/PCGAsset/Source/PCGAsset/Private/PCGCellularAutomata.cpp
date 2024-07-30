@@ -51,7 +51,6 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 	const int32& GridWidthPointCounts = Settings->GridWidthPointCounts;
 	const int32& GridHeightPointCounts = Settings->GridHeightPointCounts;
 	const int32& IterationCounts = Settings->IterationCounts;
-	const int32& IncrementSpeed = Settings->IncrementSpeed;
 
 
 
@@ -179,8 +178,10 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					//int32 OutputPointOrder = (GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount;
 					//UE_LOG(LogTemp, Warning, TEXT("Output Point Order : %d"), OutputPointOrder);
 					
-					//Change the density value of current point
-					if(NeighborWallCounts > IncrementSpeed)
+					
+					//Change the density value of current point - this method increase too fast
+					/**
+					if(NeighborWallCounts > 4)
 					{
 						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
 					}
@@ -188,6 +189,30 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					{
 						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
 					}
+					**/
+
+
+					if(NeighborWallCounts < 2)
+					{
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+					}
+					else if(NeighborWallCounts == 2)
+					{
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+					}
+					else if(NeighborWallCounts == 3)
+					{
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+					}
+					else if(NeighborWallCounts == 4)
+					{
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+					}
+					else
+					{
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+					}
+					
 					
 				}
 			}
