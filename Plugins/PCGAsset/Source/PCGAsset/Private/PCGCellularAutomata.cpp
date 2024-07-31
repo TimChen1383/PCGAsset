@@ -203,7 +203,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 
 					if(NeighborWallCounts < 2)
 					{
-						//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
 					}
 					else if(NeighborWallCounts == 2)
 					{
@@ -231,7 +231,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					}
 					else
 					{
-						//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
 					}
 						
 				}
