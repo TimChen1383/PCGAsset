@@ -104,7 +104,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 			//This is the final output transform data. Initialize it first
 			FTransform SourceTransform = InputPoint.Transform;
 			FTransform FinalTransform = InputPoint.Transform;
-			FVector FinalPosition = FVector(SourceTransform.GetLocation() + CustomOffset);
+			FVector FinalPosition = FVector(SourceTransform.GetLocation() + (CustomOffset*DuplicateCount));
 			FinalTransform.SetLocation(FinalPosition);
 
 			//Change point density to 0 and 1 only
