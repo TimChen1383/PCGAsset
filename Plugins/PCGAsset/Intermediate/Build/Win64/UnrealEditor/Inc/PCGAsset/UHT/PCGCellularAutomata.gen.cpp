@@ -81,8 +81,6 @@ struct Z_Construct_UClass_UPCGCellularAutomataSettings_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DuplicateCounts_MetaData[] = {
 		{ "Category", "Settings" },
-		{ "ClampMax", "0.900000" },
-		{ "ClampMin", "0.100000" },
 		{ "ModuleRelativePath", "Public/PCGCellularAutomata.h" },
 		{ "PCG_Overridable", "" },
 	};
@@ -158,10 +156,10 @@ UPCGCellularAutomataSettings::~UPCGCellularAutomataSettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGCellularAutomataSettings, UPCGCellularAutomataSettings::StaticClass, TEXT("UPCGCellularAutomataSettings"), &Z_Registration_Info_UClass_UPCGCellularAutomataSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGCellularAutomataSettings), 3438306945U) },
+		{ Z_Construct_UClass_UPCGCellularAutomataSettings, UPCGCellularAutomataSettings::StaticClass, TEXT("UPCGCellularAutomataSettings"), &Z_Registration_Info_UClass_UPCGCellularAutomataSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGCellularAutomataSettings), 951076163U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_1413121361(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_1644575617(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

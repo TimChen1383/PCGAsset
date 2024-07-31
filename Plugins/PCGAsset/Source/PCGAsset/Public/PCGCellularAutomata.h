@@ -52,7 +52,7 @@ public:
 	int32 IncreaseSpeed = 4;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ClampMin = 0.1, ClampMax = 0.9))
 	float RandomDensityPercentage = 0.35;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ClampMin = 0.1, ClampMax = 0.9))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 DuplicateCounts = 1;
 
 };
