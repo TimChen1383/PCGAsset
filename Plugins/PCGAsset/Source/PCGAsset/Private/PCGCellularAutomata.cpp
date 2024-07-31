@@ -15,14 +15,14 @@
 
 /**********************************************************************
 To do list
-- How to control the cell increment speed
-- the algorithm no need to be : > 4 than set to 1. Can be a bit random - the question is how can I convert it into user parameter?
-- the way tutorial decide the point to be 0 or 1 is a bit weird. Think another calculate method
-
+- how to change the random seed?
+- the result get very stable in the end - how can I make it more random
 
 
 Optimize :
+- remove the parameter "iteration count" - we are not using it - Keep it, let user decide to go for 2D or 3D
 - Change some code into function
+- Do some design that can avoid crash - ex: input point counts need to match with the grid size
 ***********************************************************************/
 
 
@@ -188,7 +188,8 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					//int32 OutputPointOrder = (GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount;
 					//UE_LOG(LogTemp, Warning, TEXT("Output Point Order : %d"), OutputPointOrder);
 					
-					
+
+					/**
 					//Change the density value of current point
 					if(NeighborWallCounts > IncreaseSpeed)
 					{
@@ -198,6 +199,41 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					{
 						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
 					}
+					**/
+
+					if(NeighborWallCounts < 2)
+					{
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+					}
+					else if(NeighborWallCounts == 2)
+					{
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+					}
+					else if(NeighborWallCounts == 3)
+					{
+						//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+					}
+					else if(NeighborWallCounts == 4)
+					{
+						//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+					}
+					else if(NeighborWallCounts == 5)
+					{
+						//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+					}
+					else if(NeighborWallCounts == 6)
+					{
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+					}
+					else if(NeighborWallCounts == 7)
+					{
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+					}
+					else
+					{
+						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+					}
+						
 				}
 			}
 		}
