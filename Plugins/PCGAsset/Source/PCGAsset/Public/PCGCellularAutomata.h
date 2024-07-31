@@ -39,7 +39,7 @@ public:
 	********************************************/
 	//Control the Perlin noise height and scale
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	FVector CustomOffset = FVector::Zero();
+	FVector CustomOffset = FVector(0,0,100);
 
 	//need to know the size of entire grid - by default set to 30*30 grids
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
@@ -51,10 +51,11 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ClampMin = 1, ClampMax = 7))
 	int32 IncreaseSpeed = 4;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ClampMin = 0.1, ClampMax = 0.9))
-	float RandomDensityPercentage = 0.5;
+	float RandomDensityPercentage = 0.35;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ClampMin = 0.1, ClampMax = 0.9))
+	int32 DuplicateCounts = 1;
 
 };
-
 //Override PCG Execution
 class PCGASSET_API FPCGCellularAutomataElement : public IPCGElement
 {

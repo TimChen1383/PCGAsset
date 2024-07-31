@@ -53,6 +53,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 	const int32& IterationCounts = Settings->IterationCounts;
 	const int32& IncreaseSpeed = Settings->IncreaseSpeed;
 	const float& RandomDensityPercentage = Settings->RandomDensityPercentage;
+	const int32& DuplicateCounts = Settings->DuplicateCounts;
 
 
 
@@ -74,7 +75,11 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 		}
 		const TArray<FPCGPoint>& InputPoints = InputPointData->GetPoints();
 
-		
+
+		//1 cellular Automata layer on top of another 
+		for(int32 DuplicateCount = 0; DuplicateCount < DuplicateCounts; DuplicateCount++)
+		{
+			
 		//Output : New PCG Points > PCG Point Data > PCG Tagged Data > reference output PCG Tagged Data Array
 		//It's using reference. Adjust the data and send it back later
 		FPCGTaggedData& Output = Outputs.Add_GetRef(InputsTaggedData);
@@ -122,9 +127,11 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 		}
 		);
 		
-		
+
+
+			//Using duplicate count for loop to control the iteration. Not sure this is correct or not
 		//How many Cellular Automata iteration I want to run
-		for(int32 i = 1; i <= IterationCounts; i++)
+		for(int32 i = 1; i <= DuplicateCount; i++)
 		{
 			//Make a temporary copy of all the points
 			TArray<FPCGPoint> TempOutputPoints = OutputPoints;
@@ -182,8 +189,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					//UE_LOG(LogTemp, Warning, TEXT("Output Point Order : %d"), OutputPointOrder);
 					
 					
-					//Change the density value of current point - this method increase too fast
-					
+					//Change the density value of current point
 					if(NeighborWallCounts > IncreaseSpeed)
 					{
 						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
@@ -192,50 +198,11 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					{
 						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
 					}
-					
-
-
-					/**
-					//Random density - but this not really make sense
-					if(NeighborWallCounts < 2)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-					}
-					else if(NeighborWallCounts == 2)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-					}
-					else if(NeighborWallCounts == 3)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-					}
-					else if(NeighborWallCounts == 4)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-					}
-					else if(NeighborWallCounts == 5)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-					}
-					else if(NeighborWallCounts == 6)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-					}
-					else if(NeighborWallCounts == 7)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-					}
-					else
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-					}
-					**/
-					
 				}
 			}
 		}
 
-		
+		}
 	}
 	return true;
 }
