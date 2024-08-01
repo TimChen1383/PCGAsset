@@ -15,14 +15,22 @@
 
 /**********************************************************************
 To do list
+- when doing density noise - try limit the value at the center first
+- Create a node called : Mask - Can be sphere or box. The scale can be controlled. The Position can be controlled
+- I should already created this kind of node!? Get spline data > Distance > distance to density
+- Seems like we need Mask node - distance will always overwrite my value and only keep distance value - this is not what I want
+
+
 - how to change the random seed?
 - the result get very stable in the end - how can I make it more random
 
 
 Optimize :
+- The seed parameter on this node we are not using it. What is it? Should I remove it?
 - remove the parameter "iteration count" - we are not using it - Keep it, let user decide to go for 2D or 3D
 - Change some code into function
 - Do some design that can avoid crash - ex: input point counts need to match with the grid size
+- fix this bug :   Plugin 'PCGAsset' does not list plugin 'PCG' as a dependency, but module 'PCGAsset' depends on module 'PCG'.
 ***********************************************************************/
 
 
@@ -79,165 +87,130 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 		//1 cellular Automata layer on top of another 
 		for(int32 DuplicateCount = 0; DuplicateCount < DuplicateCounts; DuplicateCount++)
 		{
-			
 		//Output : New PCG Points > PCG Point Data > PCG Tagged Data > reference output PCG Tagged Data Array
-		//It's using reference. Adjust the data and send it back later
-		FPCGTaggedData& Output = Outputs.Add_GetRef(InputsTaggedData);
-		UPCGPointData* OutputPointData = NewObject<UPCGPointData>();
-		OutputPointData->InitializeFromData(InputPointData);
-		TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
-		Output.Data = OutputPointData;
+			FPCGTaggedData& Output = Outputs.Add_GetRef(InputsTaggedData);
+			UPCGPointData* OutputPointData = NewObject<UPCGPointData>();
+			OutputPointData->InitializeFromData(InputPointData);
+			TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
+			Output.Data = OutputPointData;
 
 
 		//Run Point Loop. Data will reference back after the function loop through all PCG points
-		FPCGAsync::AsyncPointProcessing(Context, InputPoints.Num(), OutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
-		//Pass the function as parameter. This is a 2 inputs function: Index and PCG Point. Definition below
-		{
-			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
-			const FPCGPoint& InputPoint = InputPoints[Index];
-			OutPoint = InputPoint;
 
-			/*******************************************
-			Actual Point adjustment - start
-			********************************************/
-			
-			//This is the final output transform data. Initialize it first
-			FTransform SourceTransform = InputPoint.Transform;
-			FTransform FinalTransform = InputPoint.Transform;
-			FVector FinalPosition = FVector(SourceTransform.GetLocation() + (CustomOffset*DuplicateCount));
-			FinalTransform.SetLocation(FinalPosition);
+			FPCGAsync::AsyncPointProcessing(Context, InputPoints.Num(), OutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
+			//Pass the function as parameter. This is a 2 inputs function: Index and PCG Point. Definition below
+			{
+				//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
+				const FPCGPoint& InputPoint = InputPoints[Index];
+				OutPoint = InputPoint;
 
-			//Change point density to 0 and 1 only
-			if(InputPoint.Density > RandomDensityPercentage)
-			{
-				OutPoint.Density = 1.0;
-			}
-			else
-			{
-				OutPoint.Density = 0.0;
-			}
-			/*******************************************
-			Actual Point adjustment - end
-			********************************************/
+				/*******************************************
+				Actual Point adjustment - start
+				********************************************/
 			
-			//Assign back 
-			OutPoint.Transform = FinalTransform;
+				//This is the final output transform data. Initialize it first
+				FTransform SourceTransform = InputPoint.Transform;
+				FTransform FinalTransform = InputPoint.Transform;
+				FVector FinalPosition = FVector(SourceTransform.GetLocation() + (CustomOffset*DuplicateCount));
+				FinalTransform.SetLocation(FinalPosition);
+
+				//Change point density to 0 and 1 only
+				if(InputPoint.Density > RandomDensityPercentage)
+				{
+					OutPoint.Density = 1.0;
+				}
+				else
+				{
+					OutPoint.Density = 0.0;
+				}
+				/*******************************************
+				Actual Point adjustment - end
+				********************************************/
+			
+				//Assign back 
+				OutPoint.Transform = FinalTransform;
 			
 			return true;
 		}
 		);
 		
 
-
-			//Using duplicate count for loop to control the iteration. Not sure this is correct or not
-		//How many Cellular Automata iteration I want to run
-		for(int32 i = 1; i <= DuplicateCount; i++)
-		{
-			//Make a temporary copy of all the points
-			TArray<FPCGPoint> TempOutputPoints = OutputPoints;
 			
-			//looping grids from left to right
-			for(int32 GridHeightPointCount = 0; GridHeightPointCount < GridHeightPointCounts; GridHeightPointCount++)
-			{
-				//looping grids from bottom to top
-				for(int32 GridWidthPointCount = 0; GridWidthPointCount < GridWidthPointCounts; GridWidthPointCount++)
-				{
-					//the counter that count the neighbor wall count
-					int32 NeighborWallCounts = 0;
 
-					//Print current point number for debugging
-					//int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
-					//UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
-					
-					//looping grid's neighbor, from left to right
-					for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
+			//How many Cellular Automata iteration I want to run
+			for(int32 i = 1; i <= DuplicateCount; i++)
+			{
+				//Make a temporary copy of all the points
+				TArray<FPCGPoint> TempOutputPoints = OutputPoints;
+			
+				//looping grids from left to right
+				for(int32 GridHeightPointCount = 0; GridHeightPointCount < GridHeightPointCounts; GridHeightPointCount++)
+				{
+					//looping grids from bottom to top
+					for(int32 GridWidthPointCount = 0; GridWidthPointCount < GridWidthPointCounts; GridWidthPointCount++)
 					{
-						//looping grid's neighbor, from bottom to top
-						for(int32 WidthCheckPoint = (GridWidthPointCount-1); WidthCheckPoint <= (GridWidthPointCount+1); WidthCheckPoint++)
+						//the counter that count the neighbor wall count
+						int32 NeighborWallCounts = 0;
+
+						//Print current point number for debugging
+						//int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
+						//UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
+					
+						//looping grid's neighbor, from left to right
+						for(int32 HeightCheckPoint = (GridHeightPointCount-1); HeightCheckPoint <= (GridHeightPointCount+1); HeightCheckPoint++)
 						{
-							//Check if the checking point is inside All Point Grid
-							if(HeightCheckPoint<0 || HeightCheckPoint >= GridHeightPointCounts || WidthCheckPoint<0 || WidthCheckPoint >= GridWidthPointCounts  )
+							//looping grid's neighbor, from bottom to top
+							for(int32 WidthCheckPoint = (GridWidthPointCount-1); WidthCheckPoint <= (GridWidthPointCount+1); WidthCheckPoint++)
 							{
-								//condition: outside the bounds - make it become wall
-								NeighborWallCounts++;
-							}
-							else
-							{
-								//Make sure it's not the center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
-								if(HeightCheckPoint == GridHeightPointCount && WidthCheckPoint == GridWidthPointCount)
+								//Check if the checking point is inside All Point Grid
+								if(HeightCheckPoint<0 || HeightCheckPoint >= GridHeightPointCounts || WidthCheckPoint<0 || WidthCheckPoint >= GridWidthPointCounts  )
 								{
-									//Center check point do nothing
+									//condition: outside the bounds - make it become wall
+									NeighborWallCounts++;
 								}
+
 								else
 								{
-									int32 TempNum = (HeightCheckPoint*GridWidthPointCounts) + WidthCheckPoint;
-									//UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
-									if(TempOutputPoints[TempNum].Density == 1)
+									//Make sure it's not the center grid. If it's center grid of the checking bound, won't add any number to the neighbor counter
+									if(HeightCheckPoint == GridHeightPointCount && WidthCheckPoint == GridWidthPointCount)
 									{
-										NeighborWallCounts++;
+										//Center check point do nothing
+									}
+									else
+									{
+										int32 TempNum = (HeightCheckPoint*GridWidthPointCounts) + WidthCheckPoint;
+										//UE_LOG(LogTemp, Warning, TEXT("Checking point : %d"), TempNum);
+										if(TempOutputPoints[TempNum].Density == 1)
+										{
+											NeighborWallCounts++;
+										}
 									}
 								}
 							}
 						}
-					}
 
-					//Debug neighbor count
-					UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
 
-					//Debug output point order - this is correct
-					//int32 OutputPointOrder = (GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount;
-					//UE_LOG(LogTemp, Warning, TEXT("Output Point Order : %d"), OutputPointOrder);
+						//Debug neighbor count
+						UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
+
+						//Debug output point order - this is correct
+						//int32 OutputPointOrder = (GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount;
+						//UE_LOG(LogTemp, Warning, TEXT("Output Point Order : %d"), OutputPointOrder);
 					
-
-					/**
-					//Change the density value of current point
-					if(NeighborWallCounts > IncreaseSpeed)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-					}
-					else
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-					}
-					**/
-
-					if(NeighborWallCounts < 2)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-					}
-					else if(NeighborWallCounts == 2)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-					}
-					else if(NeighborWallCounts == 3)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-					}
-					else if(NeighborWallCounts == 4)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-					}
-					else if(NeighborWallCounts == 5)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-					}
-					else if(NeighborWallCounts == 6)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-					}
-					else if(NeighborWallCounts == 7)
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-					}
-					else
-					{
-						OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-					}
+					
+						//Change the density value of current point
+						if(NeighborWallCounts > IncreaseSpeed)
+						{
+							OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+						}
+						else
+						{
+							OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+						} 
 						
+					}
 				}
 			}
-		}
-
 		}
 	}
 	return true;

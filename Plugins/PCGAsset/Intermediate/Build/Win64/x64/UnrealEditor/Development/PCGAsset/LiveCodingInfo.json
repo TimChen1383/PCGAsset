@@ -12,6 +12,7 @@
 			"PCGOctree.cpp.obj",
 			"PCGPerlinNoise2D.cpp.obj",
 			"PCGPointArray.cpp.obj",
+			"PCGPointMask.cpp.obj",
 			"PCGRandom90Rotate.cpp.obj",
 			"PCGRotateAroundCenter.cpp.obj",
 			"PCGScaleAffect.cpp.obj",

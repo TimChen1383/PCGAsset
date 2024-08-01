@@ -3,7 +3,6 @@
 	{
 		"Module.PCGAsset.cpp.obj": [
 			"PCGAsset.init.gen.cpp.obj",
-			"PCGCellularAutomata.gen.cpp.obj",
 			"ApplyLocalTransform.cpp.obj",
 			"PCGAsset.cpp.obj",
 			"PCGCellularAutomata.cpp.obj",
