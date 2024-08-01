@@ -15,7 +15,7 @@
 
 /**********************************************************************
 To do list
-- Why the edge become dirty when iterate?
+- the value is wrong. Why the wdge is white??
 
 
 
@@ -167,7 +167,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								if(HeightCheckPoint<0 || HeightCheckPoint >= GridHeightPointCounts || WidthCheckPoint<0 || WidthCheckPoint >= GridWidthPointCounts  )
 								{
 									//condition: outside the bounds - make it become wall
-									NeighborWallCounts++;
+									//NeighborWallCounts++;
 								}
 
 								else
