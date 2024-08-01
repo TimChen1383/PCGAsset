@@ -117,15 +117,15 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 				FVector FinalPosition = FVector(SourceTransform.GetLocation() + (CustomOffset*DuplicateCount));
 				FinalTransform.SetLocation(FinalPosition);
 
-				//Change point density to 0 and 1 only
-				if(InputPoint.Density > RandomDensityPercentage)
-				{
-					OutPoint.Density = 1.0;
-				}
-				else
-				{
-					OutPoint.Density = 0.0;
-				}
+				//Change point density to 0 and 1 only - separate to another node called PCGBoolDensity
+				//if(InputPoint.Density > RandomDensityPercentage)
+				//{
+				//	OutPoint.Density = 1.0;
+				//}
+				//else
+				//{
+				//	OutPoint.Density = 0.0;
+				//}
 				/*******************************************
 				Actual Point adjustment - end
 				********************************************/
