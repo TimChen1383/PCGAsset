@@ -49,9 +49,16 @@ struct Z_Construct_UClass_UPCGPointMaskSettings_Statics
 		{ "ModuleRelativePath", "Public/PCGPointMask.h" },
 		{ "PCG_Overridable", "" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InvertMask_MetaData[] = {
+		{ "Category", "Settings" },
+		{ "ModuleRelativePath", "Public/PCGPointMask.h" },
+		{ "PCG_Overridable", "" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CustomOffset;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_DistanceLength;
+	static void NewProp_InvertMask_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_InvertMask;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -61,9 +68,15 @@ struct Z_Construct_UClass_UPCGPointMaskSettings_Statics
 };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_CustomOffset = { "CustomOffset", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGPointMaskSettings, CustomOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CustomOffset_MetaData), NewProp_CustomOffset_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_DistanceLength = { "DistanceLength", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGPointMaskSettings, DistanceLength), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DistanceLength_MetaData), NewProp_DistanceLength_MetaData) };
+void Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_InvertMask_SetBit(void* Obj)
+{
+	((UPCGPointMaskSettings*)Obj)->InvertMask = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_InvertMask = { "InvertMask", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UPCGPointMaskSettings), &Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_InvertMask_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InvertMask_MetaData), NewProp_InvertMask_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGPointMaskSettings_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_CustomOffset,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_DistanceLength,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_InvertMask,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGPointMaskSettings_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPCGPointMaskSettings_Statics::DependentSingletons[])() = {
@@ -106,10 +119,10 @@ UPCGPointMaskSettings::~UPCGPointMaskSettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointMask_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGPointMaskSettings, UPCGPointMaskSettings::StaticClass, TEXT("UPCGPointMaskSettings"), &Z_Registration_Info_UClass_UPCGPointMaskSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGPointMaskSettings), 2052321865U) },
+		{ Z_Construct_UClass_UPCGPointMaskSettings, UPCGPointMaskSettings::StaticClass, TEXT("UPCGPointMaskSettings"), &Z_Registration_Info_UClass_UPCGPointMaskSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGPointMaskSettings), 868117145U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointMask_h_2173484656(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointMask_h_1740246643(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointMask_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointMask_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
