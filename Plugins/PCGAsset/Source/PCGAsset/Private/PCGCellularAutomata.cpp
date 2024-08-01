@@ -116,16 +116,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 				FTransform FinalTransform = InputPoint.Transform;
 				FVector FinalPosition = FVector(SourceTransform.GetLocation() + (CustomOffset*DuplicateCount));
 				FinalTransform.SetLocation(FinalPosition);
-
-				//Change point density to 0 and 1 only - separate to another node called PCGBoolDensity
-				//if(InputPoint.Density > RandomDensityPercentage)
-				//{
-				//	OutPoint.Density = 1.0;
-				//}
-				//else
-				//{
-				//	OutPoint.Density = 0.0;
-				//}
+				
 				/*******************************************
 				Actual Point adjustment - end
 				********************************************/
@@ -139,7 +130,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 		
 
 			
-
+			/**
 			//How many Cellular Automata iteration I want to run
 			for(int32 i = 1; i <= DuplicateCount; i++)
 			{
@@ -211,43 +202,43 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 							OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
 						} 
 
-						/**
-						if(TempOutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density == 1)
-						{
-							if(NeighborWallCounts < 2)
-							{
-								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-							}
-							else if(NeighborWallCounts == 2)
-							{
-								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-							}
-							else if(NeighborWallCounts == 3)
-							{
-								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-							}
-							else if(NeighborWallCounts == 4)
-							{
-								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-							}
-							else
-							{
-								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-							}
-						}
-						else
-						{
-							if(NeighborWallCounts == 3)
-							{
-								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
-							}
-							else
-							{
-								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-							}
-						}
+						
+						//if(TempOutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density == 1)
+						//{
+							//if(NeighborWallCounts < 2)
+							//{
+								//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+							//}
+							//else if(NeighborWallCounts == 2)
+							//{
+								//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+							//}
+							//else if(NeighborWallCounts == 3)
+							//{
+								//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+							//}
+							//else if(NeighborWallCounts == 4)
+							//{
+								//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+							//}
+							//else
+							//{
+								//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+							//}
+						//}
+						//else
+						//{
+							//if(NeighborWallCounts == 3)
+							//{
+								//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+							//}
+							//else
+							//{
+								//OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+							//}
+						//}
 
-						**/
+						
 
 
 
@@ -256,6 +247,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					}
 				}
 			}
+			**/
 		}
 	}
 	return true;
