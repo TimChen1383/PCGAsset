@@ -147,10 +147,10 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 				TArray<FPCGPoint> TempOutputPoints = OutputPoints;
 			
 				//looping grids from left to right
-				for(int32 GridHeightPointCount = ((GridHeightPointCounts/2) - StartFrom); GridHeightPointCount < ((GridHeightPointCounts/2) + StartFrom); GridHeightPointCount++)
+				for(int32 GridHeightPointCount = 0; GridHeightPointCount < GridHeightPointCounts; GridHeightPointCount++)
 				{
 					//looping grids from bottom to top
-					for(int32 GridWidthPointCount = ((GridWidthPointCounts/2) - StartFrom); GridWidthPointCount < ((GridWidthPointCounts/2) - StartFrom); GridWidthPointCount++)
+					for(int32 GridWidthPointCount = 0; GridWidthPointCount < GridWidthPointCounts; GridWidthPointCount++)
 					{
 						//the counter that count the neighbor wall count
 						int32 NeighborWallCounts = 0;
@@ -194,7 +194,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 
 
 						//Debug neighbor count
-						UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
+						//UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
 
 						//Debug output point order - this is correct
 						//int32 OutputPointOrder = (GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount;
@@ -202,14 +202,51 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					
 					
 						//Change the density value of current point
-						if(NeighborWallCounts > IncreaseSpeed)
+						//if(NeighborWallCounts > IncreaseSpeed)
+						//{
+						//	OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+						//}
+						//else
+						//{
+						//	OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+						//} 
+
+						if(TempOutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density == 1)
 						{
-							OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+							if(NeighborWallCounts < 2)
+							{
+								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+							}
+							else if(NeighborWallCounts == 2)
+							{
+								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+							}
+							else if(NeighborWallCounts == 3)
+							{
+								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+							}
+							else if(NeighborWallCounts == 4)
+							{
+								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+							}
+							else
+							{
+								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+							}
 						}
 						else
 						{
-							OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
-						} 
+							if(NeighborWallCounts == 3)
+							{
+								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 1;
+							}
+							else
+							{
+								OutputPoints[(GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount].Density = 0;
+							}
+						}
+
+
 						
 					}
 				}
