@@ -15,6 +15,13 @@
 
 /**********************************************************************
 To do list
+- Why the edge become dirty when iterate?
+
+
+
+
+
+
 - when doing density noise - try limit the value at the center first
 - Create a node called : Mask - Can be sphere or box. The scale can be controlled. The Position can be controlled
 - I should already create this kind of node!? Get spline data > Distance > distance to density
@@ -130,7 +137,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 		
 
 			
-			/**
+			
 			//How many Cellular Automata iteration I want to run
 			for(int32 i = 1; i <= DuplicateCount; i++)
 			{
@@ -247,7 +254,6 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					}
 				}
 			}
-			**/
 		}
 	}
 	return true;
