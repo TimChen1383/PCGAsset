@@ -84,6 +84,11 @@ struct Z_Construct_UClass_UPCGCellularAutomataSettings_Statics
 		{ "ModuleRelativePath", "Public/PCGCellularAutomata.h" },
 		{ "PCG_Overridable", "" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StartFrom_MetaData[] = {
+		{ "Category", "Settings" },
+		{ "ModuleRelativePath", "Public/PCGCellularAutomata.h" },
+		{ "PCG_Overridable", "" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CustomOffset;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_GridWidthPointCounts;
@@ -92,6 +97,7 @@ struct Z_Construct_UClass_UPCGCellularAutomataSettings_Statics
 	static const UECodeGen_Private::FIntPropertyParams NewProp_IncreaseSpeed;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_RandomDensityPercentage;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_DuplicateCounts;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_StartFrom;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -106,6 +112,7 @@ const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGCellularAutom
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::NewProp_IncreaseSpeed = { "IncreaseSpeed", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCellularAutomataSettings, IncreaseSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IncreaseSpeed_MetaData), NewProp_IncreaseSpeed_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::NewProp_RandomDensityPercentage = { "RandomDensityPercentage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCellularAutomataSettings, RandomDensityPercentage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RandomDensityPercentage_MetaData), NewProp_RandomDensityPercentage_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::NewProp_DuplicateCounts = { "DuplicateCounts", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCellularAutomataSettings, DuplicateCounts), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DuplicateCounts_MetaData), NewProp_DuplicateCounts_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::NewProp_StartFrom = { "StartFrom", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCellularAutomataSettings, StartFrom), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StartFrom_MetaData), NewProp_StartFrom_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::NewProp_CustomOffset,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::NewProp_GridWidthPointCounts,
@@ -114,6 +121,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGCellu
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::NewProp_IncreaseSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::NewProp_RandomDensityPercentage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::NewProp_DuplicateCounts,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::NewProp_StartFrom,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPCGCellularAutomataSettings_Statics::DependentSingletons[])() = {
@@ -156,10 +164,10 @@ UPCGCellularAutomataSettings::~UPCGCellularAutomataSettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGCellularAutomataSettings, UPCGCellularAutomataSettings::StaticClass, TEXT("UPCGCellularAutomataSettings"), &Z_Registration_Info_UClass_UPCGCellularAutomataSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGCellularAutomataSettings), 951076163U) },
+		{ Z_Construct_UClass_UPCGCellularAutomataSettings, UPCGCellularAutomataSettings::StaticClass, TEXT("UPCGCellularAutomataSettings"), &Z_Registration_Info_UClass_UPCGCellularAutomataSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGCellularAutomataSettings), 3439577025U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_1644575617(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_3598987738(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

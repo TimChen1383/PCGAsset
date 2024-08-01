@@ -17,8 +17,10 @@
 To do list
 - when doing density noise - try limit the value at the center first
 - Create a node called : Mask - Can be sphere or box. The scale can be controlled. The Position can be controlled
-- I should already created this kind of node!? Get spline data > Distance > distance to density
+- I should already create this kind of node!? Get spline data > Distance > distance to density
 - Seems like we need Mask node - distance will always overwrite my value and only keep distance value - this is not what I want
+
+- What is the algorithm of the tutorial? Why his form looks much better!?
 
 
 - how to change the random seed?
@@ -62,6 +64,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 	const int32& IncreaseSpeed = Settings->IncreaseSpeed;
 	const float& RandomDensityPercentage = Settings->RandomDensityPercentage;
 	const int32& DuplicateCounts = Settings->DuplicateCounts;
+	const int32& StartFrom = Settings->StartFrom;
 
 
 
@@ -144,10 +147,10 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 				TArray<FPCGPoint> TempOutputPoints = OutputPoints;
 			
 				//looping grids from left to right
-				for(int32 GridHeightPointCount = 0; GridHeightPointCount < GridHeightPointCounts; GridHeightPointCount++)
+				for(int32 GridHeightPointCount = ((GridHeightPointCounts/2) - StartFrom); GridHeightPointCount < ((GridHeightPointCounts/2) + StartFrom); GridHeightPointCount++)
 				{
 					//looping grids from bottom to top
-					for(int32 GridWidthPointCount = 0; GridWidthPointCount < GridWidthPointCounts; GridWidthPointCount++)
+					for(int32 GridWidthPointCount = ((GridWidthPointCounts/2) - StartFrom); GridWidthPointCount < ((GridWidthPointCounts/2) - StartFrom); GridWidthPointCount++)
 					{
 						//the counter that count the neighbor wall count
 						int32 NeighborWallCounts = 0;

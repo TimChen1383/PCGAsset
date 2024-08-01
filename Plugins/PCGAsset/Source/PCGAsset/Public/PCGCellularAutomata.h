@@ -54,6 +54,8 @@ public:
 	float RandomDensityPercentage = 0.35;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 DuplicateCounts = 1;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	int32 StartFrom = 5;
 
 };
 //Override PCG Execution
