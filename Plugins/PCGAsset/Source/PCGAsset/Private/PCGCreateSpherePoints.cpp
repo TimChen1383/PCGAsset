@@ -14,8 +14,8 @@
 
 /*******************************************
 To do list:
-- I need to do nested loop here. How can I run nested loop?
-- float u = FMath::GetMappedRangeValueClamped(FVector2D(0, 1), FVector2D(0, 100), 23);
+- Do I need to use the Async loop? May I use for loop directly? Performance?
+
 
 
 ********************************************/
@@ -39,9 +39,9 @@ bool FPCGCreateSpherePointsElement::ExecuteInternal(FPCGContext* Context) const
 	check(Settings);
 	
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const int32& RollPointCount = Settings->RollPointCount;
+	const int32& Resolution = Settings->Resolution;
 	const float& Radius = Settings->Radius;
-	int32 TotalPointCount = RollPointCount*RollPointCount;
+	int32 TotalPointCount = Resolution*Resolution;
 	
 	//Setup Output data
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
@@ -66,19 +66,19 @@ bool FPCGCreateSpherePointsElement::ExecuteInternal(FPCGContext* Context) const
 	//Crate sphere points
 	float PIValue = 3.14195;
 	
-	for(int32 i = 0; i < RollPointCount; i++)
+	for(int32 i = 0; i < Resolution; i++)
 	{
-		float Longitude = FMath::GetMappedRangeValueClamped(FVector2D(0, RollPointCount), FVector2D(-PIValue, PIValue), i);
-		for(int32 j = 0; j < RollPointCount; j++)
+		float Longitude = FMath::GetMappedRangeValueClamped(FVector2D(0, Resolution), FVector2D(-PIValue, PIValue), i);
+		for(int32 j = 0; j < Resolution; j++)
 		{
-			float Latitude = FMath::GetMappedRangeValueClamped(FVector2D(0, RollPointCount), FVector2D(-(PIValue/2), (PIValue/2)), j);
+			float Latitude = FMath::GetMappedRangeValueClamped(FVector2D(0, Resolution), FVector2D(-(PIValue/2), (PIValue/2)), j);
 			float XPosition = Radius * sin(Longitude) * cos(Latitude);
 			float YPosition = Radius * sin(Longitude) * sin(Latitude);
 			float ZPosition = Radius * cos(Longitude);
 
-			float CurrentNum = (i*RollPointCount)+j;
+			float CurrentNum = (i*Resolution)+j;
 			//UE_LOG(LogTemp, Warning, TEXT("Current Point is : %f"), CurrentNum);
-			OutputPoints[(i*RollPointCount)+j].Transform.SetLocation(FVector(XPosition, YPosition, ZPosition));
+			OutputPoints[(i*Resolution)+j].Transform.SetLocation(FVector(XPosition, YPosition, ZPosition));
 			
 		}
 	}

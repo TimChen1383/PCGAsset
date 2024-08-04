@@ -22,8 +22,8 @@ public:
  //~Begin node UI interface setting
 #if WITH_EDITOR
  //Set node's display name
- virtual FName GetDefaultNodeName() const override { return FName(TEXT("CreateCitclePoints")); }
- virtual FText GetDefaultNodeTitle() const override { return NSLOCTEXT("CreateCitclePoints", "NodeTitle", "CreateCitclePoints"); }
+ virtual FName GetDefaultNodeName() const override { return FName(TEXT("CreateCirclePoints")); }
+ virtual FText GetDefaultNodeTitle() const override { return NSLOCTEXT("CreateCirclePoints", "NodeTitle", "CreateCirclePoints"); }
  virtual FText GetNodeTooltipText() const override { return NSLOCTEXT("PCGCreateCCirclePoints", "NodeTooltip", "Creates circle points on provided points number."); }
  //Set node's category
  virtual EPCGSettingsType GetType() const override { return EPCGSettingsType::Spatial; }
