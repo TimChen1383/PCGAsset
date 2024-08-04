@@ -29,76 +29,50 @@ bool FPCGCreateSpiralSplineElement::ExecuteInternal(FPCGContext* Context) const
 	const UPCGCreateSpiralSplineSettings* Settings = Context->GetInputSettings<UPCGCreateSpiralSplineSettings>();
 	check(Settings);
 	
-	//Create Input and Output data first. We will adjust, set the value and reference back to this variable
-	const TArray<FPCGTaggedData> InputsTaggedDatas = Context->InputData.GetInputs();
-	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
-
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
 	const FVector& IncrementZOffset = Settings->IncrementZOffset;
 	const float& IncrementDegree = Settings->IncrementDegree;
 	const float& CircleRadius = Settings->CircleRadius;
 	const int32& CirclePointCounts = Settings->CirclePointCounts;
 
+	//Setup Output data
+	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
+	FPCGTaggedData& Output = Outputs.Emplace_GetRef();
+	UPCGPointData* OutputPointData = NewObject<UPCGPointData>();
+	check(OutputPointData);
+	TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
+	Output.Data = OutputPointData;
 
-	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
-	for (const FPCGTaggedData& InputsTaggedData : InputsTaggedDatas)
+
+	//Run Point Loop. Data will reference back after the function loop through all PCG points
+	FPCGAsync::AsyncPointProcessing(Context, CirclePointCounts, OutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
+	//Pass the function as parameter. This is a 2 inputs function: Index and PCG Point. Definition below
 	{
-		//Input : PCG Tagged Data > PCG Spatial Data > PCG Point Data > PCG Points
-		const UPCGSpatialData* InputSpatialData = Cast<UPCGSpatialData>(InputsTaggedData.Data);
-		if (!InputSpatialData)
-		{
-			PCGE_LOG(Error, GraphAndLog, LOCTEXT("InputMissingSpatialData", "Unable to get Spatial data from input"));
-			continue;
-		}
-		const UPCGPointData* InputPointData = InputSpatialData->ToPointData(Context);
-		if (!InputPointData)
-		{
-			PCGE_LOG(Error, GraphAndLog, LOCTEXT("InputMissingPointData", "Unable to get Point data from input"));
-			continue;
-		}
-		const TArray<FPCGPoint>& InputPoints = InputPointData->GetPoints();
-
-		
-		//Output : New PCG Points > PCG Point Data > PCG Tagged Data > reference output PCG Tagged Data Array
-		//It's using reference. Adjust the data and send it back later
-		FPCGTaggedData& Output = Outputs.Add_GetRef(InputsTaggedData);
-		UPCGPointData* OutputPointData = NewObject<UPCGPointData>();
-		OutputPointData->InitializeFromData(InputPointData);
-		TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
-		Output.Data = OutputPointData;
-
-
-		//Run Point Loop. Data will reference back after the function loop through all PCG points
-		FPCGAsync::AsyncPointProcessing(Context, CirclePointCounts, OutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
-		//Pass the function as parameter. This is a 2 inputs function: Index and PCG Point. Definition below
-		{
-			OutPoint = FPCGPoint();
+		OutPoint = FPCGPoint();
 			
-			/*******************************************
-			Actual Point adjustment - start
-			********************************************/
+		/*******************************************
+		Actual Point adjustment - start
+		********************************************/
 			
-			//Create new points
-			FTransform PointTransform = FTransform::Identity;
-			int64 CurrentPointDegree = IncrementDegree * Index;
-			FRotator CenterDirectRot = FRotator(0,CurrentPointDegree,0);
-			FVector CenterDirectVec = CenterDirectRot.Vector() * CircleRadius;
-			FVector PointPos =  CenterDirectVec + (Index * IncrementZOffset);
-			FRotator LookAtRot = UKismetMathLibrary::FindLookAtRotation(CenterDirectVec,FVector::Zero());
-			FVector OutScale = FVector(1,1,1);
-			FTransform FinalTransform = FTransform(LookAtRot,PointPos,OutScale);
-			PointTransform = FinalTransform;
+		//Create new points
+		FTransform PointTransform = FTransform::Identity;
+		int64 CurrentPointDegree = IncrementDegree * Index;
+		FRotator CenterDirectRot = FRotator(0,CurrentPointDegree,0);
+		FVector CenterDirectVec = CenterDirectRot.Vector() * CircleRadius;
+		FVector PointPos =  CenterDirectVec + (Index * IncrementZOffset);
+		FRotator LookAtRot = UKismetMathLibrary::FindLookAtRotation(CenterDirectVec,FVector::Zero());
+		FVector OutScale = FVector(1,1,1);
+		FTransform FinalTransform = FTransform(LookAtRot,PointPos,OutScale);
+		PointTransform = FinalTransform;
 			
-			/*******************************************
-			Actual Point adjustment - end
-			********************************************/
-			OutPoint.Transform = PointTransform;
-			OutPoint.Seed = PCGHelpers::ComputeSeedFromPosition(PointTransform.GetLocation());
+		/*******************************************
+		Actual Point adjustment - end
+		********************************************/
+		OutPoint.Transform = PointTransform;
+		OutPoint.Seed = PCGHelpers::ComputeSeedFromPosition(PointTransform.GetLocation());
 	
-			return true;
-		}
-		);
+		return true;
 	}
-	
+	);
 	return true;
 }
