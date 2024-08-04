@@ -12,7 +12,13 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGCreateSpherePoints"
 
-float u = FMath::GetMappedRangeValueClamped(FVector2D(0, 1), FVector2D(0, 100), 23);
+/*******************************************
+To do list:
+- I need to do nested loop here. How can I run nested loop?
+- float u = FMath::GetMappedRangeValueClamped(FVector2D(0, 1), FVector2D(0, 100), 23);
+
+
+********************************************/
 
 UPCGCreateSpherePointsSettings::UPCGCreateSpherePointsSettings()
 {
@@ -32,10 +38,8 @@ bool FPCGCreateSpherePointsElement::ExecuteInternal(FPCGContext* Context) const
 	const UPCGCreateSpherePointsSettings* Settings = Context->GetInputSettings<UPCGCreateSpherePointsSettings>();
 	check(Settings);
 	
-
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
 	const int32& TotalPointCount = Settings->TotalPointCount;
-	
 	
 	//Setup Output data
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
@@ -44,29 +48,41 @@ bool FPCGCreateSpherePointsElement::ExecuteInternal(FPCGContext* Context) const
 	check(OutputPointData);
 	TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
 	Output.Data = OutputPointData;
-
-
+	
 	//Run Iteration Loop. Data will reference back after the function loop through all PCG points
 	FPCGAsync::AsyncPointProcessing(Context, TotalPointCount, OutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
 	{
 		OutPoint = FPCGPoint();
-		/*******************************************
-		Actual Point adjustment - start
-		********************************************/
-			
-		//Create new points
-		
 		FTransform PointTransform = FTransform::Identity;
-		//FTransform FinalTransform = FTransform(LookAtRot,CenterDirectVec,OutScale);
-		//PointTransform = FinalTransform;
-			
-		/*******************************************
-		Actual Point adjustment - end
-		********************************************/
 		OutPoint.Transform = PointTransform;
 		OutPoint.Seed = PCGHelpers::ComputeSeedFromPosition(PointTransform.GetLocation());
 	
 		return true;
 		});
+
+
+	//Crate sphere points
+	float Radius = 200.0f;
+	int32 XCount = 5;
+	int32 YCount = 5;
+	float PIValue = 3.14195;
+	
+	for(int32 i = 0; i < XCount; i++)
+	{
+		float Longitude = FMath::GetMappedRangeValueClamped(FVector2D(0, TotalPointCount), FVector2D(-PIValue, PIValue), i);
+		for(int32 j = 0; j < YCount; j++)
+		{
+			float Latitude = FMath::GetMappedRangeValueClamped(FVector2D(0, TotalPointCount), FVector2D(-(PIValue/2), (PIValue/2)), j);
+			float XPosition = Radius * sin(Longitude) * cos(Latitude);
+			float YPosition = Radius * sin(Longitude) * sin(Latitude);
+			float ZPosition = Radius * cos(Longitude);
+
+			float CurrentNum = (i*XCount)+j;
+			UE_LOG(LogTemp, Warning, TEXT("Current Point is : %f"), CurrentNum);
+			//OutputPoints[(i*XCount)+j].Transform.SetLocation(FVector(XPosition, YPosition, ZPosition));
+			
+		}
+	}
+	
 	return true;
 }
