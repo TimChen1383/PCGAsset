@@ -49,9 +49,15 @@ struct Z_Construct_UClass_UPCGCreateSpherePointsSettings_Statics
 		{ "ModuleRelativePath", "Public/PCGCreateSpherePoints.h" },
 		{ "PCG_Overridable", "" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Radius_MetaData[] = {
+		{ "Category", "Settings" },
+		{ "ModuleRelativePath", "Public/PCGCreateSpherePoints.h" },
+		{ "PCG_Overridable", "" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CustomOffset;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_TotalPointCount;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Radius;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -61,9 +67,11 @@ struct Z_Construct_UClass_UPCGCreateSpherePointsSettings_Statics
 };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UPCGCreateSpherePointsSettings_Statics::NewProp_CustomOffset = { "CustomOffset", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateSpherePointsSettings, CustomOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CustomOffset_MetaData), NewProp_CustomOffset_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGCreateSpherePointsSettings_Statics::NewProp_TotalPointCount = { "TotalPointCount", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateSpherePointsSettings, TotalPointCount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TotalPointCount_MetaData), NewProp_TotalPointCount_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGCreateSpherePointsSettings_Statics::NewProp_Radius = { "Radius", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateSpherePointsSettings, Radius), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Radius_MetaData), NewProp_Radius_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGCreateSpherePointsSettings_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateSpherePointsSettings_Statics::NewProp_CustomOffset,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateSpherePointsSettings_Statics::NewProp_TotalPointCount,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateSpherePointsSettings_Statics::NewProp_Radius,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGCreateSpherePointsSettings_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPCGCreateSpherePointsSettings_Statics::DependentSingletons[])() = {
@@ -106,10 +114,10 @@ UPCGCreateSpherePointsSettings::~UPCGCreateSpherePointsSettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateSpherePoints_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGCreateSpherePointsSettings, UPCGCreateSpherePointsSettings::StaticClass, TEXT("UPCGCreateSpherePointsSettings"), &Z_Registration_Info_UClass_UPCGCreateSpherePointsSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGCreateSpherePointsSettings), 2100811736U) },
+		{ Z_Construct_UClass_UPCGCreateSpherePointsSettings, UPCGCreateSpherePointsSettings::StaticClass, TEXT("UPCGCreateSpherePointsSettings"), &Z_Registration_Info_UClass_UPCGCreateSpherePointsSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGCreateSpherePointsSettings), 1387815420U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateSpherePoints_h_314116351(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateSpherePoints_h_2040155376(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateSpherePoints_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateSpherePoints_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

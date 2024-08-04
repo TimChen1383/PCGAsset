@@ -40,6 +40,7 @@ bool FPCGCreateSpherePointsElement::ExecuteInternal(FPCGContext* Context) const
 	
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
 	const int32& TotalPointCount = Settings->TotalPointCount;
+	const float& Radius = Settings->Radius;
 	
 	//Setup Output data
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
@@ -62,7 +63,7 @@ bool FPCGCreateSpherePointsElement::ExecuteInternal(FPCGContext* Context) const
 
 
 	//Crate sphere points
-	float Radius = 200.0f;
+	//float Radius = 200.0f;
 	int32 XCount = 30;
 	int32 YCount = 30;
 	float PIValue = 3.14195;
