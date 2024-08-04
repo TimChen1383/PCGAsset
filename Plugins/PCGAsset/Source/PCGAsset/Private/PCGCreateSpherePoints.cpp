@@ -39,8 +39,9 @@ bool FPCGCreateSpherePointsElement::ExecuteInternal(FPCGContext* Context) const
 	check(Settings);
 	
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const int32& TotalPointCount = Settings->TotalPointCount;
+	const int32& RollPointCount = Settings->RollPointCount;
 	const float& Radius = Settings->Radius;
+	int32 TotalPointCount = RollPointCount*RollPointCount;
 	
 	//Setup Output data
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
@@ -63,24 +64,21 @@ bool FPCGCreateSpherePointsElement::ExecuteInternal(FPCGContext* Context) const
 
 
 	//Crate sphere points
-	//float Radius = 200.0f;
-	int32 XCount = 100;
-	int32 YCount = 100;
 	float PIValue = 3.14195;
 	
-	for(int32 i = 0; i < XCount; i++)
+	for(int32 i = 0; i < RollPointCount; i++)
 	{
-		float Longitude = FMath::GetMappedRangeValueClamped(FVector2D(0, TotalPointCount), FVector2D(-PIValue, PIValue), i);
-		for(int32 j = 0; j < YCount; j++)
+		float Longitude = FMath::GetMappedRangeValueClamped(FVector2D(0, RollPointCount), FVector2D(-PIValue, PIValue), i);
+		for(int32 j = 0; j < RollPointCount; j++)
 		{
-			float Latitude = FMath::GetMappedRangeValueClamped(FVector2D(0, TotalPointCount), FVector2D(-(PIValue/2), (PIValue/2)), j);
+			float Latitude = FMath::GetMappedRangeValueClamped(FVector2D(0, RollPointCount), FVector2D(-(PIValue/2), (PIValue/2)), j);
 			float XPosition = Radius * sin(Longitude) * cos(Latitude);
 			float YPosition = Radius * sin(Longitude) * sin(Latitude);
 			float ZPosition = Radius * cos(Longitude);
 
-			float CurrentNum = (i*XCount)+j;
+			float CurrentNum = (i*RollPointCount)+j;
 			//UE_LOG(LogTemp, Warning, TEXT("Current Point is : %f"), CurrentNum);
-			OutputPoints[(i*XCount)+j].Transform.SetLocation(FVector(XPosition, YPosition, ZPosition));
+			OutputPoints[(i*RollPointCount)+j].Transform.SetLocation(FVector(XPosition, YPosition, ZPosition));
 			
 		}
 	}
