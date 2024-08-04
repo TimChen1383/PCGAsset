@@ -15,23 +15,9 @@
 
 /**********************************************************************
 To do list
-- the value is wrong. Why the wdge is white??
-
-
-
-
-
-
-- when doing density noise - try limit the value at the center first
-- Create a node called : Mask - Can be sphere or box. The scale can be controlled. The Position can be controlled
-- I should already create this kind of node!? Get spline data > Distance > distance to density
-- Seems like we need Mask node - distance will always overwrite my value and only keep distance value - this is not what I want
-
-- What is the algorithm of the tutorial? Why his form looks much better!?
-
-
+- The new algorithm looks better but not really make sense
 - how to change the random seed?
-- the result get very stable in the end - how can I make it more random
+- let user choose 2D or 3D version - when the mode change to 3D, the parameters should change as well
 
 
 Optimize :

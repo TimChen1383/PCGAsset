@@ -4,8 +4,8 @@
 		"Module.PCGAsset.cpp.obj": [
 			"PCGAsset.init.gen.cpp.obj",
 			"ApplyLocalTransform.cpp.obj",
-			"BoolDensity.cpp.obj",
 			"PCGAsset.cpp.obj",
+			"PCGBoolDensity.cpp.obj",
 			"PCGCellularAutomata.cpp.obj",
 			"PCGConnectSplinebyID.cpp.obj",
 			"PCGCreateCable.cpp.obj",
@@ -15,6 +15,7 @@
 			"PCGPointArray.cpp.obj",
 			"PCGPointMask.cpp.obj",
 			"PCGRandom90Rotate.cpp.obj",
+			"PCGRemoveArea.cpp.obj",
 			"PCGRotateAroundCenter.cpp.obj",
 			"PCGScaleAffect.cpp.obj",
 			"PCGSineWave.cpp.obj",
