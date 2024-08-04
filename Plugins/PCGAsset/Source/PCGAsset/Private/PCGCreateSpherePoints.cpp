@@ -64,8 +64,8 @@ bool FPCGCreateSpherePointsElement::ExecuteInternal(FPCGContext* Context) const
 
 	//Crate sphere points
 	//float Radius = 200.0f;
-	int32 XCount = 30;
-	int32 YCount = 30;
+	int32 XCount = 100;
+	int32 YCount = 100;
 	float PIValue = 3.14195;
 	
 	for(int32 i = 0; i < XCount; i++)
