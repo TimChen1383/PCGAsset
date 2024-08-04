@@ -63,8 +63,8 @@ bool FPCGCreateSpherePointsElement::ExecuteInternal(FPCGContext* Context) const
 
 	//Crate sphere points
 	float Radius = 200.0f;
-	int32 XCount = 5;
-	int32 YCount = 5;
+	int32 XCount = 30;
+	int32 YCount = 30;
 	float PIValue = 3.14195;
 	
 	for(int32 i = 0; i < XCount; i++)
@@ -78,8 +78,8 @@ bool FPCGCreateSpherePointsElement::ExecuteInternal(FPCGContext* Context) const
 			float ZPosition = Radius * cos(Longitude);
 
 			float CurrentNum = (i*XCount)+j;
-			UE_LOG(LogTemp, Warning, TEXT("Current Point is : %f"), CurrentNum);
-			//OutputPoints[(i*XCount)+j].Transform.SetLocation(FVector(XPosition, YPosition, ZPosition));
+			//UE_LOG(LogTemp, Warning, TEXT("Current Point is : %f"), CurrentNum);
+			OutputPoints[(i*XCount)+j].Transform.SetLocation(FVector(XPosition, YPosition, ZPosition));
 			
 		}
 	}
