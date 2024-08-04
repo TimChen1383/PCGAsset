@@ -22,13 +22,13 @@ public:
 	virtual FName GetDefaultNodeName() const override { return FName(TEXT("CreateSpherePoints")); }
 	virtual FText GetDefaultNodeTitle() const override { return NSLOCTEXT("CreateSpherePoints", "NodeTitle", "CreateSpherePoints"); }
 	//Set node's category
-	virtual EPCGSettingsType GetType() const override { return EPCGSettingsType::PointOps; }
+	virtual EPCGSettingsType GetType() const override { return EPCGSettingsType::Spatial; }
 #endif
 	
 
 protected:
 	//Set Input Pin and Output Pin type to Point type
-	virtual TArray<FPCGPinProperties> InputPinProperties() const override { return Super::DefaultPointInputPinProperties(); }
+	virtual TArray<FPCGPinProperties> InputPinProperties() const override {return TArray<FPCGPinProperties>();};
 	virtual TArray<FPCGPinProperties> OutputPinProperties() const override { return Super::DefaultPointOutputPinProperties(); }
 	virtual FPCGElementPtr CreateElement() const override;
 	//~End node UI interface setting
