@@ -6,6 +6,12 @@
 #include "PCGSettings.h"
 #include "PCGPerlinNoise2D.generated.h"
 
+UENUM()
+enum class EPCGPerlinNoiseMode : uint8
+{
+	PelinNoise2D,
+	PelinNoise3D,
+};
 
 UCLASS()
 //Override PCG Settings
@@ -43,7 +49,8 @@ public:
 	float HeightMultiplier = 1.0f;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	float ScaleMultiplier = 0.001f;
-	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	EPCGPerlinNoiseMode Mode = EPCGPerlinNoiseMode::PelinNoise2D;
 
 };
 

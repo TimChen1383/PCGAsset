@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "PCGPerlinNoise2D.h"
+
 #include "PCGContext.h"
 #include "PCGPin.h"
 #include "Data/PCGSpatialData.h"
@@ -47,6 +46,7 @@ bool FPCGPerlinNoise2DElement::ExecuteInternal(FPCGContext* Context) const
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
 	const float& PerlinHeightMultiplier = Settings->HeightMultiplier;
 	const float& PerlinScaleMultiplier = Settings->ScaleMultiplier;
+	EPCGPerlinNoiseMode Mode = Settings->Mode;
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
 	for (const FPCGTaggedData& InputsTaggedData : InputsTaggedDatas)
@@ -90,13 +90,24 @@ bool FPCGPerlinNoise2DElement::ExecuteInternal(FPCGContext* Context) const
 			//This is the final output transform data. Initialize it first
 			FTransform FinalTransform = InputPoint.Transform;
 			FTransform SourceTransform = InputPoint.Transform;
+			FVector Location3D = SourceTransform.GetLocation()*PerlinScaleMultiplier+0.1;
 			FVector2D Location2D = FVector2D(SourceTransform.GetLocation().X*PerlinScaleMultiplier+0.1, SourceTransform.GetLocation().Y*PerlinScaleMultiplier+0.1);
+
+			if(Mode == EPCGPerlinNoiseMode::PelinNoise2D)
+			{
+				//Perlin noise value will be gone after we rotate the actor
+				float PerlinFloat2D = FMath::PerlinNoise2D(Location2D);
+				FVector PerlinLocation2D = FVector(SourceTransform.GetLocation().X, SourceTransform.GetLocation().Y, SourceTransform.GetLocation().Z + PerlinFloat2D*PerlinHeightMultiplier);
+				FinalTransform.SetLocation(PerlinLocation2D);
+			}
+			else
+			{
+				float PerlinFloat3D = FMath::PerlinNoise3D(Location3D);
+				FVector PerlinLocation3D = SourceTransform.GetLocation() + PerlinFloat3D*PerlinHeightMultiplier;
+				FinalTransform.SetLocation(PerlinLocation3D);
+			}
+	
 			
-			//What is the difference between Perlin Noise 2D and Perlin Noise 3D?
-			//Perlin noise value will be gone after we rotate the actor
-			float PerlinFloat = FMath::PerlinNoise2D(Location2D);
-			FVector PerlinHeight = FVector(SourceTransform.GetLocation().X, SourceTransform.GetLocation().Y, SourceTransform.GetLocation().Z + PerlinFloat*PerlinHeightMultiplier);
-			FinalTransform.SetLocation(PerlinHeight);
 
 			/*******************************************
 			Actual Point adjustment - end
