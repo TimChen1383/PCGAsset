@@ -44,6 +44,8 @@ public:
 	float NoiseCellSize = 1.0f;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	float NoiseAttenuation = 1.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	float HeightMultiplier = 100.0f;
 
 	static float WorleyNoise2D(float X, float Y, int Seed, float CellSize, float Attenuation);
 };

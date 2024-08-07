@@ -54,10 +54,16 @@ struct Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics
 		{ "ModuleRelativePath", "Public/PCGWorleyNoise.h" },
 		{ "PCG_Overridable", "" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HeightMultiplier_MetaData[] = {
+		{ "Category", "Settings" },
+		{ "ModuleRelativePath", "Public/PCGWorleyNoise.h" },
+		{ "PCG_Overridable", "" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CustomOffset;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_NoiseCellSize;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_NoiseAttenuation;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_HeightMultiplier;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -68,10 +74,12 @@ struct Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics::NewProp_CustomOffset = { "CustomOffset", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGWorleyNoiseSettings, CustomOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CustomOffset_MetaData), NewProp_CustomOffset_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics::NewProp_NoiseCellSize = { "NoiseCellSize", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGWorleyNoiseSettings, NoiseCellSize), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NoiseCellSize_MetaData), NewProp_NoiseCellSize_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics::NewProp_NoiseAttenuation = { "NoiseAttenuation", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGWorleyNoiseSettings, NoiseAttenuation), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NoiseAttenuation_MetaData), NewProp_NoiseAttenuation_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics::NewProp_HeightMultiplier = { "HeightMultiplier", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGWorleyNoiseSettings, HeightMultiplier), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HeightMultiplier_MetaData), NewProp_HeightMultiplier_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics::NewProp_CustomOffset,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics::NewProp_NoiseCellSize,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics::NewProp_NoiseAttenuation,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics::NewProp_HeightMultiplier,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPCGWorleyNoiseSettings_Statics::DependentSingletons[])() = {
@@ -114,10 +122,10 @@ UPCGWorleyNoiseSettings::~UPCGWorleyNoiseSettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGWorleyNoise_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGWorleyNoiseSettings, UPCGWorleyNoiseSettings::StaticClass, TEXT("UPCGWorleyNoiseSettings"), &Z_Registration_Info_UClass_UPCGWorleyNoiseSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGWorleyNoiseSettings), 104398650U) },
+		{ Z_Construct_UClass_UPCGWorleyNoiseSettings, UPCGWorleyNoiseSettings::StaticClass, TEXT("UPCGWorleyNoiseSettings"), &Z_Registration_Info_UClass_UPCGWorleyNoiseSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGWorleyNoiseSettings), 2775853127U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGWorleyNoise_h_1355870350(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGWorleyNoise_h_551705085(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGWorleyNoise_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGWorleyNoise_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

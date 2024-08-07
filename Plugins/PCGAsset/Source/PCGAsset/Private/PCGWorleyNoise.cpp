@@ -77,6 +77,7 @@ bool FPCGWorleyNoiseElement::ExecuteInternal(FPCGContext* Context) const
 	const FVector& CustomOffset = Settings->CustomOffset;
 	const float& NoiseCellSize = Settings->NoiseCellSize;
 	const float& NoiseAttenuation = Settings->NoiseAttenuation;
+	const float& HeightMultiplier = Settings->HeightMultiplier;
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -125,7 +126,7 @@ bool FPCGWorleyNoiseElement::ExecuteInternal(FPCGContext* Context) const
 			
 			float PointLocX = SourceTransform.GetLocation().X;
 			float PointLocY = SourceTransform.GetLocation().Y;
-			float WorleyNoiseHeight = UPCGWorleyNoiseSettings::WorleyNoise2D(PointLocX,PointLocY,1,NoiseCellSize,NoiseAttenuation);
+			float WorleyNoiseHeight = UPCGWorleyNoiseSettings::WorleyNoise2D(PointLocX,PointLocY,1,NoiseCellSize,NoiseAttenuation) * HeightMultiplier;
 
 			FVector FinalPosition = FVector(PointLocX, PointLocY, WorleyNoiseHeight);
 			FinalTransform.SetLocation(FinalPosition);
