@@ -26,8 +26,8 @@ public:
 	//~Begin node UI interface setting
 #if WITH_EDITOR
 	//Set node's display name
-	virtual FName GetDefaultNodeName() const override { return FName(TEXT("PerlinNoise2D")); }
-	virtual FText GetDefaultNodeTitle() const override { return NSLOCTEXT("PerlinNoise2D", "NodeTitle", "PerlinNoise2D"); }
+	virtual FName GetDefaultNodeName() const override { return FName(TEXT("PerlinNoise")); }
+	virtual FText GetDefaultNodeTitle() const override { return NSLOCTEXT("PerlinNoise", "NodeTitle", "PerlinNoise"); }
 	//Set node's category
 	virtual EPCGSettingsType GetType() const override { return EPCGSettingsType::PointOps; }
 #endif

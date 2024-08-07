@@ -51,6 +51,8 @@ public:
 	float NoiseAttenuation = 0.0f;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	float HeightMultiplier = 300.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	EPCGWorleyNoiseMode Mode = EPCGWorleyNoiseMode::WorleyNoise2D;
 
 	//Generate Worley Noise 2D
 	static float WorleyNoise2D(float X, float Y, int Seed, float CellSize, float Attenuation);

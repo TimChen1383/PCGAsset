@@ -122,6 +122,7 @@ bool FPCGWorleyNoiseElement::ExecuteInternal(FPCGContext* Context) const
 	const float& NoiseCellSize = Settings->NoiseCellSize;
 	const float& NoiseAttenuation = Settings->NoiseAttenuation;
 	const float& HeightMultiplier = Settings->HeightMultiplier;
+	EPCGWorleyNoiseMode Mode = Settings->Mode;
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -167,13 +168,23 @@ bool FPCGWorleyNoiseElement::ExecuteInternal(FPCGContext* Context) const
 			//This is the final output transform data. Initialize it first
 			FTransform SourceTransform = InputPoint.Transform;
 			FTransform FinalTransform = InputPoint.Transform;
-			
 			float PointLocX = SourceTransform.GetLocation().X;
 			float PointLocY = SourceTransform.GetLocation().Y;
-			float WorleyNoiseHeight = UPCGWorleyNoiseSettings::WorleyNoise2D(PointLocX,PointLocY,1,NoiseCellSize,NoiseAttenuation) * HeightMultiplier;
+			float PointLocZ = SourceTransform.GetLocation().Z;
 
-			FVector FinalPosition = FVector(PointLocX, PointLocY, WorleyNoiseHeight);
-			FinalTransform.SetLocation(FinalPosition);
+			if(Mode == EPCGWorleyNoiseMode::WorleyNoise2D)
+			{
+				float WorleyNoiseHeight = UPCGWorleyNoiseSettings::WorleyNoise2D(PointLocX,PointLocY,1,NoiseCellSize,NoiseAttenuation) * HeightMultiplier;
+				FVector FinalPosition = FVector(PointLocX, PointLocY, PointLocZ + WorleyNoiseHeight);
+				FinalTransform.SetLocation(FinalPosition);
+			}
+			else
+			{
+				float WorleyNoiseHeight = UPCGWorleyNoiseSettings::WorleyNoise3D(PointLocX, PointLocY, PointLocZ, 1, NoiseCellSize, NoiseAttenuation) * HeightMultiplier;
+				FVector FinalPosition = FVector(PointLocX + WorleyNoiseHeight, PointLocY + WorleyNoiseHeight, PointLocZ + WorleyNoiseHeight);
+				FinalTransform.SetLocation(FinalPosition);
+			}
+			
 
 			/*******************************************
 			Actual Point adjustment - end
