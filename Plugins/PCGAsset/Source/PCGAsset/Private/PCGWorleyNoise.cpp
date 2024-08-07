@@ -63,6 +63,51 @@ float UPCGWorleyNoiseSettings::WorleyNoise2D(float X, float Y, int Seed, float C
 	return FMath::Clamp(NoiseValue, -1.0f, 1.0f);
 }
 
+float UPCGWorleyNoiseSettings::WorleyNoise3D(float X, float Y, float Z, int Seed, float CellSize, float Attenuation)
+{
+	FRandomStream RandomStream(Seed);
+	float MinDistance = MAX_flt;
+
+	// Determine cell indices based on CellSize
+	int CellX = FMath::FloorToInt(X / CellSize);
+	int CellY = FMath::FloorToInt(Y / CellSize);
+	int CellZ = FMath::FloorToInt(Z / CellSize);
+
+	// Inspect surrounding cells in 3D
+	for (int offsetZ = -1; offsetZ <= 1; offsetZ++)
+	{
+		for (int offsetY = -1; offsetY <= 1; offsetY++)
+		{
+			for (int offsetX = -1; offsetX <= 1; offsetX++)
+			{
+				// Unique seed for each cell based on its coordinates and the global seed
+				int CellSeed = (CellX + offsetX) * 73856093 ^ (CellY + offsetY) * 19349663 ^ (CellZ + offsetZ) * 83492791 ^ Seed;
+				RandomStream.Initialize(CellSeed);
+
+				// Random point within this cell
+				float PointX = (CellX + offsetX) * CellSize + RandomStream.FRand() * CellSize;
+				float PointY = (CellY + offsetY) * CellSize + RandomStream.FRand() * CellSize;
+				float PointZ = (CellZ + offsetZ) * CellSize + RandomStream.FRand() * CellSize;
+
+				// Update minimum distance
+				float Distance = FMath::Sqrt(FMath::Pow(PointX - X, 2) + FMath::Pow(PointY - Y, 2) + FMath::Pow(PointZ - Z, 2));
+				MinDistance = FMath::Min(MinDistance, Distance);
+			}
+		}
+	}
+
+	float NoiseValue = ((MinDistance / CellSize) * 2) - 1;
+
+	//Calculate attentuation
+	float Distance = FMath::Sqrt(X * X + Y * Y + Z * Z); // Calculate distance from origin
+	float AttenuatedAmplitude = (1.0f - FMath::Exp(-Distance / Attenuation));
+
+	NoiseValue *= AttenuatedAmplitude;
+
+	// Normalize distance
+	return FMath::Clamp(NoiseValue, -1.0f, 1.0f);
+}
+
 bool FPCGWorleyNoiseElement::ExecuteInternal(FPCGContext* Context) const
 {
 	//Store PCG Settings. Use it for get access to all variables we declared or adjusted in PCG Settings in header
@@ -74,7 +119,6 @@ bool FPCGWorleyNoiseElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const FVector& CustomOffset = Settings->CustomOffset;
 	const float& NoiseCellSize = Settings->NoiseCellSize;
 	const float& NoiseAttenuation = Settings->NoiseAttenuation;
 	const float& HeightMultiplier = Settings->HeightMultiplier;

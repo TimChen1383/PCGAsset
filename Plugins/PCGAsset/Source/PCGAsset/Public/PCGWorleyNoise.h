@@ -6,6 +6,13 @@
 #include "PCGSettings.h"
 #include "PCGWorleyNoise.generated.h"
 
+UENUM()
+enum class EPCGWorleyNoiseMode : uint8
+{
+	WorleyNoise2D,
+	WorleyNoise3D,
+};
+
 UCLASS()
 //Override PCG Settings
 class PCGASSET_API UPCGWorleyNoiseSettings : public UPCGSettings
@@ -39,15 +46,16 @@ public:
 	********************************************/
 	//Control the Perlin noise height and scale
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	FVector CustomOffset = FVector::Zero();
+	float NoiseCellSize = 1000.0f;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	float NoiseCellSize = 1.0f;
+	float NoiseAttenuation = 0.0f;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	float NoiseAttenuation = 1.0f;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	float HeightMultiplier = 100.0f;
+	float HeightMultiplier = 300.0f;
 
+	//Generate Worley Noise 2D
 	static float WorleyNoise2D(float X, float Y, int Seed, float CellSize, float Attenuation);
+	//Generate Worley Noise 3D
+	static float WorleyNoise3D(float X, float Y, float Z, int Seed, float CellSize, float Attenuation);
 };
 
 //Override PCG Execution
