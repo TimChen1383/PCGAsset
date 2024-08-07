@@ -22,7 +22,8 @@
 			"PCGScaleAffect.cpp.obj",
 			"PCGSineWave.cpp.obj",
 			"PCGTemplate.cpp.obj",
-			"PCGVoronoi.cpp.obj"
+			"PCGVoronoi.cpp.obj",
+			"PCGWorleyNoise.cpp.obj"
 		]
 	}
 }
