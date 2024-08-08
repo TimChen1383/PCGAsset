@@ -10,7 +10,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodePCGCreateCable() {}
 
 // Begin Cross Module References
-COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 PCG_API UClass* Z_Construct_UClass_UPCGSettings();
 PCG_API UEnum* Z_Construct_UEnum_PCG_EPCGAttachOptions();
@@ -111,7 +110,7 @@ struct Z_Construct_UClass_UPCGCreateCableSettings_Statics
 		{ "ModuleRelativePath", "Public/PCGCreateCable.h" },
 		{ "PCG_Overridable", "" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OffsetValue_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TangentAmount_MetaData[] = {
 		{ "Category", "Settings" },
 		{ "ModuleRelativePath", "Public/PCGCreateCable.h" },
 		{ "PCG_Overridable", "" },
@@ -130,7 +129,7 @@ struct Z_Construct_UClass_UPCGCreateCableSettings_Statics
 	static const UECodeGen_Private::FBytePropertyParams NewProp_Mode_Underlying;
 	static const UECodeGen_Private::FEnumPropertyParams NewProp_Mode;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_CableCounts;
-	static const UECodeGen_Private::FStructPropertyParams NewProp_OffsetValue;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_TangentAmount;
 	static const UECodeGen_Private::FSoftObjectPropertyParams NewProp_TargetActor;
 	static const UECodeGen_Private::FUInt32PropertyParams NewProp_AttachOptions_Underlying;
 	static const UECodeGen_Private::FEnumPropertyParams NewProp_AttachOptions;
@@ -144,7 +143,7 @@ struct Z_Construct_UClass_UPCGCreateCableSettings_Statics
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_Mode_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_Mode = { "Mode", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateCableSettings, Mode), Z_Construct_UEnum_PCGAsset_EPCGCreateCableMode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Mode_MetaData), NewProp_Mode_MetaData) }; // 640622336
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_CableCounts = { "CableCounts", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateCableSettings, CableCounts), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CableCounts_MetaData), NewProp_CableCounts_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_OffsetValue = { "OffsetValue", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateCableSettings, OffsetValue), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OffsetValue_MetaData), NewProp_OffsetValue_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_TangentAmount = { "TangentAmount", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateCableSettings, TangentAmount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TangentAmount_MetaData), NewProp_TangentAmount_MetaData) };
 const UECodeGen_Private::FSoftObjectPropertyParams Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_TargetActor = { "TargetActor", nullptr, (EPropertyFlags)0x0014000000000000, UECodeGen_Private::EPropertyGenFlags::SoftObject, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateCableSettings, TargetActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TargetActor_MetaData), NewProp_TargetActor_MetaData) };
 const UECodeGen_Private::FUInt32PropertyParams Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_AttachOptions_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::UInt32, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_AttachOptions = { "AttachOptions", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateCableSettings, AttachOptions), Z_Construct_UEnum_PCG_EPCGAttachOptions, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AttachOptions_MetaData), NewProp_AttachOptions_MetaData) }; // 3528313874
@@ -152,7 +151,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGCreat
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_Mode_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_Mode,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_CableCounts,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_OffsetValue,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_TangentAmount,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_TargetActor,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_AttachOptions_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCableSettings_Statics::NewProp_AttachOptions,
@@ -201,10 +200,10 @@ struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Sourc
 		{ EPCGCreateCableMode_StaticEnum, TEXT("EPCGCreateCableMode"), &Z_Registration_Info_UEnum_EPCGCreateCableMode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 640622336U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGCreateCableSettings, UPCGCreateCableSettings::StaticClass, TEXT("UPCGCreateCableSettings"), &Z_Registration_Info_UClass_UPCGCreateCableSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGCreateCableSettings), 1512385354U) },
+		{ Z_Construct_UClass_UPCGCreateCableSettings, UPCGCreateCableSettings::StaticClass, TEXT("UPCGCreateCableSettings"), &Z_Registration_Info_UClass_UPCGCreateCableSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGCreateCableSettings), 1367348835U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_1369439175(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_3982526995(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_Statics::EnumInfo));

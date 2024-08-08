@@ -52,7 +52,7 @@ public:
 	int32 CableCounts = 3;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	FVector OffsetValue = FVector(0,0,300);
+	float TangentAmount = 500.0f;
 	
 	UPROPERTY(meta = (PCG_Overridable))
 	TSoftObjectPtr<AActor> TargetActor;

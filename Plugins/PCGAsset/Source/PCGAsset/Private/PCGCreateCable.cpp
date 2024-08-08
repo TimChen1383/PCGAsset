@@ -84,8 +84,8 @@ bool FPCGCreateCableElement::ExecuteInternal(FPCGContext* Context) const
 	EPCGCreateCableMode Mode = Settings->Mode;
 
 	//User Custom Value
-	const FVector& OffsetValue = Settings->OffsetValue;
 	const int32& CableCounts = Settings->CableCounts;
+	const float& TangentAmount = Settings->TangentAmount;
 
 	for (const FPCGTaggedData& Input : Inputs)
 	{
@@ -128,17 +128,17 @@ bool FPCGCreateCableElement::ExecuteInternal(FPCGContext* Context) const
 			//Get data from input PCG point
 			const FPCGPoint& Point1 = Points[FMath::RandRange(0, Points.Num()-1)]; //Get first PCG Point from input
 			const FTransform& PointTransform1 = Point1.Transform; //Get transform of first PCG Point
+			const FVector LocalPosition1 = PointTransform1.GetLocation() - SplineActorTransform.GetLocation();
 			const FPCGPoint& Point2 = Points[FMath::RandRange(0, Points.Num()-1)]; //Get seconds PCG Point from input
 			const FTransform& PointTransform2 = Point2.Transform; //Get transform of second PCG Point
-			const FVector LocalPosition1 = PointTransform1.GetLocation() - SplineActorTransform.GetLocation();
 			const FVector LocalPosition2 = PointTransform2.GetLocation() - SplineActorTransform.GetLocation();
 			
 			//Add randomly picked 2 points to Spline points
 			//First point
 			SplinePoints.Emplace(static_cast<float>(0),
 				LocalPosition1,
-				FVector(0,0,-500),
-				FVector(0,0,-500),
+				FVector(0,0,-(TangentAmount)),
+				FVector(0,0,-(TangentAmount)),
 				PointTransform1.GetRotation().Rotator(),
 				PointTransform1.GetScale3D(),
 				PointType);
@@ -146,8 +146,8 @@ bool FPCGCreateCableElement::ExecuteInternal(FPCGContext* Context) const
 			//Second point
 			SplinePoints.Emplace(static_cast<float>(1),
 				LocalPosition2,
-				FVector(0,0,500),
-				FVector(0,0,500),
+				FVector(0,0,TangentAmount),
+				FVector(0,0,TangentAmount),
 				PointTransform2.GetRotation().Rotator(),
 				PointTransform2.GetScale3D(),
 				PointType);
@@ -170,12 +170,6 @@ bool FPCGCreateCableElement::ExecuteInternal(FPCGContext* Context) const
 
 				//Seems like using Spline Component to initialize spline data
 				SplineData->ApplyTo(SplineComponent);
-
-				//Test if I can override the spline tangent - not working
-				//SplineComponent->SplineInfo_DEPRECATED.Points[0].ArriveTangent.Set(0,0,-300);
-				//SplineComponent->SplineInfo_DEPRECATED.Points[0].LeaveTangent.Set(0,0,-300);
-				//SplineComponent->SplineInfo_DEPRECATED.Points[1].ArriveTangent.Set(0,0,-300);
-				//SplineComponent->SplineInfo_DEPRECATED.Points[1].LeaveTangent.Set(0,0,-300);
 
 				SplineComponent->RegisterComponent();//Why I need to register? look like new object need to be registered
 				SplineActor->AddInstanceComponent(SplineComponent);//why I need to add instance?
