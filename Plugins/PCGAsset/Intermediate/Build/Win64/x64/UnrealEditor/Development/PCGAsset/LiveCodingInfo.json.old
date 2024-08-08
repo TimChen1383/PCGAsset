@@ -3,7 +3,6 @@
 	{
 		"Module.PCGAsset.cpp.obj": [
 			"PCGAsset.init.gen.cpp.obj",
-			"PCGPerlinNoise.gen.cpp.obj",
 			"ApplyLocalTransform.cpp.obj",
 			"PCGAsset.cpp.obj",
 			"PCGBoolDensity.cpp.obj",
@@ -12,9 +11,8 @@
 			"PCGCreateCable.cpp.obj",
 			"PCGCreateCirclePoints.cpp.obj",
 			"PCGCreateSpherePoints.cpp.obj",
-			"PCGCreateSpiralSpline.cpp.obj",
 			"PCGOctree.cpp.obj",
-			"PCGPerlinNoise.cpp.obj",
+			"PCGPerlinNoise2D.cpp.obj",
 			"PCGPointArray.cpp.obj",
 			"PCGPointMask.cpp.obj",
 			"PCGRandom90Rotate.cpp.obj",
@@ -23,8 +21,7 @@
 			"PCGScaleAffect.cpp.obj",
 			"PCGSineWave.cpp.obj",
 			"PCGTemplate.cpp.obj",
-			"PCGVoronoi.cpp.obj",
-			"PCGWorleyNoise.cpp.obj"
+			"PCGVoronoi.cpp.obj"
 		]
 	}
 }
