@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "PCGPerlinNoise2D.h"
+#include "PCGPerlinNoise.h"
 
 #include "PCGContext.h"
 #include "PCGPin.h"
@@ -9,9 +9,9 @@
 #include "Helpers/PCGHelpers.h"
 #include "Math/RandomStream.h"
 //The macro in UE5 for speed up the compilation. Just add it
-#include UE_INLINE_GENERATED_CPP_BY_NAME(PCGPerlinNoise2D)
+#include UE_INLINE_GENERATED_CPP_BY_NAME(PCGPerlinNoise)
 //Using Name Space to avoid variable name conflict with engine code. Just add it
-#define LOCTEXT_NAMESPACE "PCGPerlinNoise2D"
+#define LOCTEXT_NAMESPACE "PCGPerlinNoise"
 
 
 /**********************************************************************
@@ -103,7 +103,7 @@ bool FPCGPerlinNoise2DElement::ExecuteInternal(FPCGContext* Context) const
 			else
 			{
 				float PerlinFloat3D = FMath::PerlinNoise3D(Location3D);
-				FVector PerlinLocation3D = SourceTransform.GetLocation() + PerlinFloat3D*PerlinHeightMultiplier;
+				FVector PerlinLocation3D = FVector(SourceTransform.GetLocation().X + (PerlinFloat3D * PerlinHeightMultiplier), SourceTransform.GetLocation().Y+ (PerlinFloat3D * PerlinHeightMultiplier), SourceTransform.GetLocation().Z+ (PerlinFloat3D * PerlinHeightMultiplier));
 				FinalTransform.SetLocation(PerlinLocation3D);
 			}
 	

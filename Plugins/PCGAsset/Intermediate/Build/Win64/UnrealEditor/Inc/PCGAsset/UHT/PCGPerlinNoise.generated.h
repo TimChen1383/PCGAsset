@@ -4,17 +4,17 @@
 	DO NOT modify this manually! Edit the corresponding .h files instead!
 ===========================================================================*/
 
-// IWYU pragma: private, include "PCGPerlinNoise2D.h"
+// IWYU pragma: private, include "PCGPerlinNoise.h"
 #include "UObject/ObjectMacros.h"
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-#ifdef PCGASSET_PCGPerlinNoise2D_generated_h
-#error "PCGPerlinNoise2D.generated.h already included, missing '#pragma once' in PCGPerlinNoise2D.h"
+#ifdef PCGASSET_PCGPerlinNoise_generated_h
+#error "PCGPerlinNoise.generated.h already included, missing '#pragma once' in PCGPerlinNoise.h"
 #endif
-#define PCGASSET_PCGPerlinNoise2D_generated_h
+#define PCGASSET_PCGPerlinNoise_generated_h
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise2D_h_20_INCLASS_NO_PURE_DECLS \
+#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise_h_20_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUPCGPerlinNoise2DSettings(); \
 	friend struct Z_Construct_UClass_UPCGPerlinNoise2DSettings_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UPCGPerlinNoise2DSettings)
 
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise2D_h_20_ENHANCED_CONSTRUCTORS \
+#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise_h_20_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UPCGPerlinNoise2DSettings(UPCGPerlinNoise2DSettings&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~UPCGPerlinNoise2DSettings();
 
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise2D_h_16_PROLOG
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise2D_h_20_GENERATED_BODY \
+#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise_h_16_PROLOG
+#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise_h_20_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise2D_h_20_INCLASS_NO_PURE_DECLS \
-	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise2D_h_20_ENHANCED_CONSTRUCTORS \
+	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise_h_20_INCLASS_NO_PURE_DECLS \
+	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise_h_20_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> PCGASSET_API UClass* StaticClass<class UPCGPerlinNoise2DSettings>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise2D_h
+#define CURRENT_FILE_ID FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPerlinNoise_h
 
 
 #define FOREACH_ENUM_EPCGPERLINNOISEMODE(op) \

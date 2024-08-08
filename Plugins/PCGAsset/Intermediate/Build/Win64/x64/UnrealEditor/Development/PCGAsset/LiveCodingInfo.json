@@ -13,7 +13,7 @@
 			"PCGCreateSpherePoints.cpp.obj",
 			"PCGCreateSpiralSpline.cpp.obj",
 			"PCGOctree.cpp.obj",
-			"PCGPerlinNoise2D.cpp.obj",
+			"PCGPerlinNoise.cpp.obj",
 			"PCGPointArray.cpp.obj",
 			"PCGPointMask.cpp.obj",
 			"PCGRandom90Rotate.cpp.obj",
@@ -22,7 +22,8 @@
 			"PCGScaleAffect.cpp.obj",
 			"PCGSineWave.cpp.obj",
 			"PCGTemplate.cpp.obj",
-			"PCGVoronoi.cpp.obj"
+			"PCGVoronoi.cpp.obj",
+			"PCGWorleyNoise.cpp.obj"
 		]
 	}
 }
