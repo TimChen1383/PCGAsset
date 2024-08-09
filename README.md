@@ -19,6 +19,8 @@
 ## Create Sphere Points
 ![CreateSpherePoints](https://github.com/user-attachments/assets/e5032fda-0317-4a42-aa4c-6752525019df)
 ![CreateSpherePoints_out-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/03757372-3f40-4e1c-9f3f-8ae8b75dcb15)
+![SpherePruning_out-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/03131a9a-e644-42ff-ae01-8b5ad46009e6)
+
 
 
 
