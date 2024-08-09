@@ -35,6 +35,12 @@
 ![PointArray](https://github.com/user-attachments/assets/027af6f7-3fdc-4566-965b-21ac1adf3c5a)
 ![PointArray](https://github.com/user-attachments/assets/7f1b58c7-bc06-4ab0-bb07-b8371d242bc2)
 
+## Sine Wave
+![SineWave2D](https://github.com/user-attachments/assets/d2481caa-7a33-4c5c-98d4-ef7df2fe6780)
+![SineWave2D](https://github.com/user-attachments/assets/0538f027-1150-45bf-9728-d489072cb853)
+
+
+
 
 
 
