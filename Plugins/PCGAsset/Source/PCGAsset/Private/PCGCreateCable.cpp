@@ -22,8 +22,9 @@
 
 /**********************************************************************
 To do list
-- replace the random value with random stream
+- replace the random value with random stream - already have the example code below
 - create a new custom parameter which can be used for setting up the mesh direction
+- Point 1 and Point 2 shouldn't be the same point - add an if condition
 
 ***********************************************************************/
 
@@ -86,6 +87,11 @@ bool FPCGCreateCableElement::ExecuteInternal(FPCGContext* Context) const
 	//User Custom Value
 	const int32& CableCounts = Settings->CableCounts;
 	const float& TangentAmount = Settings->TangentAmount;
+	const int32& RandomSeed = Settings->RandomSeed;
+
+	///This is how we do random stream!!!
+	FRandomStream RandStream;
+	RandStream.Initialize(RandomSeed);
 
 	for (const FPCGTaggedData& Input : Inputs)
 	{
@@ -126,10 +132,10 @@ bool FPCGCreateCableElement::ExecuteInternal(FPCGContext* Context) const
 			SplinePoints.Reserve(2); //We will only randomly pick 2 points for generating spline
 
 			//Get data from input PCG point
-			const FPCGPoint& Point1 = Points[FMath::RandRange(0, Points.Num()-1)]; //Get first PCG Point from input
+			const FPCGPoint& Point1 = Points[RandStream.RandRange(0,Points.Num()-1)]; //Get first PCG Point from input
 			const FTransform& PointTransform1 = Point1.Transform; //Get transform of first PCG Point
 			const FVector LocalPosition1 = PointTransform1.GetLocation() - SplineActorTransform.GetLocation();
-			const FPCGPoint& Point2 = Points[FMath::RandRange(0, Points.Num()-1)]; //Get seconds PCG Point from input
+			const FPCGPoint& Point2 = Points[RandStream.RandRange(0,Points.Num()-1)]; //Get seconds PCG Point from input
 			const FTransform& PointTransform2 = Point2.Transform; //Get transform of second PCG Point
 			const FVector LocalPosition2 = PointTransform2.GetLocation() - SplineActorTransform.GetLocation();
 			
