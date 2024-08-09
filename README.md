@@ -42,6 +42,8 @@
 ## Spiral Curve
 ![SpiralCurve](https://github.com/user-attachments/assets/5c9b7dd4-50bf-40e7-a536-dbafbc540f2e)
 ![SpiralCurve](https://github.com/user-attachments/assets/63544d70-0eb9-406b-b11b-e83e37006345)
+![SpiralPrune](https://github.com/user-attachments/assets/539aaf23-9b4c-41b9-984a-e9dda30bf01b)
+
 
 
 
