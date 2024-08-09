@@ -26,6 +26,14 @@
 ![PerlinNoise2D](https://github.com/user-attachments/assets/2fde35fc-7417-478c-8a09-7e58d3cb3005)
 ![PerlinNoise3D](https://github.com/user-attachments/assets/55091849-cc67-40c8-9f99-97ef3dfe11e4)
 
+## Worley Noise
+![WorleyNoise](https://github.com/user-attachments/assets/ba1235b3-e584-4d5d-a047-51cf3289b242)
+![WorleyNoise2D](https://github.com/user-attachments/assets/b790fa69-ae0a-4d70-8130-86199f5e8040)
+![WorleyNoise3D](https://github.com/user-attachments/assets/94ee0e5e-c0e6-4f1b-b481-c3b591cd3668)
+
+
+
+
 
 
 
