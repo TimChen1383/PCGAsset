@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define PCGASSET_PCGCellularAutomata_generated_h
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_13_INCLASS_NO_PURE_DECLS \
+#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_20_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUPCGCellularAutomataSettings(); \
 	friend struct Z_Construct_UClass_UPCGCellularAutomataSettings_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UPCGCellularAutomataSettings)
 
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_13_ENHANCED_CONSTRUCTORS \
+#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_20_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UPCGCellularAutomataSettings(UPCGCellularAutomataSettings&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~UPCGCellularAutomataSettings();
 
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_9_PROLOG
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_13_GENERATED_BODY \
+#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_16_PROLOG
+#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_20_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_13_INCLASS_NO_PURE_DECLS \
-	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_13_ENHANCED_CONSTRUCTORS \
+	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_20_INCLASS_NO_PURE_DECLS \
+	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h_20_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -50,5 +50,13 @@ template<> PCGASSET_API UClass* StaticClass<class UPCGCellularAutomataSettings>(
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCellularAutomata_h
 
+
+#define FOREACH_ENUM_EPCGCELLULARAUTOMATAMODE(op) \
+	op(EPCGCellularAutomataMode::CellularAutomata2D) \
+	op(EPCGCellularAutomataMode::CellularAutomata3D) 
+
+enum class EPCGCellularAutomataMode : uint8;
+template<> struct TIsUEnumClass<EPCGCellularAutomataMode> { enum { Value = true }; };
+template<> PCGASSET_API UEnum* StaticEnum<EPCGCellularAutomataMode>();
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

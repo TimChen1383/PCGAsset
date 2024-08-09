@@ -6,6 +6,13 @@
 #include "PCGSettings.h"
 #include "PCGCellularAutomata.generated.h"
 
+UENUM()
+enum class EPCGCellularAutomataMode : uint8
+{
+	CellularAutomata2D,
+	CellularAutomata3D,
+};
+
 UCLASS()
 //Override PCG Settings
 class PCGASSET_API UPCGCellularAutomataSettings : public UPCGSettings
@@ -37,9 +44,8 @@ public:
 	/*******************************************
 	Promote variables that will be shown in details panel
 	********************************************/
-	//Control the Perlin noise height and scale
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	FVector CustomOffset = FVector(0,0,100);
+	FVector ZOffset = FVector(0,0,100);
 
 	//need to know the size of entire grid - by default set to 30*30 grids
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
@@ -47,15 +53,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 GridHeightPointCounts = 5;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	int32 IterationCounts = 12;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ClampMin = 1, ClampMax = 7))
-	int32 IncreaseSpeed = 4;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ClampMin = 0.1, ClampMax = 0.9))
-	float RandomDensityPercentage = 0.35;
+	int32 IterationCounts = 1;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	int32 DuplicateCounts = 1;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	int32 StartFrom = 5;
+	EPCGCellularAutomataMode Mode = EPCGCellularAutomataMode::CellularAutomata3D;
 
 };
 //Override PCG Execution
