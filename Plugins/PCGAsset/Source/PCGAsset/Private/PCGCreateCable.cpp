@@ -22,10 +22,9 @@
 
 /**********************************************************************
 To do list
-- replace the random value with random stream - already have the example code below
+- the spline component doesn't work with local transform
 - create a new custom parameter which can be used for setting up the mesh direction
 - Point 1 and Point 2 shouldn't be the same point - add an if condition
-
 ***********************************************************************/
 
 //Create a spline actor and attach under main PCG Actor?
@@ -132,6 +131,16 @@ bool FPCGCreateCableElement::ExecuteInternal(FPCGContext* Context) const
 			SplinePoints.Reserve(2); //We will only randomly pick 2 points for generating spline
 
 			//Get data from input PCG point
+			int32 Point1Num = RandStream.RandRange(0,Points.Num()-1);
+			int32 Point2Num = RandStream.RandRange(0,Points.Num()-1);
+			if(Point2Num == Point1Num)
+			{
+				Point2Num = Point2Num + 1;
+				if (Point2Num > (Points.Num()-1))
+				{
+					Point2Num = Point2Num - 2;
+				}
+			}
 			const FPCGPoint& Point1 = Points[RandStream.RandRange(0,Points.Num()-1)]; //Get first PCG Point from input
 			const FTransform& PointTransform1 = Point1.Transform; //Get transform of first PCG Point
 			const FVector LocalPosition1 = PointTransform1.GetLocation() - SplineActorTransform.GetLocation();

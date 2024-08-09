@@ -108,43 +108,46 @@ bool FPCGConnectSplinebyIDElement::ExecuteInternal(FPCGContext* Context) const
 			//Point Data to Point
 			const TArray<FPCGPoint>& SourcePoints = SourcePointData->GetPoints();
 			const TArray<FPCGPoint>& TargetPoints = TargetPointData->GetPoints();
-			
-			//Attribute Data
-			const UPCGMetadata* SourcePointMetadata = SourcePointData->Metadata;
-			const UPCGMetadata* TargetPointMetadata = TargetPointData->Metadata;
 
-			//Get Original Actor
-			AActor* TargetActor = Settings->TargetActor.Get() ? Settings->TargetActor.Get() : Context->GetTargetActor(nullptr);
-			if (!TargetActor)
+			if(SourcePoints.Num()==TargetPoints.Num())
 			{
-			PCGE_LOG(Error, GraphAndLog, LOCTEXT("InvalidTargetActor", "Invalid target actor. Ensure TargetActor member is initialized when creating SpatialData."));
-			continue;
-			}
-			AActor* SplineActor = TargetActor;
-			const FTransform SplineActorTransform = SplineActor->GetTransform(); //Store actor location
+				//Attribute Data
+				const UPCGMetadata* SourcePointMetadata = SourcePointData->Metadata;
+				const UPCGMetadata* TargetPointMetadata = TargetPointData->Metadata;
 
-			//Set spline curve type. For custom tangent value to work, we need to set the mode to Curve Custom Tangent
-			ESplinePointType::Type PointType = ESplinePointType::CurveCustomTangent; 
+				//Get Original Actor
+				AActor* TargetActor = Settings->TargetActor.Get() ? Settings->TargetActor.Get() : Context->GetTargetActor(nullptr);
+				if (!TargetActor)
+				{
+					PCGE_LOG(Error, GraphAndLog, LOCTEXT("InvalidTargetActor", "Invalid target actor. Ensure TargetActor member is initialized when creating SpatialData."));
+					continue;
+				}
+				AActor* SplineActor = TargetActor;
+				const FTransform SplineActorTransform = SplineActor->GetTransform(); //Store actor location
 
-			for(int32 LoopPointCount = 0; LoopPointCount < SourcePoints.Num(); LoopPointCount++)
-			{
-				//Create PCG Spline Data and Spline Points
-				UPCGSplineData* SplineData = NewObject<UPCGSplineData>();
-				TArray<FSplinePoint> SplinePoints;
-				SplinePoints.Empty();
-				SplinePoints.Reserve(2); //We will only randomly pick 2 points for generating spline
+				//Set spline curve type. For custom tangent value to work, we need to set the mode to Curve Custom Tangent
+				ESplinePointType::Type PointType = ESplinePointType::CurveCustomTangent; 
 
-				//Use input PCG point to create spline point
-				const FPCGPoint& StartPoint = SourcePoints[LoopPointCount]; //Get first PCG Point from input
-				const FTransform& StartPointTransform = StartPoint.Transform; //Get transform of first PCG Point
-				const FPCGPoint& EndPoint = TargetPoints[LoopPointCount]; //Get seconds PCG Point from input
-				const FTransform& EndPointTransform = EndPoint.Transform; //Get transform of second PCG Point
-				const FVector StartPointLocalPosition = StartPointTransform.GetLocation() - SplineActorTransform.GetLocation();
-				const FVector EndPointLocalPosition = EndPointTransform.GetLocation() - SplineActorTransform.GetLocation();
+				for(int32 LoopPointCount = 0; LoopPointCount < SourcePoints.Num(); LoopPointCount++)
+				{
+					//Create PCG Spline Data and Spline Points
+					UPCGSplineData* SplineData = NewObject<UPCGSplineData>();
+					TArray<FSplinePoint> SplinePoints;
+					SplinePoints.Empty();
+					SplinePoints.Reserve(2); //We will only randomly pick 2 points for generating spline
+
+					//Use input PCG point to create spline point
+					const FPCGPoint& StartPoint = SourcePoints[LoopPointCount]; //Get first PCG Point from input
+					const FTransform& StartPointTransform = StartPoint.Transform; //Get transform of first PCG Point
+					const FPCGPoint& EndPoint = TargetPoints[LoopPointCount]; //Get seconds PCG Point from input
+					const FTransform& EndPointTransform = EndPoint.Transform; //Get transform of second PCG Point
+					const FVector StartPointLocalPosition = StartPointTransform.GetLocation() - SplineActorTransform.GetLocation();
+					const FVector EndPointLocalPosition = EndPointTransform.GetLocation() - SplineActorTransform.GetLocation();
 			
-				//Add Start Point from Source pin and End Point from Target pin to Spline points
-				//Start point
-				SplinePoints.Emplace(static_cast<float>(0),
+					//Add Start Point from Source pin and End Point from Target pin to Spline points
+					//Start point
+				
+					SplinePoints.Emplace(static_cast<float>(0),
 					StartPointLocalPosition,
 					FVector(0,0,0),
 					FVector(0,0,0),
@@ -152,8 +155,8 @@ bool FPCGConnectSplinebyIDElement::ExecuteInternal(FPCGContext* Context) const
 					StartPointTransform.GetScale3D(),
 					PointType);
 
-				//End point
-				SplinePoints.Emplace(static_cast<float>(1),
+					//End point
+					SplinePoints.Emplace(static_cast<float>(1),
 					EndPointLocalPosition,
 					FVector(0,0,0),
 					FVector(0,0,0),
@@ -161,35 +164,39 @@ bool FPCGConnectSplinebyIDElement::ExecuteInternal(FPCGContext* Context) const
 					EndPointTransform.GetScale3D(),
 					PointType);
 			
-				//Seems like this will use the spline points to re-sample the Spline Data. The point counts may be different compare to input
-				//This will sample by a default distance. EX: no matter input 10 points or 60 points, it will output 30 points as final
-				SplineData->Initialize(SplinePoints, false, FTransform(SplineActorTransform.GetLocation() ));
+					//Seems like this will use the spline points to re-sample the Spline Data. The point counts may be different compare to input
+					//This will sample by a default distance. EX: no matter input 10 points or 60 points, it will output 30 points as final
+					SplineData->Initialize(SplinePoints, false, FTransform(SplineActorTransform.GetLocation() ));
 
-				FPCGTaggedData& Output = Outputs.Add_GetRef(Source);
-				//Modify output data. If I don't adjust the data, nothing will happen. Just pass by
-				Output.Data = SplineData;
+					FPCGTaggedData& Output = Outputs.Add_GetRef(Source);
+					//Modify output data. If I don't adjust the data, nothing will happen. Just pass by
+					Output.Data = SplineData;
 
-				//Create Spline Component
-				USplineComponent* SplineComponent = nullptr;
-				if (Settings->Mode != EPCGConnectSplinebyIDMode::CreateDataOnly)
+					//Create Spline Component
+					USplineComponent* SplineComponent = nullptr;
+					if (Settings->Mode != EPCGConnectSplinebyIDMode::CreateDataOnly)
+					{
+						SplineComponent = NewObject<USplineComponent>(SplineActor); //Spline Actor is the owner of this new component
+						SplineComponent->ComponentTags.Add(Context->SourceComponent.Get()->GetFName());
+						SplineComponent->ComponentTags.Add(PCGHelpers::DefaultPCGTag);
+
+						//Seems like using Spline Component to initialize spline data
+						SplineData->ApplyTo(SplineComponent);
+
+						SplineComponent->RegisterComponent();//Why I need to register? look like new object need to be registered
+						SplineActor->AddInstanceComponent(SplineComponent);//why I need to add instance?
+						SplineComponent->AttachToComponent(SplineActor->GetRootComponent(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, false));
+
+						UPCGManagedComponent* ManagedComponent = NewObject<UPCGManagedComponent>(Context->SourceComponent.Get());
+						ManagedComponent->GeneratedComponent = SplineComponent;
+						Context->SourceComponent->AddToManagedResources(ManagedComponent);
+					}
+				}
+			}
+			else
 			{
-				SplineComponent = NewObject<USplineComponent>(SplineActor); //Spline Actor is the owner of this new component
-				SplineComponent->ComponentTags.Add(Context->SourceComponent.Get()->GetFName());
-				SplineComponent->ComponentTags.Add(PCGHelpers::DefaultPCGTag);
-
-				//Seems like using Spline Component to initialize spline data
-				SplineData->ApplyTo(SplineComponent);
-
-				SplineComponent->RegisterComponent();//Why I need to register? look like new object need to be registered
-				SplineActor->AddInstanceComponent(SplineComponent);//why I need to add instance?
-				SplineComponent->AttachToComponent(SplineActor->GetRootComponent(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, false));
-
-				UPCGManagedComponent* ManagedComponent = NewObject<UPCGManagedComponent>(Context->SourceComponent.Get());
-				ManagedComponent->GeneratedComponent = SplineComponent;
-				Context->SourceComponent->AddToManagedResources(ManagedComponent);
+				UE_LOG(LogTemp, Error, TEXT("Source Point counts need to be as same as Target Point counts"));
 			}
-			}
-			
 		}
 	}
 
