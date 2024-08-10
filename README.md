@@ -44,6 +44,12 @@
 ![SpiralCurve](https://github.com/user-attachments/assets/63544d70-0eb9-406b-b11b-e83e37006345)
 ![SpiralPrune](https://github.com/user-attachments/assets/539aaf23-9b4c-41b9-984a-e9dda30bf01b)
 
+## Cellular Automata
+![CellularAutomata2D](https://github.com/user-attachments/assets/8e80df22-b243-4ad9-87b0-04951129ef55)
+![CellularAutomata2D](https://github.com/user-attachments/assets/b74dfb6e-d27a-4f3c-b90b-01481c7d4ac8)
+![CellularAutomata3D](https://github.com/user-attachments/assets/4754001b-f7c0-405f-9329-e4ba3e540c20)
+
+
 
 
 
