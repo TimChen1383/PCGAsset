@@ -49,6 +49,9 @@
 ![CellularAutomata2D](https://github.com/user-attachments/assets/b74dfb6e-d27a-4f3c-b90b-01481c7d4ac8)
 ![CellularAutomata3D](https://github.com/user-attachments/assets/4754001b-f7c0-405f-9329-e4ba3e540c20)
 
+## Create Cable
+![CreateCable](https://github.com/user-attachments/assets/ca1944bb-2f88-4a74-9f9e-849cfe5060ae)
+![CreateCable](https://github.com/user-attachments/assets/aaca6781-fcb9-40ea-8a6a-002cc7c484c3)
 
 
 
