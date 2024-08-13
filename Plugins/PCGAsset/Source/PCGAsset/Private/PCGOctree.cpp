@@ -194,7 +194,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 
 		//if(OriginalPoints[0].Density == 0)
 		//{
-			//InFilterPointData
+		//InFilterPointData
 		//}
 		//Link the data with Operation Data struct
 		//OperationData.OriginalPoints = &OriginalPointData->GetPoints();
@@ -211,23 +211,10 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		FPCGTaggedData& InFilterOutput = Outputs.Add_GetRef(Input);
 		UPCGPointData* InFilterPointData = NewObject<UPCGPointData>();
 		InFilterPointData->InitializeFromData(OriginalPointData);
-		//TArray<FPCGPoint>& InFilterOutputPoints = InFilterPointData->GetMutablePoints();
+		TArray<FPCGPoint>& InFilterOutputPoints = InFilterPointData->GetMutablePoints();
 		InFilterOutput.Pin = PCGPinConstants::DefaultInFilterLabel;
 		InFilterOutput.Data = InFilterPointData;
 		InFilterOutput.Tags = Input.Tags;
-		
-
-		//Create new Tagged Data, link to pin "OutsideFilter", link Point Data
-		FPCGTaggedData& OutFilterOutput = Outputs.Add_GetRef(Input);
-		UPCGPointData* OutFilterPointData = NewObject<UPCGPointData>();
-		OutFilterPointData->InitializeFromData(OriginalPointData);
-		//TArray<FPCGPoint>& OutFilterOutputPoints = OutFilterPointData->GetMutablePoints();
-		OutFilterOutput.Pin = PCGPinConstants::DefaultOutFilterLabel;
-		OutFilterOutput.Data = OriginalPointData;
-		OutFilterOutput.Tags = Input.Tags;
-		
-
-		/**
 		//Run Point Loop. Data will reference back after the function loop through all PCG points
 		FPCGAsync::AsyncPointProcessing(Context, OriginalPoints.Num(), InFilterOutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
 		{
@@ -237,8 +224,15 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 			return true;
 		}
 		);
-		
-		//Run Point Loop. Data will reference back after the function loop through all PCG points
+
+		//Create new Tagged Data, link to pin "OutsideFilter", link Point Data
+		FPCGTaggedData& OutFilterOutput = Outputs.Add_GetRef(Input);
+		UPCGPointData* OutFilterPointData = NewObject<UPCGPointData>();
+		OutFilterPointData->InitializeFromData(OriginalPointData);
+		TArray<FPCGPoint>& OutFilterOutputPoints = OutFilterPointData->GetMutablePoints();
+		OutFilterOutput.Pin = PCGPinConstants::DefaultOutFilterLabel;
+		OutFilterOutput.Data = OutFilterPointData;
+		OutFilterOutput.Tags = Input.Tags;
 		FPCGAsync::AsyncPointProcessing(Context, OriginalPoints.Num(), OutFilterOutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
 		{
 			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
@@ -247,18 +241,66 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 			return true;
 		}
 		);
-
-		**/
-
-		//The linking of the data is done, how can I actually edit and filter the points?
+		
 		
 		
 		//First divide
 		//TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
 		//OutputPoints.Append(FinalPoints);
 
-		
-
+		for(int32 PointDivideNum = 0; PointDivideNum < SelectedPointCount; PointDivideNum++)
+		{
+			//Choose 1 point from Source Point to divide
+			int32 ChosenPointID = FMath::RandRange(0, (OriginalPoints.Num()-1-PointDivideNum));
+			const FPCGPoint& ChosenPoint= OriginalPoints[ChosenPointID];
+			FVector ChosenPointLocation = ChosenPoint.Transform.GetLocation();
+			FVector ChosenPointScale = ChosenPoint.Transform.GetScale3D();
+			float UnitLength  = (ChosenPointScale.X * 100 / 4);
+			
+			//Remove point Source Point
+			InFilterOutputPoints.RemoveAt(ChosenPointID);
+			
+			//Add 1st point - the cube is 100*100, 50 will be center, 25 will be octree point
+			FPCGPoint NewPoint1 = FPCGPoint();
+			NewPoint1.Transform.SetLocation(ChosenPointLocation + FVector(UnitLength,UnitLength,UnitLength));
+			NewPoint1.Transform.SetScale3D(ChosenPointScale * 0.5);
+			OutFilterOutputPoints.Add(NewPoint1);
+			//Add 2nd point
+			FPCGPoint NewPoint2 = FPCGPoint();
+			NewPoint2.Transform.SetLocation(ChosenPointLocation + FVector(UnitLength,-UnitLength,UnitLength));
+			NewPoint2.Transform.SetScale3D(ChosenPointScale * 0.5);
+			OutFilterOutputPoints.Add(NewPoint2);
+			//Add 3rd point
+			FPCGPoint NewPoint3 = FPCGPoint();
+			NewPoint3.Transform.SetLocation(ChosenPointLocation + FVector(-UnitLength,UnitLength,UnitLength));
+			NewPoint3.Transform.SetScale3D(ChosenPointScale * 0.5);
+			OutFilterOutputPoints.Add(NewPoint3);
+			//Add 4th point
+			FPCGPoint NewPoint4 = FPCGPoint();
+			NewPoint4.Transform.SetLocation(ChosenPointLocation + FVector(-UnitLength,-UnitLength,UnitLength));
+			NewPoint4.Transform.SetScale3D(ChosenPointScale * 0.5);
+			OutFilterOutputPoints.Add(NewPoint4);
+			//Add 5th point
+			FPCGPoint NewPoint5 = FPCGPoint();
+			NewPoint5.Transform.SetLocation(ChosenPointLocation + FVector(UnitLength,UnitLength,-UnitLength));
+			NewPoint5.Transform.SetScale3D(ChosenPointScale * 0.5);
+			OutFilterOutputPoints.Add(NewPoint5);
+			//Add 6th point
+			FPCGPoint NewPoint6 = FPCGPoint();
+			NewPoint6.Transform.SetLocation(ChosenPointLocation + FVector(UnitLength,-UnitLength,-UnitLength));
+			NewPoint6.Transform.SetScale3D(ChosenPointScale * 0.5);
+			OutFilterOutputPoints.Add(NewPoint6);
+			//Add 7th point
+			FPCGPoint NewPoint7 = FPCGPoint();
+			NewPoint7.Transform.SetLocation(ChosenPointLocation + FVector(-UnitLength,UnitLength,-UnitLength));
+			NewPoint7.Transform.SetScale3D(ChosenPointScale * 0.5);
+			OutFilterOutputPoints.Add(NewPoint7);
+			//Add 8th point
+			FPCGPoint NewPoint8 = FPCGPoint();
+			NewPoint8.Transform.SetLocation(ChosenPointLocation + FVector(-UnitLength,-UnitLength,-UnitLength));
+			NewPoint8.Transform.SetScale3D(ChosenPointScale * 0.5);
+			OutFilterOutputPoints.Add(NewPoint8);
+		}
 	}
 	
 	return true;
