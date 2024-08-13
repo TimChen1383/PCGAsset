@@ -32,7 +32,7 @@ struct Z_Construct_UClass_UPCGOctreeSettings_Statics
 		{ "IncludePath", "PCGCubeDivide.h" },
 		{ "ModuleRelativePath", "Public/PCGCubeDivide.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SelectedPointCounts_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PointDivideCounts_MetaData[] = {
 		{ "Category", "Settings" },
 #if !UE_BUILD_SHIPPING
 		{ "Comment", "/*******************************************\n\x09Promote variables that will be shown in details panel\n\x09********************************************///Control the Perlin noise height and scale\n" },
@@ -54,7 +54,7 @@ struct Z_Construct_UClass_UPCGOctreeSettings_Statics
 		{ "PCG_Overridable", "" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FIntPropertyParams NewProp_SelectedPointCounts;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_PointDivideCounts;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_RandomSeed;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_UnitSizeM;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -64,11 +64,11 @@ struct Z_Construct_UClass_UPCGOctreeSettings_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_SelectedPointCounts = { "SelectedPointCounts", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGOctreeSettings, SelectedPointCounts), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SelectedPointCounts_MetaData), NewProp_SelectedPointCounts_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_PointDivideCounts = { "PointDivideCounts", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGOctreeSettings, PointDivideCounts), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PointDivideCounts_MetaData), NewProp_PointDivideCounts_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_RandomSeed = { "RandomSeed", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGOctreeSettings, RandomSeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RandomSeed_MetaData), NewProp_RandomSeed_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_UnitSizeM = { "UnitSizeM", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGOctreeSettings, UnitSizeM), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UnitSizeM_MetaData), NewProp_UnitSizeM_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGOctreeSettings_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_SelectedPointCounts,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_PointDivideCounts,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_RandomSeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_UnitSizeM,
 };
@@ -113,10 +113,10 @@ UPCGOctreeSettings::~UPCGOctreeSettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGOctreeSettings, UPCGOctreeSettings::StaticClass, TEXT("UPCGOctreeSettings"), &Z_Registration_Info_UClass_UPCGOctreeSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGOctreeSettings), 4211872827U) },
+		{ Z_Construct_UClass_UPCGOctreeSettings, UPCGOctreeSettings::StaticClass, TEXT("UPCGOctreeSettings"), &Z_Registration_Info_UClass_UPCGOctreeSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGOctreeSettings), 3023547305U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_919108496(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_1225506033(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

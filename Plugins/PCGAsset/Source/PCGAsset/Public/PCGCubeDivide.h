@@ -8,13 +8,13 @@
 
 UCLASS()
 //Override PCG Settings
-class PCGASSET_API UPCGOctreeSettings : public UPCGSettings
+class PCGASSET_API UPCGCubeDivideSettings : public UPCGSettings
 {
 	GENERATED_BODY()
 
 public:
 	//Override PCG Settings' default value
-	UPCGOctreeSettings();
+	UPCGCubeDivideSettings();
 
 	//~Begin node UI interface setting
 #if WITH_EDITOR
@@ -39,7 +39,7 @@ public:
 	********************************************/
 	//Control the Perlin noise height and scale
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	int32 SelectedPointCounts = 4;
+	int32 PointDivideCounts = 5;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 RandomSeed = 100;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
@@ -47,7 +47,7 @@ public:
 };
 
 //Override PCG Execution
-class PCGASSET_API FPCGOctreeElement : public IPCGElement
+class PCGASSET_API FPCGCubeDivideElement : public IPCGElement
 {
 protected:
 	virtual bool ExecuteInternal(FPCGContext* Context) const override;
