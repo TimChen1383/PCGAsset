@@ -63,6 +63,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
 	const int32& SelectedPointCounts = Settings->SelectedPointCounts;
 	const int32& RandomSeed = Settings->RandomSeed;
+	const float& UnitSizeM = Settings->UnitSizeM;
 
 	//Use random stream to stabilize the random result
 	FRandomStream RandStream;
@@ -126,8 +127,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 			int32 ChosenPointID = RandStream.RandRange(0, (InFilterOutputPoints.Num()-1-SelectedPointCount));
 			const FPCGPoint& ChosenPoint= InFilterOutputPoints[ChosenPointID];
 			FVector ChosenPointLocation = ChosenPoint.Transform.GetLocation();
-			FVector ChosenPointScale = ChosenPoint.Transform.GetScale3D();
-			float UnitLength  = (ChosenPointScale.X * 100 / 4);
+			float UnitLength  = (UnitSizeM * 100 / 4);
 			
 			//Remove point Source Point
 			InFilterOutputPoints.RemoveAt(ChosenPointID);
@@ -135,42 +135,34 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 			//Add 1st point - the cube is 100*100, 50 will be center, 25 will be octree point
 			FPCGPoint NewPoint1 = FPCGPoint();
 			NewPoint1.Transform.SetLocation(ChosenPointLocation + FVector(UnitLength,UnitLength,UnitLength));
-			NewPoint1.Transform.SetScale3D(ChosenPointScale * 0.5);
 			OutFilterOutputPoints.Add(NewPoint1);
 			//Add 2nd point
 			FPCGPoint NewPoint2 = FPCGPoint();
 			NewPoint2.Transform.SetLocation(ChosenPointLocation + FVector(UnitLength,-UnitLength,UnitLength));
-			NewPoint2.Transform.SetScale3D(ChosenPointScale * 0.5);
 			OutFilterOutputPoints.Add(NewPoint2);
 			//Add 3rd point
 			FPCGPoint NewPoint3 = FPCGPoint();
 			NewPoint3.Transform.SetLocation(ChosenPointLocation + FVector(-UnitLength,UnitLength,UnitLength));
-			NewPoint3.Transform.SetScale3D(ChosenPointScale * 0.5);
 			OutFilterOutputPoints.Add(NewPoint3);
 			//Add 4th point
 			FPCGPoint NewPoint4 = FPCGPoint();
 			NewPoint4.Transform.SetLocation(ChosenPointLocation + FVector(-UnitLength,-UnitLength,UnitLength));
-			NewPoint4.Transform.SetScale3D(ChosenPointScale * 0.5);
 			OutFilterOutputPoints.Add(NewPoint4);
 			//Add 5th point
 			FPCGPoint NewPoint5 = FPCGPoint();
 			NewPoint5.Transform.SetLocation(ChosenPointLocation + FVector(UnitLength,UnitLength,-UnitLength));
-			NewPoint5.Transform.SetScale3D(ChosenPointScale * 0.5);
 			OutFilterOutputPoints.Add(NewPoint5);
 			//Add 6th point
 			FPCGPoint NewPoint6 = FPCGPoint();
 			NewPoint6.Transform.SetLocation(ChosenPointLocation + FVector(UnitLength,-UnitLength,-UnitLength));
-			NewPoint6.Transform.SetScale3D(ChosenPointScale * 0.5);
 			OutFilterOutputPoints.Add(NewPoint6);
 			//Add 7th point
 			FPCGPoint NewPoint7 = FPCGPoint();
 			NewPoint7.Transform.SetLocation(ChosenPointLocation + FVector(-UnitLength,UnitLength,-UnitLength));
-			NewPoint7.Transform.SetScale3D(ChosenPointScale * 0.5);
 			OutFilterOutputPoints.Add(NewPoint7);
 			//Add 8th point
 			FPCGPoint NewPoint8 = FPCGPoint();
 			NewPoint8.Transform.SetLocation(ChosenPointLocation + FVector(-UnitLength,-UnitLength,-UnitLength));
-			NewPoint8.Transform.SetScale3D(ChosenPointScale * 0.5);
 			OutFilterOutputPoints.Add(NewPoint8);
 		}
 	}

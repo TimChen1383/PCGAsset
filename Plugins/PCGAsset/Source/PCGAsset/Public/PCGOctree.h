@@ -42,6 +42,8 @@ public:
 	int32 SelectedPointCounts = 4;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 RandomSeed = 100;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	float UnitSizeM = 1.0f;
 };
 
 //Override PCG Execution
