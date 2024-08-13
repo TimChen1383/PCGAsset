@@ -9,15 +9,10 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-struct FPCGPoint;
 #ifdef PCGASSET_PCGOctree_generated_h
 #error "PCGOctree.generated.h already included, missing '#pragma once' in PCGOctree.h"
 #endif
 #define PCGASSET_PCGOctree_generated_h
-
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGOctree_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execDividePoint);
-
 
 #define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGOctree_h_13_INCLASS_NO_PURE_DECLS \
 private: \
@@ -44,7 +39,6 @@ public: \
 #define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGOctree_h_13_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGOctree_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGOctree_h_13_INCLASS_NO_PURE_DECLS \
 	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGOctree_h_13_ENHANCED_CONSTRUCTORS \
 private: \
