@@ -211,7 +211,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		FPCGTaggedData& InFilterOutput = Outputs.Add_GetRef(Input);
 		UPCGPointData* InFilterPointData = NewObject<UPCGPointData>();
 		InFilterPointData->InitializeFromData(OriginalPointData);
-		TArray<FPCGPoint>& InFilterOutputPoints = InFilterPointData->GetMutablePoints();
+		//TArray<FPCGPoint>& InFilterOutputPoints = InFilterPointData->GetMutablePoints();
 		InFilterOutput.Pin = PCGPinConstants::DefaultInFilterLabel;
 		InFilterOutput.Data = InFilterPointData;
 		InFilterOutput.Tags = Input.Tags;
@@ -221,11 +221,13 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		FPCGTaggedData& OutFilterOutput = Outputs.Add_GetRef(Input);
 		UPCGPointData* OutFilterPointData = NewObject<UPCGPointData>();
 		OutFilterPointData->InitializeFromData(OriginalPointData);
-		TArray<FPCGPoint>& OutFilterOutputPoints = OutFilterPointData->GetMutablePoints();
+		//TArray<FPCGPoint>& OutFilterOutputPoints = OutFilterPointData->GetMutablePoints();
 		OutFilterOutput.Pin = PCGPinConstants::DefaultOutFilterLabel;
-		OutFilterOutput.Data = OutFilterPointData;
+		OutFilterOutput.Data = OriginalPointData;
 		OutFilterOutput.Tags = Input.Tags;
+		
 
+		/**
 		//Run Point Loop. Data will reference back after the function loop through all PCG points
 		FPCGAsync::AsyncPointProcessing(Context, OriginalPoints.Num(), InFilterOutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
 		{
@@ -246,6 +248,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		}
 		);
 
+		**/
 
 		//The linking of the data is done, how can I actually edit and filter the points?
 		
