@@ -228,19 +228,19 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		//Create new Tagged Data, link to pin "OutsideFilter", link Point Data
 		FPCGTaggedData& OutFilterOutput = Outputs.Add_GetRef(Input);
 		UPCGPointData* OutFilterPointData = NewObject<UPCGPointData>();
-		OutFilterPointData->InitializeFromData(OriginalPointData);
+		//OutFilterPointData->InitializeFromData(OriginalPointData);
 		TArray<FPCGPoint>& OutFilterOutputPoints = OutFilterPointData->GetMutablePoints();
 		OutFilterOutput.Pin = PCGPinConstants::DefaultOutFilterLabel;
 		OutFilterOutput.Data = OutFilterPointData;
 		OutFilterOutput.Tags = Input.Tags;
-		FPCGAsync::AsyncPointProcessing(Context, OriginalPoints.Num(), OutFilterOutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
-		{
+		//FPCGAsync::AsyncPointProcessing(Context, OriginalPoints.Num(), OutFilterOutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
+		//{
 			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
-			const FPCGPoint& InputPoint = OriginalPoints[Index];
-			OutPoint = InputPoint;
-			return true;
-		}
-		);
+			//const FPCGPoint& InputPoint = OriginalPoints[Index];
+			//OutPoint = InputPoint;
+			//return true;
+		//}
+		//);
 		
 		
 		
