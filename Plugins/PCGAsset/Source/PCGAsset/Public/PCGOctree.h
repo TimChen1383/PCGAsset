@@ -29,7 +29,7 @@ public:
 protected:
 	//Set Input Pin and Output Pin type to Point type
 	virtual TArray<FPCGPinProperties> InputPinProperties() const override { return Super::DefaultPointInputPinProperties(); }
-	virtual TArray<FPCGPinProperties> OutputPinProperties() const override { return Super::DefaultPointOutputPinProperties(); }
+	virtual TArray<FPCGPinProperties> OutputPinProperties() const override;
 	virtual FPCGElementPtr CreateElement() const override;
 	//~End node UI interface setting
 
@@ -39,11 +39,7 @@ public:
 	********************************************/
 	//Control the Perlin noise height and scale
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	FVector CustomOffset = FVector::Zero();
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 SelectedPointCount = 4;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable), meta=(ClampMin=0, ClampMax=3))
-	int32 DivideNum = 3;
 	UFUNCTION()
 	static TArray<FPCGPoint> DividePoint(TArray<FPCGPoint>& DivideSourcePoints, int32 PointsDivideNums);
 };

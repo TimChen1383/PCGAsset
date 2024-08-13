@@ -14,17 +14,41 @@
 
 /**********************************************************************
 To do list
+- need to use random stream
 - There are some mesh overlap. Not sure why
+- PointsDivideNums should always be 4, no need to promote as a variable
 
 - If I don't set the scale but output them as different pin, I should be able to use these point to spawn different scale module
 - temp solution - just do a point filter to found out the points with different scale
 - use random stream for random value
 
 ***********************************************************************/
+namespace PCGOctreeConstants
+{
+	const FName OutputLabelA = TEXT("Original");
+	const FName OutputLabelB = TEXT("Divided");
+}
 
 UPCGOctreeSettings::UPCGOctreeSettings()
 {
 	bUseSeed = true;
+}
+
+TArray<FPCGPinProperties> UPCGOctreeSettings::OutputPinProperties() const
+{
+	TArray<FPCGPinProperties> PinProperties;
+	PinProperties.Emplace(PCGPinConstants::DefaultInFilterLabel,
+		EPCGDataType::Any,
+		/*bInAllowMultipleConnections=*/true,
+		/*bAllowMultipleData=*/true,
+		LOCTEXT("OutputPinTooltipA", "Original Points"));
+	PinProperties.Emplace(PCGPinConstants::DefaultOutFilterLabel,
+		EPCGDataType::Any,
+		/*bInAllowMultipleConnections=*/true,
+		/*bAllowMultipleData=*/true,
+		LOCTEXT("OutputPinTooltipB", "Divided Points"));
+
+	return PinProperties;
 }
 
 FPCGElementPtr UPCGOctreeSettings::CreateElement() const
@@ -112,85 +136,105 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const FVector& CustomOffset = Settings->CustomOffset;
 	const int32& SelectedPointCount = Settings->SelectedPointCount;
-	const int32& DivideNum = Settings->DivideNum;
 
+	//OperationData is a struct contain the original points, points be filtered in, points be filtered out
+	//struct FOperationData
+	//{
+		//const TArray<FPCGPoint>* OriginalPoints = nullptr;
+		//TArray<FPCGPoint>* InFilterPoints = nullptr;
+		//TArray<FPCGPoint>* OutFilterPoints = nullptr;
+
+		//const UPCGMetadata* OriginalMetadata = nullptr;
+		//UPCGMetadata* InFilterMetadata = nullptr;
+		//UPCGMetadata* OutFilterMetadata = nullptr;
+
+	//} OperationData;
+
+
+
+
+	//Previous code are fine
+
+
+
+	
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
-	for (const FPCGTaggedData& InputsTaggedData : InputsTaggedDatas)
+	for (const FPCGTaggedData& Input : InputsTaggedDatas)
 	{
-		//Input : PCG Tagged Data > PCG Spatial Data > PCG Point Data > PCG Points
-		const UPCGSpatialData* InputSpatialData = Cast<UPCGSpatialData>(InputsTaggedData.Data);
-		if (!InputSpatialData)
+		//Processing Input data : Tagged Data > PCG Data > Spatial Data > Point Data
+		const UPCGData* OriginalData = Input.Data;
+		if (!OriginalData)
+		{
+			continue;
+		}
+		const UPCGSpatialData* SpatialInput = Cast<const UPCGSpatialData>(OriginalData);
+		if (!SpatialInput)
 		{
 			PCGE_LOG(Error, GraphAndLog, LOCTEXT("InputMissingSpatialData", "Unable to get Spatial data from input"));
 			continue;
 		}
-		const UPCGPointData* InputPointData = InputSpatialData->ToPointData(Context);
-		if (!InputPointData)
+		const UPCGPointData* OriginalPointData = SpatialInput->ToPointData(Context);
+		if (!OriginalPointData)
 		{
 			PCGE_LOG(Error, GraphAndLog, LOCTEXT("InputMissingPointData", "Unable to get Point data from input"));
 			continue;
 		}
-		const TArray<FPCGPoint>& InputPoints = InputPointData->GetPoints();
+		const TArray<FPCGPoint>& OriginalPoints = OriginalPointData->GetPoints();
 
-		
-		//Output : New PCG Points > PCG Point Data > PCG Tagged Data > reference output PCG Tagged Data Array
-		//It's using reference. Adjust the data and send it back later
-		FPCGTaggedData& Output = Outputs.Add_GetRef(InputsTaggedData);
-		UPCGPointData* OutputPointData = NewObject<UPCGPointData>();
-		OutputPointData->InitializeFromData(InputPointData);
-		TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
-		Output.Data = OutputPointData;
-		
-		//Run Point Loop. Data will reference back after the function loop through all PCG points
-		FPCGAsync::AsyncPointProcessing(Context, InputPoints.Num(), OutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
-		//Pass the function as parameter. This is a 2 inputs function: Index and PCG Point. Definition below
-		{
-			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
-			const FPCGPoint& InputPoint = InputPoints[Index];
-			OutPoint = InputPoint;
 
-			/*******************************************
-			Actual Point adjustment - start
-			********************************************/
-			
-			//This is the final output transform data. Initialize it first
-			FTransform SourceTransform = InputPoint.Transform;
-			FTransform FinalTransform = InputPoint.Transform;
-			FVector FinalPosition = FVector(SourceTransform.GetLocation() + CustomOffset);
-			FinalTransform.SetLocation(FinalPosition);
+		//Initializing new output data
+		//UPCGData* InFilterData = nullptr;
+		//UPCGData* OutFilterData = nullptr;
+		//UPCGPointData* InFilterPointData = NewObject<UPCGPointData>();
+		//const TArray<FPCGPoint>& InFilterPoint = InFilterPointData->GetPoints();
+		//UPCGPointData* OutFilterPointData = NewObject<UPCGPointData>();
+		//InFilterPointData->InitializeFromData(OriginalPointData);
+		//OutFilterPointData->InitializeFromData(OriginalPointData);
 
-			/*******************************************
-			Actual Point adjustment - end
-			********************************************/
-			
-			//Assign back 
-			OutPoint.Transform = FinalTransform;
-			
-			return true;
-		}
-		);
-		//First divide
-		TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
-		OutputPoints.Append(FinalPoints);
-		//Secondary divide
-		TArray<FPCGPoint> FinalPoints2 = UPCGOctreeSettings::DividePoint(FinalPoints,4);
-		OutputPoints.Append(FinalPoints2);
-		//Third divide
-		TArray<FPCGPoint> FinalPoints3 = UPCGOctreeSettings::DividePoint(FinalPoints2,4);
-		OutputPoints.Append(FinalPoints3);
-		
-		//if(DivideNum>=1)
+		//if(OriginalPoints[0].Density == 0)
 		//{
-			
-			//if(DivideNum>=2)
-			//{
-				//if(DivideNum>=3)
-				//{
-				//}
-			//}
+			//InFilterPointData
 		//}
+		//Link the data with Operation Data struct
+		//OperationData.OriginalPoints = &OriginalPointData->GetPoints();
+		//OperationData.InFilterPoints = &InFilterPointData->GetMutablePoints();
+		//OperationData.OutFilterPoints = &OutFilterPointData->GetMutablePoints();
+		//OperationData.InFilterPoints->Reserve(InFilterPointData->GetPoints().Num());
+		//OperationData.OutFilterPoints->Reserve(OutFilterPointData->GetPoints().Num());
+
+		//After finish the calculating in Operation Data, assign the data back
+		//InFilterData = InFilterPointData;
+		//OutFilterData = OutFilterPointData;
+		
+		//Create new Tagged Data, link to pin "InsideFilter", link Point Data
+		FPCGTaggedData& InFilterOutput = Outputs.Add_GetRef(Input);
+		UPCGPointData* InFilterPointData = NewObject<UPCGPointData>();
+		InFilterPointData->InitializeFromData(OriginalPointData);
+		TArray<FPCGPoint>& InFilterOutputPoints = InFilterPointData->GetMutablePoints();
+		InFilterOutput.Pin = PCGPinConstants::DefaultInFilterLabel;
+		InFilterOutput.Data = InFilterPointData;
+		InFilterOutput.Tags = Input.Tags;
+		
+
+		//Create new Tagged Data, link to pin "OutsideFilter", link Point Data
+		FPCGTaggedData& OutFilterOutput = Outputs.Add_GetRef(Input);
+		UPCGPointData* OutFilterPointData = NewObject<UPCGPointData>();
+		OutFilterPointData->InitializeFromData(OriginalPointData);
+		OutFilterOutput.Pin = PCGPinConstants::DefaultOutFilterLabel;
+		OutFilterOutput.Data = OutFilterPointData;
+		OutFilterOutput.Tags = Input.Tags;
+
+
+		//The linking of the data is done, how can I actually edit and filter the points?
+		
+		
+		//First divide
+		//TArray<FPCGPoint> FinalPoints = UPCGOctreeSettings::DividePoint(OutputPoints, SelectedPointCount);
+		//OutputPoints.Append(FinalPoints);
+
+		
+
 	}
 	
 	return true;
