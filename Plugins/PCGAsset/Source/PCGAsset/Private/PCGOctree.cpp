@@ -227,8 +227,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		OutFilterOutput.Tags = Input.Tags;
 
 		//Run Point Loop. Data will reference back after the function loop through all PCG points
-		FPCGAsync::AsyncPointProcessing(Context, OriginalPoints.Num(), OutFilterOutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
-		//Pass the function as parameter. This is a 2 inputs function: Index and PCG Point. Definition below
+		FPCGAsync::AsyncPointProcessing(Context, OriginalPoints.Num(), InFilterOutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
 		{
 			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
 			const FPCGPoint& InputPoint = OriginalPoints[Index];
@@ -236,6 +235,17 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 			return true;
 		}
 		);
+		
+		//Run Point Loop. Data will reference back after the function loop through all PCG points
+		FPCGAsync::AsyncPointProcessing(Context, OriginalPoints.Num(), OutFilterOutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
+		{
+			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
+			const FPCGPoint& InputPoint = OriginalPoints[Index];
+			OutPoint = InputPoint;
+			return true;
+		}
+		);
+
 
 		//The linking of the data is done, how can I actually edit and filter the points?
 		
