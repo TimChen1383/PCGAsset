@@ -39,7 +39,9 @@ public:
 	********************************************/
 	//Control the Perlin noise height and scale
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	int32 SelectedPointCount = 4;
+	int32 SelectedPointCounts = 4;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	int32 RandomSeed = 100;
 };
 
 //Override PCG Execution

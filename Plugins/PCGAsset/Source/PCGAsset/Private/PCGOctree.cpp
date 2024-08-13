@@ -14,10 +14,8 @@
 
 /**********************************************************************
 To do list
-- need to use random stream
 - do not scale the object down
-- the pin name is wrong
-
+- how to decide the unit location
 ***********************************************************************/
 namespace PCGOctreeConstants
 {
@@ -63,7 +61,12 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const int32& SelectedPointCount = Settings->SelectedPointCount;
+	const int32& SelectedPointCounts = Settings->SelectedPointCounts;
+	const int32& RandomSeed = Settings->RandomSeed;
+
+	//Use random stream to stabilize the random result
+	FRandomStream RandStream;
+	RandStream.Initialize(RandomSeed);
 	
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
 	for (const FPCGTaggedData& Input : InputsTaggedDatas)
@@ -117,10 +120,10 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		
 		
 		//Divide Points
-		for(int32 PointDivideNum = 0; PointDivideNum < SelectedPointCount; PointDivideNum++)
+		for(int32 SelectedPointCount = 0; SelectedPointCount < SelectedPointCounts; SelectedPointCount++)
 		{
-			//Choose 1 point from Source Point to divide
-			int32 ChosenPointID = FMath::RandRange(0, (InFilterOutputPoints.Num()-1-PointDivideNum));
+			//Choose 1 point from Input Point to divide
+			int32 ChosenPointID = RandStream.RandRange(0, (InFilterOutputPoints.Num()-1-SelectedPointCount));
 			const FPCGPoint& ChosenPoint= InFilterOutputPoints[ChosenPointID];
 			FVector ChosenPointLocation = ChosenPoint.Transform.GetLocation();
 			FVector ChosenPointScale = ChosenPoint.Transform.GetScale3D();
