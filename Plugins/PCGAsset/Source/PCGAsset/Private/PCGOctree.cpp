@@ -251,8 +251,8 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		for(int32 PointDivideNum = 0; PointDivideNum < SelectedPointCount; PointDivideNum++)
 		{
 			//Choose 1 point from Source Point to divide
-			int32 ChosenPointID = FMath::RandRange(0, (OriginalPoints.Num()-1-PointDivideNum));
-			const FPCGPoint& ChosenPoint= OriginalPoints[ChosenPointID];
+			int32 ChosenPointID = FMath::RandRange(0, (InFilterOutputPoints.Num()-1-PointDivideNum));
+			const FPCGPoint& ChosenPoint= InFilterOutputPoints[ChosenPointID];
 			FVector ChosenPointLocation = ChosenPoint.Transform.GetLocation();
 			FVector ChosenPointScale = ChosenPoint.Transform.GetScale3D();
 			float UnitLength  = (ChosenPointScale.X * 100 / 4);
