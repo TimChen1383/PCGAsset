@@ -93,7 +93,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		UPCGPointData* InFilterPointData = NewObject<UPCGPointData>();
 		InFilterPointData->InitializeFromData(OriginalPointData);
 		TArray<FPCGPoint>& InFilterOutputPoints = InFilterPointData->GetMutablePoints();
-		InFilterOutput.Pin = PCGPinConstants::DefaultInFilterLabel;
+		InFilterOutput.Pin = PCGOctreeConstants::OutputLabelA;
 		InFilterOutput.Data = InFilterPointData;
 		InFilterOutput.Tags = Input.Tags;
 		//Run Point Loop. Data will reference back after the function loop through all PCG points
@@ -111,7 +111,7 @@ bool FPCGOctreeElement::ExecuteInternal(FPCGContext* Context) const
 		UPCGPointData* OutFilterPointData = NewObject<UPCGPointData>();
 		//OutFilterPointData->InitializeFromData(OriginalPointData);
 		TArray<FPCGPoint>& OutFilterOutputPoints = OutFilterPointData->GetMutablePoints();
-		OutFilterOutput.Pin = PCGPinConstants::DefaultOutFilterLabel;
+		OutFilterOutput.Pin = PCGOctreeConstants::OutputLabelB;
 		OutFilterOutput.Data = OutFilterPointData;
 		OutFilterOutput.Tags = Input.Tags;
 		
