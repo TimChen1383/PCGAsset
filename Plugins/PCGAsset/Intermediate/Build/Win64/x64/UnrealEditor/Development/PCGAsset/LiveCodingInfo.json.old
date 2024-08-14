@@ -18,6 +18,7 @@
 			"PCGPointMask.cpp.obj",
 			"PCGRandom90Rotate.cpp.obj",
 			"PCGRemoveArea.cpp.obj",
+			"PCGRemoveInternal.cpp.obj",
 			"PCGRotateAroundCenter.cpp.obj",
 			"PCGScaleAffect.cpp.obj",
 			"PCGSineWave.cpp.obj",
