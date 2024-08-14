@@ -12,7 +12,7 @@
 			"PCGCreateCirclePoints.cpp.obj",
 			"PCGCreateSpherePoints.cpp.obj",
 			"PCGCreateSpiralSpline.cpp.obj",
-			"PCGOctree.cpp.obj",
+			"PCGCubeDivide.cpp.obj",
 			"PCGPerlinNoise.cpp.obj",
 			"PCGPointArray.cpp.obj",
 			"PCGPointMask.cpp.obj",

@@ -82,7 +82,8 @@ bool FPCGTemplateElement::ExecuteInternal(FPCGContext* Context) const
 			FTransform FinalTransform = InputPoint.Transform;
 			FVector FinalPosition = FVector(SourceTransform.GetLocation() + CustomOffset);
 			FinalTransform.SetLocation(FinalPosition);
-
+			
+			
 			/*******************************************
 			Actual Point adjustment - end
 			********************************************/

@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define PCGASSET_PCGConnectSplinebyID_generated_h
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_31_INCLASS_NO_PURE_DECLS \
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_31_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUPCGConnectSplinebyIDSettings(); \
 	friend struct Z_Construct_UClass_UPCGConnectSplinebyIDSettings_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UPCGConnectSplinebyIDSettings)
 
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_31_ENHANCED_CONSTRUCTORS \
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_31_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UPCGConnectSplinebyIDSettings(UPCGConnectSplinebyIDSettings&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~UPCGConnectSplinebyIDSettings();
 
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_27_PROLOG
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_31_GENERATED_BODY \
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_27_PROLOG
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_31_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_31_INCLASS_NO_PURE_DECLS \
-	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_31_ENHANCED_CONSTRUCTORS \
+	FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_31_INCLASS_NO_PURE_DECLS \
+	FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h_31_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> PCGASSET_API UClass* StaticClass<class UPCGConnectSplinebyIDSettings>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h
+#define CURRENT_FILE_ID FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGConnectSplinebyID_h
 
 
 #define FOREACH_ENUM_EPCGCONNECTSPLINEBYIDMODE(op) \

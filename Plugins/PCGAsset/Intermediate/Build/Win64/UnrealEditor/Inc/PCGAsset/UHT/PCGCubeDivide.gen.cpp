@@ -11,21 +11,21 @@ void EmptyLinkFunctionForGeneratedCodePCGCubeDivide() {}
 
 // Begin Cross Module References
 PCG_API UClass* Z_Construct_UClass_UPCGSettings();
-PCGASSET_API UClass* Z_Construct_UClass_UPCGOctreeSettings();
-PCGASSET_API UClass* Z_Construct_UClass_UPCGOctreeSettings_NoRegister();
+PCGASSET_API UClass* Z_Construct_UClass_UPCGCubeDivideSettings();
+PCGASSET_API UClass* Z_Construct_UClass_UPCGCubeDivideSettings_NoRegister();
 UPackage* Z_Construct_UPackage__Script_PCGAsset();
 // End Cross Module References
 
-// Begin Class UPCGOctreeSettings
-void UPCGOctreeSettings::StaticRegisterNativesUPCGOctreeSettings()
+// Begin Class UPCGCubeDivideSettings
+void UPCGCubeDivideSettings::StaticRegisterNativesUPCGCubeDivideSettings()
 {
 }
-IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UPCGOctreeSettings);
-UClass* Z_Construct_UClass_UPCGOctreeSettings_NoRegister()
+IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UPCGCubeDivideSettings);
+UClass* Z_Construct_UClass_UPCGCubeDivideSettings_NoRegister()
 {
-	return UPCGOctreeSettings::StaticClass();
+	return UPCGCubeDivideSettings::StaticClass();
 }
-struct Z_Construct_UClass_UPCGOctreeSettings_Statics
+struct Z_Construct_UClass_UPCGCubeDivideSettings_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
@@ -60,64 +60,64 @@ struct Z_Construct_UClass_UPCGOctreeSettings_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
-		TCppClassTypeTraits<UPCGOctreeSettings>::IsAbstract,
+		TCppClassTypeTraits<UPCGCubeDivideSettings>::IsAbstract,
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_PointDivideCounts = { "PointDivideCounts", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGOctreeSettings, PointDivideCounts), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PointDivideCounts_MetaData), NewProp_PointDivideCounts_MetaData) };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_RandomSeed = { "RandomSeed", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGOctreeSettings, RandomSeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RandomSeed_MetaData), NewProp_RandomSeed_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_UnitSizeM = { "UnitSizeM", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGOctreeSettings, UnitSizeM), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UnitSizeM_MetaData), NewProp_UnitSizeM_MetaData) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGOctreeSettings_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_PointDivideCounts,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_RandomSeed,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGOctreeSettings_Statics::NewProp_UnitSizeM,
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGCubeDivideSettings_Statics::NewProp_PointDivideCounts = { "PointDivideCounts", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCubeDivideSettings, PointDivideCounts), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PointDivideCounts_MetaData), NewProp_PointDivideCounts_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGCubeDivideSettings_Statics::NewProp_RandomSeed = { "RandomSeed", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCubeDivideSettings, RandomSeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RandomSeed_MetaData), NewProp_RandomSeed_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGCubeDivideSettings_Statics::NewProp_UnitSizeM = { "UnitSizeM", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCubeDivideSettings, UnitSizeM), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UnitSizeM_MetaData), NewProp_UnitSizeM_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGCubeDivideSettings_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCubeDivideSettings_Statics::NewProp_PointDivideCounts,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCubeDivideSettings_Statics::NewProp_RandomSeed,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCubeDivideSettings_Statics::NewProp_UnitSizeM,
 };
-static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGOctreeSettings_Statics::PropPointers) < 2048);
-UObject* (*const Z_Construct_UClass_UPCGOctreeSettings_Statics::DependentSingletons[])() = {
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGCubeDivideSettings_Statics::PropPointers) < 2048);
+UObject* (*const Z_Construct_UClass_UPCGCubeDivideSettings_Statics::DependentSingletons[])() = {
 	(UObject* (*)())Z_Construct_UClass_UPCGSettings,
 	(UObject* (*)())Z_Construct_UPackage__Script_PCGAsset,
 };
-static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGOctreeSettings_Statics::DependentSingletons) < 16);
-const UECodeGen_Private::FClassParams Z_Construct_UClass_UPCGOctreeSettings_Statics::ClassParams = {
-	&UPCGOctreeSettings::StaticClass,
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGCubeDivideSettings_Statics::DependentSingletons) < 16);
+const UECodeGen_Private::FClassParams Z_Construct_UClass_UPCGCubeDivideSettings_Statics::ClassParams = {
+	&UPCGCubeDivideSettings::StaticClass,
 	nullptr,
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
 	nullptr,
-	Z_Construct_UClass_UPCGOctreeSettings_Statics::PropPointers,
+	Z_Construct_UClass_UPCGCubeDivideSettings_Statics::PropPointers,
 	nullptr,
 	UE_ARRAY_COUNT(DependentSingletons),
 	0,
-	UE_ARRAY_COUNT(Z_Construct_UClass_UPCGOctreeSettings_Statics::PropPointers),
+	UE_ARRAY_COUNT(Z_Construct_UClass_UPCGCubeDivideSettings_Statics::PropPointers),
 	0,
 	0x001000A0u,
-	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGOctreeSettings_Statics::Class_MetaDataParams), Z_Construct_UClass_UPCGOctreeSettings_Statics::Class_MetaDataParams)
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGCubeDivideSettings_Statics::Class_MetaDataParams), Z_Construct_UClass_UPCGCubeDivideSettings_Statics::Class_MetaDataParams)
 };
-UClass* Z_Construct_UClass_UPCGOctreeSettings()
+UClass* Z_Construct_UClass_UPCGCubeDivideSettings()
 {
-	if (!Z_Registration_Info_UClass_UPCGOctreeSettings.OuterSingleton)
+	if (!Z_Registration_Info_UClass_UPCGCubeDivideSettings.OuterSingleton)
 	{
-		UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UPCGOctreeSettings.OuterSingleton, Z_Construct_UClass_UPCGOctreeSettings_Statics::ClassParams);
+		UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UPCGCubeDivideSettings.OuterSingleton, Z_Construct_UClass_UPCGCubeDivideSettings_Statics::ClassParams);
 	}
-	return Z_Registration_Info_UClass_UPCGOctreeSettings.OuterSingleton;
+	return Z_Registration_Info_UClass_UPCGCubeDivideSettings.OuterSingleton;
 }
-template<> PCGASSET_API UClass* StaticClass<UPCGOctreeSettings>()
+template<> PCGASSET_API UClass* StaticClass<UPCGCubeDivideSettings>()
 {
-	return UPCGOctreeSettings::StaticClass();
+	return UPCGCubeDivideSettings::StaticClass();
 }
-DEFINE_VTABLE_PTR_HELPER_CTOR(UPCGOctreeSettings);
-UPCGOctreeSettings::~UPCGOctreeSettings() {}
-// End Class UPCGOctreeSettings
+DEFINE_VTABLE_PTR_HELPER_CTOR(UPCGCubeDivideSettings);
+UPCGCubeDivideSettings::~UPCGCubeDivideSettings() {}
+// End Class UPCGCubeDivideSettings
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_Statics
+struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGOctreeSettings, UPCGOctreeSettings::StaticClass, TEXT("UPCGOctreeSettings"), &Z_Registration_Info_UClass_UPCGOctreeSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGOctreeSettings), 3023547305U) },
+		{ Z_Construct_UClass_UPCGCubeDivideSettings, UPCGCubeDivideSettings::StaticClass, TEXT("UPCGCubeDivideSettings"), &Z_Registration_Info_UClass_UPCGCubeDivideSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGCubeDivideSettings), 4048923129U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_1225506033(TEXT("/Script/PCGAsset"),
-	Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_3151675602(TEXT("/Script/PCGAsset"),
+	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCubeDivide_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

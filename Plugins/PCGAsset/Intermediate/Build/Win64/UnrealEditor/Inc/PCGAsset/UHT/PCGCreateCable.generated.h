@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define PCGASSET_PCGCreateCable_generated_h
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_26_INCLASS_NO_PURE_DECLS \
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_26_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUPCGCreateCableSettings(); \
 	friend struct Z_Construct_UClass_UPCGCreateCableSettings_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UPCGCreateCableSettings)
 
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_26_ENHANCED_CONSTRUCTORS \
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_26_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UPCGCreateCableSettings(UPCGCreateCableSettings&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~UPCGCreateCableSettings();
 
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_23_PROLOG
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_26_GENERATED_BODY \
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_23_PROLOG
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_26_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_26_INCLASS_NO_PURE_DECLS \
-	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_26_ENHANCED_CONSTRUCTORS \
+	FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_26_INCLASS_NO_PURE_DECLS \
+	FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h_26_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> PCGASSET_API UClass* StaticClass<class UPCGCreateCableSettings>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h
+#define CURRENT_FILE_ID FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCable_h
 
 
 #define FOREACH_ENUM_EPCGCREATECABLEMODE(op) \

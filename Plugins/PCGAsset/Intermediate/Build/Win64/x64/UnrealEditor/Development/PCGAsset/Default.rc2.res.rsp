@@ -79,6 +79,6 @@
 /DORIGINAL_FILE_NAME="UnrealEditor-PCGAsset.dll"
 /DBUILD_ICON_FILE_NAME="\"..\\Build\\Windows\\Resources\\Default.ico\""
 /DPROJECT_COPYRIGHT_STRING="Fill out your copyright notice in the Description page of Project Settings."
-/DPROJECT_PRODUCT_IDENTIFIER=PCGAssets
-/fo "C:\UnrealProjects\PCGAssets\Plugins\PCGAsset\Intermediate\Build\Win64\x64\UnrealEditor\Development\PCGAsset\Default.rc2.res"
+/DPROJECT_PRODUCT_IDENTIFIER=PCGDemo
+/fo "C:\UnrealProjects\PCGDemo\Plugins\PCGAsset\Intermediate\Build\Win64\x64\UnrealEditor\Development\PCGAsset\Default.rc2.res"
 "..\Build\Windows\Resources\Default.rc2"

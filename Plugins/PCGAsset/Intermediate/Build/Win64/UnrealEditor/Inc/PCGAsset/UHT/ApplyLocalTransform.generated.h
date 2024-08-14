@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define PCGASSET_ApplyLocalTransform_generated_h
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_14_INCLASS_NO_PURE_DECLS \
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_14_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUPCGApplyLocalTransformSettings(); \
 	friend struct Z_Construct_UClass_UPCGApplyLocalTransformSettings_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UPCGApplyLocalTransformSettings)
 
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_14_ENHANCED_CONSTRUCTORS \
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UPCGApplyLocalTransformSettings(UPCGApplyLocalTransformSettings&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~UPCGApplyLocalTransformSettings();
 
 
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_9_PROLOG
-#define FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_14_GENERATED_BODY \
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_9_PROLOG
+#define FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_14_INCLASS_NO_PURE_DECLS \
-	FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_14_ENHANCED_CONSTRUCTORS \
+	FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_14_INCLASS_NO_PURE_DECLS \
+	FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> PCGASSET_API UClass* StaticClass<class UPCGApplyLocalTransformSettings>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_UnrealProjects_PCGAssets_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h
+#define CURRENT_FILE_ID FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_ApplyLocalTransform_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
