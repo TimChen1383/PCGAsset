@@ -99,8 +99,8 @@ bool FPCGPointGroupElement::ExecuteInternal(FPCGContext* Context) const
 		}
 		
 		//Assign adjusted attribute back
-		FPCGTaggedData& NewData = Context->OutputData.TaggedData.Add_GetRef(InputsTaggedData);
-		NewData.Data = OutputData;
+		//FPCGTaggedData& NewData = Context->OutputData.TaggedData.Add_GetRef(InputsTaggedData);
+		Output.Data = OutputData;
 
 
 		
