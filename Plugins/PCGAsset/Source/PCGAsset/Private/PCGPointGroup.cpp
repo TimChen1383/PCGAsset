@@ -79,7 +79,7 @@ bool FPCGPointGroupElement::ExecuteInternal(FPCGContext* Context) const
 		FPCGTaggedData& Output = Outputs.Add_GetRef(InputsTaggedData);
 		UPCGPointData* OutputPointData = NewObject<UPCGPointData>();
 		OutputPointData->InitializeFromData(InputPointData);
-		//TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
+		TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
 		Output.Data = OutputPointData;
 
 		//Create new attribute data for output. Initialize the metadata with input data first
@@ -104,7 +104,7 @@ bool FPCGPointGroupElement::ExecuteInternal(FPCGContext* Context) const
 		//NewData.Data = OutputData;
 
 
-		/**
+		
 		//Run Point Loop. Data will reference back after the function loop through all PCG points
 		FPCGAsync::AsyncPointProcessing(Context, InputPoints.Num(), OutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
 		//Pass the function as parameter. This is a 2 inputs function: Index and PCG Point. Definition below
@@ -125,7 +125,6 @@ bool FPCGPointGroupElement::ExecuteInternal(FPCGContext* Context) const
 			return true;
 		}
 		);
-		**/
 	}
 	
 	return true;
