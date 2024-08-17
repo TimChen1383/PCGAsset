@@ -33,7 +33,7 @@ namespace PCGCreateAttribute
 
 UPCGPointGroupSettings::UPCGPointGroupSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGPointGroupSettings::CreateElement() const
@@ -76,33 +76,32 @@ bool FPCGPointGroupElement::ExecuteInternal(FPCGContext* Context) const
 
 		
 		//Output : New PCG Points > PCG Point Data > PCG Tagged Data > reference output PCG Tagged Data Array
-		//It's using reference. Adjust the data and send it back later
 		FPCGTaggedData& Output = Outputs.Add_GetRef(InputsTaggedData);
 		UPCGPointData* OutputPointData = NewObject<UPCGPointData>();
 		OutputPointData->InitializeFromData(InputPointData);
-		TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
+		//TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
 		Output.Data = OutputPointData;
 
 		//Create new attribute data for output. Initialize the metadata with input data first
-		const UPCGData* InData = InputsTaggedData.Data;
-		UPCGData* OutputData = InData->DuplicateData();
-		check(OutputData);
-		UPCGMetadata* OutputMetadata = OutputData->MutableMetadata();
+		//const UPCGData* InData = InputsTaggedData.Data;
+		//UPCGData* OutputData = InData->DuplicateData();
+		//check(OutputData);
+		//UPCGMetadata* OutputMetadata = OutputData->MutableMetadata();
 		//Not sure where the default value of attribute type come from???
 		//No need to initialize this attribute column???
 		//What kind of attribute I created? integer? float? double? I think he use Auto to solve it
-		PCGCreateAttribute::ClearOrCreateAttribute(Settings->AttributeTypes, OutputMetadata, GroupName);
+		//PCGCreateAttribute::ClearOrCreateAttribute(Settings->AttributeTypes, OutputMetadata, GroupName);
 		
 
 		// Making sure we have at least one entry.
-		if (OutputMetadata && OutputMetadata->GetItemCountForChild() == 0)
-		{
-			OutputMetadata->AddEntry();
-		}
+		//if (OutputMetadata && OutputMetadata->GetItemCountForChild() == 0)
+		//{
+			//OutputMetadata->AddEntry();
+		//}
 		
 		//Assign adjusted attribute back
-		FPCGTaggedData& NewData = Context->OutputData.TaggedData.Add_GetRef(InputsTaggedData);
-		NewData.Data = OutputData;
+		//FPCGTaggedData& NewData = Context->OutputData.TaggedData.Add_GetRef(InputsTaggedData);
+		//NewData.Data = OutputData;
 
 
 		/**
