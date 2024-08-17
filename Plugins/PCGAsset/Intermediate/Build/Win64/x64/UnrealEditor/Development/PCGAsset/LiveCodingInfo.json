@@ -15,6 +15,7 @@
 			"PCGInternalToDensity.cpp.obj",
 			"PCGPerlinNoise.cpp.obj",
 			"PCGPointArray.cpp.obj",
+			"PCGPointGroup.cpp.obj",
 			"PCGPointMask.cpp.obj",
 			"PCGRandom90Rotate.cpp.obj",
 			"PCGRemoveArea.cpp.obj",
