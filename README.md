@@ -5,11 +5,14 @@
 - Plugins need to be enabled : Procedural Content Generation Framework(PCG), Procedural Content Generation Framework(PCG) Geometrt Script Interop
 - Add the plugin into project's Plugins folder then ready to go
 
-## Examples
+## Example Files
 - There are some simple examples of using the custom nodes 
 ![examples](https://github.com/user-attachments/assets/95eca0be-0c96-4c13-8b97-a7678f44b868)
 
+# Assets
+## Spline Scatter
 
+# Custom Nodes
 ## Create Circle Points
 ![CirclePoints](https://github.com/user-attachments/assets/ea22315a-3c42-4640-8cce-60abc02f92e6)
 ![CirclePoints](https://github.com/user-attachments/assets/60214c74-fac5-4043-b543-7d3808790123)
