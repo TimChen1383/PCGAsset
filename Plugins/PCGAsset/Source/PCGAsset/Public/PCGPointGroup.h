@@ -38,10 +38,12 @@ public:
 	/*******************************************
 	Promote variables that will be shown in details panel
 	********************************************/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (ShowOnlyInnerProperties))
-	FPCGMetadataTypesConstantStruct AttributeTypes;
+	//UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (ShowOnlyInnerProperties))
+	//FPCGMetadataTypesConstantStruct AttributeTypes;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (ShowOnlyInnerProperties))
 	FName GroupName = FName(TEXT("MyGroup"));
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (ShowOnlyInnerProperties))
+	bool Invert = false;
 	
 };
 

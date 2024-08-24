@@ -97,7 +97,7 @@ bool FPCGPointGroupElement::ExecuteInternal(FPCGContext* Context) const
 		//No need to initialize this attribute column???
 		//Currently user will define the parameter type in editor
 		//PCGCreateAttribute::ClearOrCreateAttribute(FPCGMetadataTypesConstantStruct::Int32Value, OutputMetadata, GroupName);
-		PCGMetadataElementCommon::ClearOrCreateAttribute<float>(OutputMetadata, GroupName);
+		PCGMetadataElementCommon::ClearOrCreateAttribute<int32>(OutputMetadata, GroupName);
 		
 		// Making sure we have at least one entry.
 		if (OutputMetadata && OutputMetadata->GetItemCountForChild() == 0)
