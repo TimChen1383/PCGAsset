@@ -16,20 +16,27 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGPointGroup"
 
-namespace PCGCreateAttribute
-{
-	FPCGMetadataAttributeBase* ClearOrCreateAttribute(const FPCGMetadataTypesConstantStruct& AttributeTypes, UPCGMetadata* Metadata, const FName OutputAttributeName)
-	{
-		check(Metadata);
+/**********************************************************************
+To do 
+- the new attribute column should be called "Group", then the value should be string like : group1, group2..
+- We can use the string value inside the Group column to pick out different group
+***********************************************************************/
 
-		auto CreateAttribute = [Metadata, OutputAttributeName](auto&& Value) -> FPCGMetadataAttributeBase*
-		{
-			return PCGMetadataElementCommon::ClearOrCreateAttribute(Metadata, OutputAttributeName, std::forward<decltype(Value)>(Value));
-		};
+//namespace PCGCreateAttribute
+//{
+	//FPCGMetadataAttributeBase* ClearOrCreateAttribute(const FPCGMetadataTypesConstantStruct& AttributeTypes, UPCGMetadata* Metadata, const FName OutputAttributeName)
+	//{
+		//check(Metadata);
 
-		return AttributeTypes.Dispatcher(CreateAttribute);
-	}
-}
+		//auto CreateAttribute = [Metadata, OutputAttributeName](auto&& Value) -> FPCGMetadataAttributeBase*
+		//{
+			//return PCGMetadataElementCommon::ClearOrCreateAttribute(Metadata, OutputAttributeName, std::forward<decltype(Value)>(Value));
+		//};
+
+		//Use the custom AttributeTypes to create the attribute
+		//return AttributeTypes.Dispatcher(CreateAttribute);
+	//}
+//}
 
 UPCGPointGroupSettings::UPCGPointGroupSettings()
 {
@@ -52,7 +59,6 @@ bool FPCGPointGroupElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const FVector& CustomOffset = Settings->CustomOffset;
 	const FName& GroupName = Settings->GroupName;
 
 
@@ -90,7 +96,8 @@ bool FPCGPointGroupElement::ExecuteInternal(FPCGContext* Context) const
 		//Not sure where the default value of attribute type come from???
 		//No need to initialize this attribute column???
 		//Currently user will define the parameter type in editor
-		PCGCreateAttribute::ClearOrCreateAttribute(Settings->AttributeTypes, OutputMetadata, GroupName);
+		//PCGCreateAttribute::ClearOrCreateAttribute(FPCGMetadataTypesConstantStruct::Int32Value, OutputMetadata, GroupName);
+		PCGMetadataElementCommon::ClearOrCreateAttribute<float>(OutputMetadata, GroupName);
 		
 		// Making sure we have at least one entry.
 		if (OutputMetadata && OutputMetadata->GetItemCountForChild() == 0)
@@ -111,16 +118,6 @@ bool FPCGPointGroupElement::ExecuteInternal(FPCGContext* Context) const
 			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
 			const FPCGPoint& InputPoint = InputPoints[Index];
 			OutPoint = InputPoint;
-
-			//This is the final output transform data. Initialize it first
-			FTransform SourceTransform = InputPoint.Transform;
-			FTransform FinalTransform = InputPoint.Transform;
-			FVector FinalPosition = FVector(SourceTransform.GetLocation() + CustomOffset);
-			FinalTransform.SetLocation(FinalPosition);
-			
-			//Assign back 
-			OutPoint.Transform = FinalTransform;
-			
 			return true;
 		}
 		);

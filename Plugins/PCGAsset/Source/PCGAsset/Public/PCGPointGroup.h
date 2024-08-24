@@ -38,9 +38,6 @@ public:
 	/*******************************************
 	Promote variables that will be shown in details panel
 	********************************************/
-	//Control the Perlin noise height and scale
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	FVector CustomOffset = FVector::Zero();
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (ShowOnlyInnerProperties))
 	FPCGMetadataTypesConstantStruct AttributeTypes;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (ShowOnlyInnerProperties))
