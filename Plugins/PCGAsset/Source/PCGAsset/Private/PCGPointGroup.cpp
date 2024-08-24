@@ -10,7 +10,6 @@
 #include "Metadata/Accessors/PCGAttributeAccessorHelpers.h"
 #include "Helpers/PCGHelpers.h"
 #include "Math/RandomStream.h"
-#include "Metadata/PCGMetadataTypesConstantStruct.h"
 //The macro in UE5 for speed up the compilation. Just add it
 #include UE_INLINE_GENERATED_CPP_BY_NAME(PCGPointGroup)
 //Using Name Space to avoid variable name conflict with engine code. Just add it
@@ -21,22 +20,6 @@ To do
 - the new attribute column should be called "Group", then the value should be string like : group1, group2..
 - We can use the string value inside the Group column to pick out different group
 ***********************************************************************/
-
-//namespace PCGCreateAttribute
-//{
-	//FPCGMetadataAttributeBase* ClearOrCreateAttribute(const FPCGMetadataTypesConstantStruct& AttributeTypes, UPCGMetadata* Metadata, const FName OutputAttributeName)
-	//{
-		//check(Metadata);
-
-		//auto CreateAttribute = [Metadata, OutputAttributeName](auto&& Value) -> FPCGMetadataAttributeBase*
-		//{
-			//return PCGMetadataElementCommon::ClearOrCreateAttribute(Metadata, OutputAttributeName, std::forward<decltype(Value)>(Value));
-		//};
-
-		//Use the custom AttributeTypes to create the attribute
-		//return AttributeTypes.Dispatcher(CreateAttribute);
-	//}
-//}
 
 UPCGPointGroupSettings::UPCGPointGroupSettings()
 {
@@ -93,11 +76,11 @@ bool FPCGPointGroupElement::ExecuteInternal(FPCGContext* Context) const
 		UPCGData* OutputData = InData->DuplicateData();
 		check(OutputData);
 		UPCGMetadata* OutputMetadata = OutputData->MutableMetadata();
-		//Not sure where the default value of attribute type come from???
-		//No need to initialize this attribute column???
-		//Currently user will define the parameter type in editor
-		//PCGCreateAttribute::ClearOrCreateAttribute(FPCGMetadataTypesConstantStruct::Int32Value, OutputMetadata, GroupName);
-		PCGMetadataElementCommon::ClearOrCreateAttribute<int32>(OutputMetadata, GroupName);
+		
+		//Actual create the custom attribute, decide the value type
+		//But not sure how to adjust the value 
+		PCGMetadataElementCommon::ClearOrCreateAttribute<int32>(OutputMetadata, GroupName, 1);
+		
 		
 		// Making sure we have at least one entry.
 		if (OutputMetadata && OutputMetadata->GetItemCountForChild() == 0)
