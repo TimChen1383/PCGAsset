@@ -120,8 +120,11 @@ bool FPCGCreateCableElement::ExecuteInternal(FPCGContext* Context) const
 		const TArray<FPCGPoint>& Points = PointData->GetPoints();
 		const FTransform SplineActorTransform = SplineActor->GetTransform(); //Store spline location
 		//Set spline curve type. For custom tangent value to work, we need to set the mode to Curve Custom Tangent
-		ESplinePointType::Type PointType = ESplinePointType::CurveCustomTangent; 
+		ESplinePointType::Type PointType = ESplinePointType::CurveCustomTangent;
+		int32 PointNum = Points.Num();
 
+		if(PointNum > 0)
+		{
 		for(int32 CableCount = 0; CableCount < CableCounts; CableCount++)
 		{
 			//Create PCG Spline Data and Spline Points
@@ -194,6 +197,7 @@ bool FPCGCreateCableElement::ExecuteInternal(FPCGContext* Context) const
 				ManagedComponent->GeneratedComponent = SplineComponent;
 				Context->SourceComponent->AddToManagedResources(ManagedComponent);
 			}
+		}
 		}
 	}
 
