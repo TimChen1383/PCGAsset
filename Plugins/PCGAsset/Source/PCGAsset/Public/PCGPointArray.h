@@ -75,7 +75,9 @@ public:
 	FRotator RotationOffset = FRotator(0,0,0);
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	float AllPointsRotationDegree = 0.0f;
+	EPCGPointArrayRotateAlongAxisMode RotateAlongAxisMode = EPCGPointArrayRotateAlongAxisMode::Z;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	float RotateAlongAxisDegree = 0.0f;
 	
 };
 

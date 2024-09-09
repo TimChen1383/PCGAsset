@@ -43,10 +43,11 @@ bool FPCGPointArrayElement::ExecuteInternal(FPCGContext* Context) const
 	const int32& DuplicateCounts = Settings->DuplicateCounts;
 	const FVector& LocationIncrement = Settings->LocationIncrement;
 	const FVector& ScaleOffset = Settings->ScaleOffset;
-	const float& AllPointsRotationDegree = Settings->AllPointsRotationDegree;
+	const float& RotateAlongAxisDegree = Settings->RotateAlongAxisDegree;
 	const FRotator& RotationOffset = Settings->RotationOffset;
 	const EPCGPointArrayScaleMode& ScaleMode = Settings->ScaleMode;
 	const EPCGPointArrayRotationMode& RotationMode = Settings->RotationMode;
+	const EPCGPointArrayRotateAlongAxisMode& RotateAlongAxisMode = Settings->RotateAlongAxisMode;
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
 	for (const FPCGTaggedData& Input : Inputs)
@@ -86,9 +87,23 @@ bool FPCGPointArrayElement::ExecuteInternal(FPCGContext* Context) const
 				FTransform SourceTransform = InputPoint.Transform;
 				FTransform FinalTransform = InputPoint.Transform; //Initialize
 				
-				//Adjust Z offset and Rotate all points around center
-				FVector FinalPosition = (SourceTransform.GetLocation() + (LocationIncrement * DuplicateCount)).RotateAngleAxis(AllPointsRotationDegree * DuplicateCount, FVector(0,0,1));
-				FinalTransform.SetLocation(FinalPosition);
+				//Rotate along axis
+				if(RotateAlongAxisMode == EPCGPointArrayRotateAlongAxisMode::Z)
+				{
+					FVector FinalPosition = (SourceTransform.GetLocation() + (LocationIncrement * DuplicateCount)).RotateAngleAxis(RotateAlongAxisDegree * DuplicateCount, FVector(0,0,1));
+					FinalTransform.SetLocation(FinalPosition);
+				}
+				else if (RotateAlongAxisMode == EPCGPointArrayRotateAlongAxisMode::Y)
+				{
+					FVector FinalPosition = (SourceTransform.GetLocation() + (LocationIncrement * DuplicateCount)).RotateAngleAxis(RotateAlongAxisDegree * DuplicateCount, FVector(0,1,0));
+					FinalTransform.SetLocation(FinalPosition);	
+				}
+				else
+				{
+					FVector FinalPosition = (SourceTransform.GetLocation() + (LocationIncrement * DuplicateCount)).RotateAngleAxis(RotateAlongAxisDegree * DuplicateCount, FVector(1,0,0));
+					FinalTransform.SetLocation(FinalPosition);
+				}
+
 
 				//Adjust point rotation
 				if(RotationMode == EPCGPointArrayRotationMode::Fix)
