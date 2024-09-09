@@ -6,6 +6,28 @@
 #include "PCGSettings.h"
 #include "PCGPointArray.generated.h"
 
+UENUM()
+enum class EPCGPointArrayScaleMode : uint8
+{
+	Fix,
+	Increment
+};
+
+UENUM()
+enum class EPCGPointArrayRotationMode : uint8
+{
+	Fix,
+	Increment
+};
+
+UENUM()
+enum class EPCGPointArrayRotateAlongAxisMode : uint8
+{
+	X,
+	Y,
+	Z
+};
+
 UCLASS()
 class PCGASSET_API UPCGPointArraySettings : public UPCGSettings
 {
@@ -40,22 +62,19 @@ public:
 	int32 DuplicateCounts = 3;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	FVector ZOffset = FVector(0,0,100);
+	FVector LocationIncrement  = FVector(0,0,100);
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	EPCGPointArrayScaleMode ScaleMode = EPCGPointArrayScaleMode::Fix;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	FVector ScaleOffset = FVector(0,0,0);
+	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	EPCGPointArrayRotationMode RotationMode = EPCGPointArrayRotationMode::Fix;
+	FRotator RotationOffset = FRotator(0,0,0);
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	float AllPointsRotationDegree = 0.0f;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	float ObjectRollOffset = 0.0f;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	float ObjectPitchOffset = 0.0f;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	float ObjectYawOffset = 0.0f;
 	
 };
 

@@ -10,7 +10,7 @@ UENUM()
 enum class EPCGPerlinNoiseMode : uint8
 {
 	PelinNoise2D,
-	PelinNoise3D,
+	PelinNoise3D
 };
 
 UCLASS()

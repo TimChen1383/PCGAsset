@@ -21,7 +21,7 @@ To do list
 
 UPCGPointArraySettings::UPCGPointArraySettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGPointArraySettings::CreateElement() const
@@ -41,12 +41,12 @@ bool FPCGPointArrayElement::ExecuteInternal(FPCGContext* Context) const
 
 	//Pass the UPROPERTY variable here
 	const int32& DuplicateCounts = Settings->DuplicateCounts;
-	const FVector& ZOffset = Settings->ZOffset;
+	const FVector& LocationIncrement = Settings->LocationIncrement;
 	const FVector& ScaleOffset = Settings->ScaleOffset;
 	const float& AllPointsRotationDegree = Settings->AllPointsRotationDegree;
-	const float& ObjectRollOffset = Settings->ObjectRollOffset;
-	const float& ObjectPitchOffset = Settings->ObjectPitchOffset;
-	const float& ObjectYawOffset = Settings->ObjectYawOffset;
+	const FRotator& RotationOffset = Settings->RotationOffset;
+	const EPCGPointArrayScaleMode& ScaleMode = Settings->ScaleMode;
+	const EPCGPointArrayRotationMode& RotationMode = Settings->RotationMode;
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
 	for (const FPCGTaggedData& Input : Inputs)
@@ -87,20 +87,39 @@ bool FPCGPointArrayElement::ExecuteInternal(FPCGContext* Context) const
 				FTransform FinalTransform = InputPoint.Transform; //Initialize
 				
 				//Adjust Z offset and Rotate all points around center
-				FVector FinalPosition = (SourceTransform.GetLocation() + (ZOffset * DuplicateCount)).RotateAngleAxis(AllPointsRotationDegree * DuplicateCount, FVector(0,0,1));
+				FVector FinalPosition = (SourceTransform.GetLocation() + (LocationIncrement * DuplicateCount)).RotateAngleAxis(AllPointsRotationDegree * DuplicateCount, FVector(0,0,1));
 				FinalTransform.SetLocation(FinalPosition);
 
-				//Adjust single point rotation
-				float PointPitch = SourceTransform.GetRotation().Rotator().Pitch + (ObjectPitchOffset * DuplicateCount);
-				float PointYaw = SourceTransform.GetRotation().Rotator().Yaw + (ObjectYawOffset * DuplicateCount);
-				float PointRoll = SourceTransform.GetRotation().Rotator().Roll + (ObjectRollOffset * DuplicateCount);
-				FQuat QuatRotation = FRotator(PointPitch,PointYaw,PointRoll).Quaternion();
-				FinalTransform.SetRotation(QuatRotation);
-
+				//Adjust point rotation
+				if(RotationMode == EPCGPointArrayRotationMode::Fix)
+				{
+					float PointPitch = SourceTransform.GetRotation().Rotator().Pitch + (RotationOffset.Pitch);
+					float PointYaw = SourceTransform.GetRotation().Rotator().Yaw + (RotationOffset.Yaw);
+					float PointRoll = SourceTransform.GetRotation().Rotator().Roll + (RotationOffset.Roll);
+					FQuat QuatRotation = FRotator(PointPitch,PointYaw,PointRoll).Quaternion();
+					FinalTransform.SetRotation(QuatRotation);
+				}
+				else
+				{
+					float PointPitch = SourceTransform.GetRotation().Rotator().Pitch + (RotationOffset.Pitch * DuplicateCount);
+					float PointYaw = SourceTransform.GetRotation().Rotator().Yaw + (RotationOffset.Yaw * DuplicateCount);
+					float PointRoll = SourceTransform.GetRotation().Rotator().Roll + (RotationOffset.Roll * DuplicateCount);
+					FQuat QuatRotation = FRotator(PointPitch,PointYaw,PointRoll).Quaternion();
+					FinalTransform.SetRotation(QuatRotation);
+				}
 				
-				//Adjust scale
-				FVector FinalScale = SourceTransform.GetScale3D() + (ScaleOffset*DuplicateCount);
-				FinalTransform.SetScale3D(FinalScale);
+				//Adjust point scale
+				if(ScaleMode == EPCGPointArrayScaleMode::Fix)
+				{
+					FVector FinalScale = SourceTransform.GetScale3D() + ScaleOffset;
+					FinalTransform.SetScale3D(FinalScale);
+				}
+				else
+				{
+					FVector FinalScale = SourceTransform.GetScale3D() + (ScaleOffset*DuplicateCount);
+					FinalTransform.SetScale3D(FinalScale);
+				}
+
 				
 				//Return final transform
 				OutPoint.Transform = FinalTransform;
