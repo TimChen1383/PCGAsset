@@ -10,6 +10,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodePCGPointArray() {}
 
 // Begin Cross Module References
+COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 PCG_API UClass* Z_Construct_UClass_UPCGSettings();
 PCGASSET_API UClass* Z_Construct_UClass_UPCGPointArraySettings();
@@ -222,6 +223,11 @@ struct Z_Construct_UClass_UPCGPointArraySettings_Statics
 		{ "ModuleRelativePath", "Public/PCGPointArray.h" },
 		{ "PCG_Overridable", "" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RotationOffset_MetaData[] = {
+		{ "Category", "Settings" },
+		{ "ModuleRelativePath", "Public/PCGPointArray.h" },
+		{ "PCG_Overridable", "" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AllPointsRotationDegree_MetaData[] = {
 		{ "Category", "Settings" },
 		{ "ModuleRelativePath", "Public/PCGPointArray.h" },
@@ -235,6 +241,7 @@ struct Z_Construct_UClass_UPCGPointArraySettings_Statics
 	static const UECodeGen_Private::FStructPropertyParams NewProp_ScaleOffset;
 	static const UECodeGen_Private::FBytePropertyParams NewProp_RotationMode_Underlying;
 	static const UECodeGen_Private::FEnumPropertyParams NewProp_RotationMode;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_RotationOffset;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_AllPointsRotationDegree;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -250,6 +257,7 @@ const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UPCGPointArraySe
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UPCGPointArraySettings_Statics::NewProp_ScaleOffset = { "ScaleOffset", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGPointArraySettings, ScaleOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ScaleOffset_MetaData), NewProp_ScaleOffset_MetaData) };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UPCGPointArraySettings_Statics::NewProp_RotationMode_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UPCGPointArraySettings_Statics::NewProp_RotationMode = { "RotationMode", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGPointArraySettings, RotationMode), Z_Construct_UEnum_PCGAsset_EPCGPointArrayRotationMode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RotationMode_MetaData), NewProp_RotationMode_MetaData) }; // 2583648749
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UPCGPointArraySettings_Statics::NewProp_RotationOffset = { "RotationOffset", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGPointArraySettings, RotationOffset), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RotationOffset_MetaData), NewProp_RotationOffset_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGPointArraySettings_Statics::NewProp_AllPointsRotationDegree = { "AllPointsRotationDegree", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGPointArraySettings, AllPointsRotationDegree), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AllPointsRotationDegree_MetaData), NewProp_AllPointsRotationDegree_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGPointArraySettings_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointArraySettings_Statics::NewProp_DuplicateCounts,
@@ -259,6 +267,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGPoint
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointArraySettings_Statics::NewProp_ScaleOffset,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointArraySettings_Statics::NewProp_RotationMode_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointArraySettings_Statics::NewProp_RotationMode,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointArraySettings_Statics::NewProp_RotationOffset,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointArraySettings_Statics::NewProp_AllPointsRotationDegree,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGPointArraySettings_Statics::PropPointers) < 2048);
@@ -307,10 +316,10 @@ struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_
 		{ EPCGPointArrayRotateAlongAxisMode_StaticEnum, TEXT("EPCGPointArrayRotateAlongAxisMode"), &Z_Registration_Info_UEnum_EPCGPointArrayRotateAlongAxisMode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1432767578U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGPointArraySettings, UPCGPointArraySettings::StaticClass, TEXT("UPCGPointArraySettings"), &Z_Registration_Info_UClass_UPCGPointArraySettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGPointArraySettings), 3850629500U) },
+		{ Z_Construct_UClass_UPCGPointArraySettings, UPCGPointArraySettings::StaticClass, TEXT("UPCGPointArraySettings"), &Z_Registration_Info_UClass_UPCGPointArraySettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGPointArraySettings), 1559003705U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointArray_h_1833097689(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointArray_h_1682433278(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointArray_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointArray_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointArray_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointArray_h_Statics::EnumInfo));
