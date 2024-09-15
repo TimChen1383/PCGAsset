@@ -37,34 +37,7 @@ bool FPCGRandomWalkerElement::ExecuteInternal(FPCGContext* Context) const
 	const int32& WalkCounts = Settings->WalkCounts;
 	const float& WalkStepSize = Settings->WalkStepSize;
 	const int32& RandomSeed = Settings->RandomSeed;
-
-	FRandomStream RandStream;
-	RandStream.Initialize(RandomSeed);
-
-	//Prepare step
-	FVector WalkerLocation = FVector::Zero();
-
-	//Walk one new step
-	int32 WalkerDirection = RandStream.RandRange(0,3);
-	FVector WalkerStep = FVector::Zero();
-	if(WalkerDirection == 0)
-	{
-		WalkerStep = FVector(0,WalkStepSize,0);
-	}
-	else if (WalkerDirection == 1)
-	{
-		WalkerStep = FVector(WalkStepSize,0,0);
-	}
-	else if (WalkerDirection == 2)
-	{
-		WalkerStep = FVector(0,-WalkStepSize,0);
-	}
-	else
-	{
-		WalkerStep = FVector(-WalkStepSize,0,0);
-	}
-	WalkerLocation = WalkerLocation + WalkerStep;
-			
+	
 	//Setup Output data
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 	FPCGTaggedData& Output = Outputs.Emplace_GetRef();
@@ -72,14 +45,38 @@ bool FPCGRandomWalkerElement::ExecuteInternal(FPCGContext* Context) const
 	check(OutputPointData);
 	TArray<FPCGPoint>& OutputPoints = OutputPointData->GetMutablePoints();
 	Output.Data = OutputPointData;
-
+	
+	//Prepare walker's step
+	FVector WalkerLocation = FVector::Zero();
+	FRandomStream RandStream;
+	RandStream.Initialize(RandomSeed);
 
 	//Run Point Loop. Data will reference back after the function loop through all PCG points
 	FPCGAsync::AsyncPointProcessing(Context, WalkCounts, OutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
-	//Pass the function as parameter. This is a 2 inputs function: Index and PCG Point. Definition below
 	{
 		//Create new points
 		OutPoint = FPCGPoint();
+		
+		//Walk one new step
+		int32 WalkerDirection = RandStream.RandRange(0,3);
+		FVector WalkerStep = FVector::Zero();
+		if(WalkerDirection == 0)
+		{
+			WalkerStep = FVector(0,WalkStepSize,0);
+		}
+		else if (WalkerDirection == 1)
+		{
+			WalkerStep = FVector(WalkStepSize,0,0);
+		}
+		else if (WalkerDirection == 2)
+		{
+			WalkerStep = FVector(0,-WalkStepSize,0);
+		}
+		else
+		{
+			WalkerStep = FVector(-WalkStepSize,0,0);
+		}
+		WalkerLocation += WalkerStep;
 
 		/*******************************************
 		Actual Point adjustment - start
