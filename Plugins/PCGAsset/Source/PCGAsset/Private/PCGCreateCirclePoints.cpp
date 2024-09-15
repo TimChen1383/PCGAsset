@@ -71,12 +71,11 @@ bool FPCGCreateCircleElement::ExecuteInternal(FPCGContext* Context) const
 	//Run Iteration Loop. Data will reference back after the function loop through all PCG points
 	FPCGAsync::AsyncPointProcessing(Context, CirclePointCounts, OutputPoints, [&](int32 Index, FPCGPoint& OutPoint)
 	{
+		//Create new points
 		OutPoint = FPCGPoint();
 		/*******************************************
 		Actual Point adjustment - start
 		********************************************/
-			
-		//Create new points
 		
 		FTransform PointTransform = FTransform::Identity;
 		int64 CurrentPointDegree = CircleDegree/CirclePointCounts*Index;

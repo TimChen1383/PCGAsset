@@ -22,13 +22,13 @@ public:
 	virtual FName GetDefaultNodeName() const override { return FName(TEXT("RandomWalker")); }
 	virtual FText GetDefaultNodeTitle() const override { return NSLOCTEXT("RandomWalker", "NodeTitle", "RandomWalker"); }
 	//Set node's category
-	virtual EPCGSettingsType GetType() const override { return EPCGSettingsType::PointOps; }
+	virtual EPCGSettingsType GetType() const override { return EPCGSettingsType::Spatial; }
 #endif
 	
 
 protected:
 	//Set Input Pin and Output Pin type to Point type
-	virtual TArray<FPCGPinProperties> InputPinProperties() const override { return Super::DefaultPointInputPinProperties(); }
+	virtual TArray<FPCGPinProperties> InputPinProperties() const override { return TArray<FPCGPinProperties>(); }
 	virtual TArray<FPCGPinProperties> OutputPinProperties() const override { return Super::DefaultPointOutputPinProperties(); }
 	virtual FPCGElementPtr CreateElement() const override;
 	//~End node UI interface setting
@@ -38,8 +38,6 @@ public:
 	Promote variables that will be shown in details panel
 	********************************************/
 	//Control the Perlin noise height and scale
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	FVector CustomOffset = FVector::Zero();
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 WalkCounts = 6;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
