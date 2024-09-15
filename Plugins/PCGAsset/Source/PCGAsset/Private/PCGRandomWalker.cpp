@@ -13,7 +13,7 @@
 #define LOCTEXT_NAMESPACE "PCGRandomWalker"
 /**********************************************************************
 To do list
-- Use random stream instead
+- Random walker should not need input point
 ***********************************************************************/
 UPCGRandomWalkerSettings::UPCGRandomWalkerSettings()
 {
@@ -39,8 +39,10 @@ bool FPCGRandomWalkerElement::ExecuteInternal(FPCGContext* Context) const
 	const FVector& CustomOffset = Settings->CustomOffset;
 	const int32& WalkCounts = Settings->WalkCounts;
 	const float& WalkStepSize = Settings->WalkStepSize;
-	//FVector WalkerLocation = Settings->WalkerLocation;
+	const int32& RandomSeed = Settings->RandomSeed;
 
+	FRandomStream RandStream;
+	RandStream.Initialize(RandomSeed);
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
 	for (const FPCGTaggedData& InputsTaggedData : InputsTaggedDatas)
@@ -64,7 +66,7 @@ bool FPCGRandomWalkerElement::ExecuteInternal(FPCGContext* Context) const
 		for(int32 WalkCount = 0; WalkCount < WalkCounts; WalkCount++)
 		{
 			//Walk one new step
-			int32 WalkerDirection = FMath::RandRange(0,3);
+			int32 WalkerDirection = RandStream.RandRange(0,3);
 			FVector WalkerStep = FVector::Zero();
 			if(WalkerDirection == 0)
 			{

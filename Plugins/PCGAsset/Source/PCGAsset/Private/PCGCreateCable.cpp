@@ -87,8 +87,7 @@ bool FPCGCreateCableElement::ExecuteInternal(FPCGContext* Context) const
 	const int32& CableCounts = Settings->CableCounts;
 	const float& TangentAmount = Settings->TangentAmount;
 	const int32& RandomSeed = Settings->RandomSeed;
-
-	///This is how we do random stream!!!
+	
 	FRandomStream RandStream;
 	RandStream.Initialize(RandomSeed);
 

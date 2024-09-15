@@ -54,10 +54,16 @@ struct Z_Construct_UClass_UPCGRandomWalkerSettings_Statics
 		{ "ModuleRelativePath", "Public/PCGRandomWalker.h" },
 		{ "PCG_Overridable", "" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RandomSeed_MetaData[] = {
+		{ "Category", "Settings" },
+		{ "ModuleRelativePath", "Public/PCGRandomWalker.h" },
+		{ "PCG_Overridable", "" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CustomOffset;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_WalkCounts;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_WalkStepSize;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_RandomSeed;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -68,10 +74,12 @@ struct Z_Construct_UClass_UPCGRandomWalkerSettings_Statics
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UPCGRandomWalkerSettings_Statics::NewProp_CustomOffset = { "CustomOffset", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGRandomWalkerSettings, CustomOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CustomOffset_MetaData), NewProp_CustomOffset_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGRandomWalkerSettings_Statics::NewProp_WalkCounts = { "WalkCounts", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGRandomWalkerSettings, WalkCounts), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WalkCounts_MetaData), NewProp_WalkCounts_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGRandomWalkerSettings_Statics::NewProp_WalkStepSize = { "WalkStepSize", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGRandomWalkerSettings, WalkStepSize), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WalkStepSize_MetaData), NewProp_WalkStepSize_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGRandomWalkerSettings_Statics::NewProp_RandomSeed = { "RandomSeed", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGRandomWalkerSettings, RandomSeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RandomSeed_MetaData), NewProp_RandomSeed_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGRandomWalkerSettings_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGRandomWalkerSettings_Statics::NewProp_CustomOffset,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGRandomWalkerSettings_Statics::NewProp_WalkCounts,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGRandomWalkerSettings_Statics::NewProp_WalkStepSize,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGRandomWalkerSettings_Statics::NewProp_RandomSeed,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGRandomWalkerSettings_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPCGRandomWalkerSettings_Statics::DependentSingletons[])() = {
@@ -114,10 +122,10 @@ UPCGRandomWalkerSettings::~UPCGRandomWalkerSettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGRandomWalker_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGRandomWalkerSettings, UPCGRandomWalkerSettings::StaticClass, TEXT("UPCGRandomWalkerSettings"), &Z_Registration_Info_UClass_UPCGRandomWalkerSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGRandomWalkerSettings), 3325899013U) },
+		{ Z_Construct_UClass_UPCGRandomWalkerSettings, UPCGRandomWalkerSettings::StaticClass, TEXT("UPCGRandomWalkerSettings"), &Z_Registration_Info_UClass_UPCGRandomWalkerSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGRandomWalkerSettings), 1004655183U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGRandomWalker_h_168672301(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGRandomWalker_h_324876988(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGRandomWalker_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGRandomWalker_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

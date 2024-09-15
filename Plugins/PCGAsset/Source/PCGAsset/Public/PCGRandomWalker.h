@@ -44,7 +44,8 @@ public:
 	int32 WalkCounts = 6;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	float WalkStepSize = 100.0;
-
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	int32 RandomSeed = 10;
 	//FVector WalkerLocation = FVector(0,0,0);
 };
 
