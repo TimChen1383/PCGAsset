@@ -15,7 +15,7 @@
 //Override PCG Settings' default value
 UPCGTemplateSettings::UPCGTemplateSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGTemplateSettings::CreateElement() const

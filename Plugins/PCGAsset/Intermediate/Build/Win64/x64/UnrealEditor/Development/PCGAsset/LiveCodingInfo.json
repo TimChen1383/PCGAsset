@@ -18,6 +18,7 @@
 			"PCGPointArray.cpp.obj",
 			"PCGPointMask.cpp.obj",
 			"PCGRandom90Rotate.cpp.obj",
+			"PCGRandomWalker.cpp.obj",
 			"PCGRemoveArea.cpp.obj",
 			"PCGRotateAroundCenter.cpp.obj",
 			"PCGScaleAffect.cpp.obj",

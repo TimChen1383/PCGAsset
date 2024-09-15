@@ -14,14 +14,13 @@
 
 /**********************************************************************
 To do list
-- choose to rotate on Roll, Pitch or Yaw
 - use random stream to keep a stable random value
 
 ***********************************************************************/
 
 UPCGRandom90RotateSettings::UPCGRandom90RotateSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGRandom90RotateSettings::CreateElement() const
