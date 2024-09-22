@@ -95,7 +95,7 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 			else
 			{
 				//Last point just use the previous point rotation
-				const FPCGPoint& PreviousLastPoint = InputPoints[(InputPoints.Num()-1)];
+				const FPCGPoint& PreviousLastPoint = InputPoints[(InputPoints.Num()-2)];
 				FQuat PreviousLastRotation = PreviousLastPoint.Transform.GetRotation();
 				FinalTransform.SetRotation(PreviousLastRotation);
 			}
