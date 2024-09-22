@@ -72,7 +72,6 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 		{
 			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
 			const FPCGPoint& InputPoint = InputPoints[Index];
-			const FPCGPoint& NextPoint = InputPoints[Index+1];
 			OutPoint = InputPoint;
 
 			/*******************************************
@@ -82,6 +81,7 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 			
 			if((Index+1) < InputPoints.Num())
 			{
+				const FPCGPoint& NextPoint = InputPoints[Index+1];
 				//This is the final output transform data. Initialize it first
 				FTransform SourceTransform = InputPoint.Transform;
 				FVector SourceLocation = SourceTransform.GetLocation();
