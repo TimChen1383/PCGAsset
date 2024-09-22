@@ -79,7 +79,7 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 			********************************************/
 			FTransform FinalTransform = InputPoint.Transform;
 			
-			if((Index+1) < InputPoints.Num())
+			if((Index+1) <= InputPoints.Num())
 			{
 				const FPCGPoint& NextPoint = InputPoints[Index+1];
 				//This is the final output transform data. Initialize it first
