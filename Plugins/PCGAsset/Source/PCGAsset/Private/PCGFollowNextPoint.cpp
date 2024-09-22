@@ -21,12 +21,12 @@ UPCGFollowNextPointSettings::UPCGFollowNextPointSettings()
 
 FPCGElementPtr UPCGFollowNextPointSettings::CreateElement() const
 {
-	return Super::CreateElement();
+	return MakeShared<FPCGFollowNextPointElement>();
 }
 
 bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 {
-		//Store PCG Settings. Use it for get access to all variables we declared or adjusted in PCG Settings in header
+	//Store PCG Settings. Use it for get access to all variables we declared or adjusted in PCG Settings in header
 	const UPCGFollowNextPointSettings* Settings = Context->GetInputSettings<UPCGFollowNextPointSettings>();
 	check(Settings);
 	
