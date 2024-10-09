@@ -72,6 +72,9 @@ Add this example
 ![Randomwalker](https://github.com/user-attachments/assets/9bbf87bb-6979-42ef-b68a-cb83e3254462)
 ![RandomWalker](https://github.com/user-attachments/assets/3f079fe7-d653-4128-be32-2625f468ed20)
 
+## Emit Points
+![EmitPoints](https://github.com/user-attachments/assets/5f01dd85-363e-48f3-b492-654da275a9b6)
+![EmitPoints](https://github.com/user-attachments/assets/5ed917e1-bb80-42a5-a66d-5d2b8cf1c516)
 
 
 
