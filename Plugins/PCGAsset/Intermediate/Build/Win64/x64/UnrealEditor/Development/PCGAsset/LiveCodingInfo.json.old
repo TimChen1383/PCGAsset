@@ -23,6 +23,7 @@
 			"PCGRemoveArea.cpp.obj",
 			"PCGRotateAroundCenter.cpp.obj",
 			"PCGScaleAffect.cpp.obj",
+			"PCGShootPoints.cpp.obj",
 			"PCGSineWave.cpp.obj",
 			"PCGTemplate.cpp.obj",
 			"PCGVoronoi.cpp.obj",
