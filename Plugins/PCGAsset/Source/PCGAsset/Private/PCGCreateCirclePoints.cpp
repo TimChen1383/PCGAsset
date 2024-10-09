@@ -95,7 +95,8 @@ bool FPCGCreateCircleElement::ExecuteInternal(FPCGContext* Context) const
 		}
 		else
 		{
-			LookAtRot = UKismetMathLibrary::FindLookAtRotation(FVector::Zero(),CenterDirectVec);
+			LookAtRot = CenterDirectVec.Cross(FVector(0,0,1)).Rotation();
+			//LookAtRot = UKismetMathLibrary::FindLookAtRotation(FVector::Zero(),CenterDirectVec);
 		}
 		FVector OutScale = FVector(1,1,1);
 		FTransform FinalTransform = FTransform(LookAtRot,CenterDirectVec,OutScale);
