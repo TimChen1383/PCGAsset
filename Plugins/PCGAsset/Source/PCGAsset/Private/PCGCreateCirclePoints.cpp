@@ -87,14 +87,15 @@ bool FPCGCreateCircleElement::ExecuteInternal(FPCGContext* Context) const
 		float AdditionalSineWave = (FMath::Sin(CurrentPointDegree*SineFrequency)*SineAltitude)+CircleRadius;
 		FRotator CenterDirectRot = FRotator(0,CurrentPointDegree,0);
 		FVector CenterDirectVec = CenterDirectRot.Vector()*AdditionalSineWave;
-		FRotator LookAtRot = UKismetMathLibrary::FindLookAtRotation(CenterDirectVec,FVector::Zero());
+		FRotator LookAtRot;
+		
 		if(ReverseDirection== false)
 		{
-			LookAtRot *= 1;
+			LookAtRot = UKismetMathLibrary::FindLookAtRotation(CenterDirectVec,FVector::Zero());
 		}
 		else
 		{
-			LookAtRot *= (-1);
+			LookAtRot = UKismetMathLibrary::FindLookAtRotation(FVector::Zero(),CenterDirectVec);
 		}
 		FVector OutScale = FVector(1,1,1);
 		FTransform FinalTransform = FTransform(LookAtRot,CenterDirectVec,OutScale);
