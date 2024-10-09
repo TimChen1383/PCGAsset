@@ -34,9 +34,9 @@ bool FPCGShootPointsElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const FVector& CustomOffset = Settings->CustomOffset;
 	const int32& ShootSeconds = Settings->ShootSeconds;
 	const FVector& ShootDirection = Settings->ShootDirection;
+	const float& ShootGravity = Settings->ShootGravity;
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -84,9 +84,18 @@ bool FPCGShootPointsElement::ExecuteInternal(FPCGContext* Context) const
 			********************************************/
 
 			
-			//This is the final output transform data. Initialize it first
+			//Orginal point transform
 			FTransform SourceTransform = InputPoint.Transform;
-			FVector FinalPosition = SourceTransform.GetLocation() + ShootDirection*ShootSecond;
+			FVector SourceLocation = SourceTransform.GetLocation();
+			FRotator SourceRotation = SourceTransform.GetRotation().Rotator();
+			FVector ShootVelocityDistance = SourceRotation.RotateVector(ShootDirection*ShootSecond);
+
+			//Add original location
+			FVector FinalPosition = SourceLocation + ShootVelocityDistance;
+
+			//Add gravity distance
+			float GravityDistance = ShootGravity*(ShootSecond*ShootSecond);
+			FinalPosition.Z += GravityDistance;
 
 			
 			FTransform FinalTransform = InputPoint.Transform;

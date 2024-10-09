@@ -37,14 +37,12 @@ public:
 	/*******************************************
 	Promote variables that will be shown in details panel
 	********************************************/
-	//Control the Perlin noise height and scale
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	FVector CustomOffset = FVector::Zero();
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 ShootSeconds = 10;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	FVector ShootDirection = FVector(200,0,0);
-	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	float ShootGravity = -9.8f;
 };
 
 //Override PCG Execution
