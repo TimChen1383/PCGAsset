@@ -12,7 +12,7 @@
 			"PCGCreateSpherePoints.cpp.obj",
 			"PCGCreateSpiralSpline.cpp.obj",
 			"PCGCubeDivide.cpp.obj",
-			"PCGFaceNextPoint.cpp.obj",
+			"PCGFollowNextPoint.cpp.obj",
 			"PCGHeightToDensity.cpp.obj",
 			"PCGInternalToDensity.cpp.obj",
 			"PCGPerlinNoise.cpp.obj",
