@@ -6,9 +6,17 @@
 #include "PCGSettings.h"
 #include "PCGCreateCirclePoints.generated.h"
 
-/**
- * 
- */
+
+UENUM()
+enum class EPCGCreateCirclePointsMode : uint8
+{
+ Inward,
+ Outward,
+ TangentA,
+ TangentB
+};
+
+
 UCLASS()
 //Override PCG Settings
 class PCGASSET_API UPCGCreateCircleSettings : public UPCGSettings
@@ -60,7 +68,8 @@ public:
 
  UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
  bool ReverseDirection = false;
- 
+ UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+ EPCGCreateCirclePointsMode FacingDirection = EPCGCreateCirclePointsMode::Inward;
 };
 
 //Override PCG Execution

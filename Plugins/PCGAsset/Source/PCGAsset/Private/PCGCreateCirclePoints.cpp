@@ -59,6 +59,7 @@ bool FPCGCreateCircleElement::ExecuteInternal(FPCGContext* Context) const
 	const float& SineFrequency = Settings->SineFrequency;
 	const float& SineAltitude = Settings->SineAltitude;
 	const bool& ReverseDirection = Settings->ReverseDirection;
+	const EPCGCreateCirclePointsMode& FacingDirection = Settings->FacingDirection;
 	
 	//Setup Output data
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
@@ -89,14 +90,22 @@ bool FPCGCreateCircleElement::ExecuteInternal(FPCGContext* Context) const
 		FVector CenterDirectVec = CenterDirectRot.Vector()*AdditionalSineWave;
 		FRotator LookAtRot;
 		
-		if(ReverseDirection== false)
+		if(FacingDirection== EPCGCreateCirclePointsMode::Inward)
 		{
 			LookAtRot = UKismetMathLibrary::FindLookAtRotation(CenterDirectVec,FVector::Zero());
 		}
-		else
+		else if(FacingDirection== EPCGCreateCirclePointsMode::Outward)
+		{
+			
+			LookAtRot = UKismetMathLibrary::FindLookAtRotation(FVector::Zero(),CenterDirectVec);
+		}
+		else if (FacingDirection== EPCGCreateCirclePointsMode::TangentA)
 		{
 			LookAtRot = CenterDirectVec.Cross(FVector(0,0,1)).Rotation();
-			//LookAtRot = UKismetMathLibrary::FindLookAtRotation(FVector::Zero(),CenterDirectVec);
+		}
+		else
+		{
+			LookAtRot = CenterDirectVec.Cross(FVector(0,0,-1)).Rotation();
 		}
 		FVector OutScale = FVector(1,1,1);
 		FTransform FinalTransform = FTransform(LookAtRot,CenterDirectVec,OutScale);
