@@ -56,8 +56,9 @@ bool FPCGCreateCircleElement::ExecuteInternal(FPCGContext* Context) const
 	const int64& CircleDegree = Settings->CircleDegree;
 	const int64& CirclePointCounts = Settings->CirclePointCounts;
 	const float& CircleRadius = Settings->CircleRadius;
-	const float SineFrequency = Settings->SineFrequency;
-	const float SineAltitude = Settings->SineAltitude;
+	const float& SineFrequency = Settings->SineFrequency;
+	const float& SineAltitude = Settings->SineAltitude;
+	const bool& ReverseDirection = Settings->ReverseDirection;
 	
 	//Setup Output data
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
@@ -76,6 +77,10 @@ bool FPCGCreateCircleElement::ExecuteInternal(FPCGContext* Context) const
 		/*******************************************
 		Actual Point adjustment - start
 		********************************************/
+
+
+
+
 		
 		FTransform PointTransform = FTransform::Identity;
 		int64 CurrentPointDegree = CircleDegree/CirclePointCounts*Index;
@@ -83,6 +88,14 @@ bool FPCGCreateCircleElement::ExecuteInternal(FPCGContext* Context) const
 		FRotator CenterDirectRot = FRotator(0,CurrentPointDegree,0);
 		FVector CenterDirectVec = CenterDirectRot.Vector()*AdditionalSineWave;
 		FRotator LookAtRot = UKismetMathLibrary::FindLookAtRotation(CenterDirectVec,FVector::Zero());
+		if(ReverseDirection== false)
+		{
+			LookAtRot *= 1;
+		}
+		else
+		{
+			LookAtRot *= (-1);
+		}
 		FVector OutScale = FVector(1,1,1);
 		FTransform FinalTransform = FTransform(LookAtRot,CenterDirectVec,OutScale);
 		PointTransform = FinalTransform;

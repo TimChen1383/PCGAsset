@@ -66,12 +66,19 @@ struct Z_Construct_UClass_UPCGCreateCircleSettings_Statics
 		{ "ModuleRelativePath", "Public/PCGCreateCirclePoints.h" },
 		{ "PCG_Overridable", "" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ReverseDirection_MetaData[] = {
+		{ "Category", "Settings" },
+		{ "ModuleRelativePath", "Public/PCGCreateCirclePoints.h" },
+		{ "PCG_Overridable", "" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FInt64PropertyParams NewProp_CircleDegree;
 	static const UECodeGen_Private::FInt64PropertyParams NewProp_CirclePointCounts;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CircleRadius;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_SineFrequency;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_SineAltitude;
+	static void NewProp_ReverseDirection_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_ReverseDirection;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -84,12 +91,18 @@ const UECodeGen_Private::FInt64PropertyParams Z_Construct_UClass_UPCGCreateCircl
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_CircleRadius = { "CircleRadius", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateCircleSettings, CircleRadius), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CircleRadius_MetaData), NewProp_CircleRadius_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_SineFrequency = { "SineFrequency", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateCircleSettings, SineFrequency), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SineFrequency_MetaData), NewProp_SineFrequency_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_SineAltitude = { "SineAltitude", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGCreateCircleSettings, SineAltitude), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SineAltitude_MetaData), NewProp_SineAltitude_MetaData) };
+void Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_ReverseDirection_SetBit(void* Obj)
+{
+	((UPCGCreateCircleSettings*)Obj)->ReverseDirection = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_ReverseDirection = { "ReverseDirection", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UPCGCreateCircleSettings), &Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_ReverseDirection_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ReverseDirection_MetaData), NewProp_ReverseDirection_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGCreateCircleSettings_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_CircleDegree,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_CirclePointCounts,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_CircleRadius,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_SineFrequency,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_SineAltitude,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGCreateCircleSettings_Statics::NewProp_ReverseDirection,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGCreateCircleSettings_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPCGCreateCircleSettings_Statics::DependentSingletons[])() = {
@@ -132,10 +145,10 @@ UPCGCreateCircleSettings::~UPCGCreateCircleSettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCirclePoints_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGCreateCircleSettings, UPCGCreateCircleSettings::StaticClass, TEXT("UPCGCreateCircleSettings"), &Z_Registration_Info_UClass_UPCGCreateCircleSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGCreateCircleSettings), 931634245U) },
+		{ Z_Construct_UClass_UPCGCreateCircleSettings, UPCGCreateCircleSettings::StaticClass, TEXT("UPCGCreateCircleSettings"), &Z_Registration_Info_UClass_UPCGCreateCircleSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGCreateCircleSettings), 273788025U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCirclePoints_h_4149408035(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCirclePoints_h_3176886361(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCirclePoints_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGCreateCirclePoints_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
