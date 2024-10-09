@@ -65,9 +65,7 @@ public:
 
  UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
  float SineAltitude = 0.0;
-
- UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
- bool ReverseDirection = false;
+ 
  UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
  EPCGCreateCirclePointsMode FacingDirection = EPCGCreateCirclePointsMode::Inward;
 };

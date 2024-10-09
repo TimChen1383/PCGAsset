@@ -58,7 +58,6 @@ bool FPCGCreateCircleElement::ExecuteInternal(FPCGContext* Context) const
 	const float& CircleRadius = Settings->CircleRadius;
 	const float& SineFrequency = Settings->SineFrequency;
 	const float& SineAltitude = Settings->SineAltitude;
-	const bool& ReverseDirection = Settings->ReverseDirection;
 	const EPCGCreateCirclePointsMode& FacingDirection = Settings->FacingDirection;
 	
 	//Setup Output data
