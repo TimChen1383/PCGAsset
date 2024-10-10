@@ -93,14 +93,14 @@ bool FPCGPointMaskElement::ExecuteInternal(FPCGContext* Context) const
 				if (PointDistance > DistanceLength)
 				{
 					OutPoint.Density = 0;
-					//if(InvertMaskDensityValue == true)
-					//{
-						//OutPoint.Density = 0;
-					//}
-					//else
-					//{
-						//OutPoint.Density = 1;
-					//}
+					if(InvertMaskDensityValue == false)
+					{
+						OutPoint.Density = 0;
+					}
+					else
+					{
+						OutPoint.Density = 1;
+					}
 				
 				}
 			}
@@ -109,6 +109,14 @@ bool FPCGPointMaskElement::ExecuteInternal(FPCGContext* Context) const
 				if (PointDistance < DistanceLength)
 				{
 					OutPoint.Density = 0;
+					if(InvertMaskDensityValue == false)
+					{
+						OutPoint.Density = 0;
+					}
+					else
+					{
+						OutPoint.Density = 1;
+					}
 				}
 			}
 			
