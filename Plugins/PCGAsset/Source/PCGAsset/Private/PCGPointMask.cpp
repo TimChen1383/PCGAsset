@@ -34,9 +34,9 @@ bool FPCGPointMaskElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const FVector& CustomOffset = Settings->CustomOffset;
 	const float& DistanceLength = Settings->DistanceLength;
 	const bool& InvertMask = Settings->InvertMask;
+	const FVector& MaskCenter = Settings->MaskCenter;
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -85,8 +85,7 @@ bool FPCGPointMaskElement::ExecuteInternal(FPCGContext* Context) const
 			
 			//Use origin point (0,0,0) as calculating point at the moment 
 			FVector CurrentLocation = SourceTransform.GetLocation();
-			FVector OriginLocation = FVector::Zero();
-			float PointDistance = FVector::Distance(CurrentLocation, OriginLocation);
+			float PointDistance = FVector::Distance(CurrentLocation, MaskCenter);
 			if (PointDistance > DistanceLength)
 			{
 				if(InvertMask == true)
@@ -100,7 +99,7 @@ bool FPCGPointMaskElement::ExecuteInternal(FPCGContext* Context) const
 				
 			}
 			
-			FVector FinalPosition = FVector(SourceTransform.GetLocation() + CustomOffset);
+			FVector FinalPosition = FVector(SourceTransform.GetLocation());
 			FinalTransform.SetLocation(FinalPosition);
 			
 			/*******************************************
