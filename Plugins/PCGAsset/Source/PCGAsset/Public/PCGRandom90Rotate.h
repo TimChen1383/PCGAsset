@@ -49,7 +49,8 @@ public:
 	//Control the Perlin noise height and scale
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	EPCGRadom90RotateMode RotateDirection = EPCGRadom90RotateMode::Yaw;
-
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	int32 RandomSeed = 100;
 	
 };
 

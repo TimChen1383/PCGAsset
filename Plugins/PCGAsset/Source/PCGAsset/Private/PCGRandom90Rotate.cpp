@@ -40,6 +40,10 @@ bool FPCGRandom90RotateElement::ExecuteInternal(FPCGContext* Context) const
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
 	const EPCGRadom90RotateMode& RotateDirection = Settings->RotateDirection;
+	const int32& RandomSeed = Settings->RandomSeed;
+
+	FRandomStream RandStream;
+	RandStream.Initialize(RandomSeed);
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -86,7 +90,7 @@ bool FPCGRandom90RotateElement::ExecuteInternal(FPCGContext* Context) const
 			FTransform SourceTransform = InputPoint.Transform;
 			FTransform FinalTransform = InputPoint.Transform;
 
-			int32 RotateCounts = FMath::RandRange(0,4);
+			int32 RotateCounts = RandStream.RandRange(0,4);
 			float SourcePointPitch = SourceTransform.GetRotation().Rotator().Pitch;
 			float SourcePointYaw = SourceTransform.GetRotation().Rotator().Yaw;
 			float SourcePointRoll = SourceTransform.GetRotation().Rotator().Roll;

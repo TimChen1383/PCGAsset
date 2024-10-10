@@ -97,9 +97,15 @@ struct Z_Construct_UClass_UPCGRandom90RotateSettings_Statics
 		{ "ToolTip", "Promote variables that will be shown in details panel\n******************************************//Control the Perlin noise height and scale" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RandomSeed_MetaData[] = {
+		{ "Category", "Settings" },
+		{ "ModuleRelativePath", "Public/PCGRandom90Rotate.h" },
+		{ "PCG_Overridable", "" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FBytePropertyParams NewProp_RotateDirection_Underlying;
 	static const UECodeGen_Private::FEnumPropertyParams NewProp_RotateDirection;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_RandomSeed;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -109,9 +115,11 @@ struct Z_Construct_UClass_UPCGRandom90RotateSettings_Statics
 };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UPCGRandom90RotateSettings_Statics::NewProp_RotateDirection_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UPCGRandom90RotateSettings_Statics::NewProp_RotateDirection = { "RotateDirection", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGRandom90RotateSettings, RotateDirection), Z_Construct_UEnum_PCGAsset_EPCGRadom90RotateMode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RotateDirection_MetaData), NewProp_RotateDirection_MetaData) }; // 3368343156
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UPCGRandom90RotateSettings_Statics::NewProp_RandomSeed = { "RandomSeed", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGRandom90RotateSettings, RandomSeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RandomSeed_MetaData), NewProp_RandomSeed_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGRandom90RotateSettings_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGRandom90RotateSettings_Statics::NewProp_RotateDirection_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGRandom90RotateSettings_Statics::NewProp_RotateDirection,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGRandom90RotateSettings_Statics::NewProp_RandomSeed,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGRandom90RotateSettings_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPCGRandom90RotateSettings_Statics::DependentSingletons[])() = {
@@ -157,10 +165,10 @@ struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_
 		{ EPCGRadom90RotateMode_StaticEnum, TEXT("EPCGRadom90RotateMode"), &Z_Registration_Info_UEnum_EPCGRadom90RotateMode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3368343156U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGRandom90RotateSettings, UPCGRandom90RotateSettings::StaticClass, TEXT("UPCGRandom90RotateSettings"), &Z_Registration_Info_UClass_UPCGRandom90RotateSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGRandom90RotateSettings), 3353233298U) },
+		{ Z_Construct_UClass_UPCGRandom90RotateSettings, UPCGRandom90RotateSettings::StaticClass, TEXT("UPCGRandom90RotateSettings"), &Z_Registration_Info_UClass_UPCGRandom90RotateSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGRandom90RotateSettings), 61439347U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGRandom90Rotate_h_4149650954(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGRandom90Rotate_h_3350446733(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGRandom90Rotate_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGRandom90Rotate_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGRandom90Rotate_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGRandom90Rotate_h_Statics::EnumInfo));
