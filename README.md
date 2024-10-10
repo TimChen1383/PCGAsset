@@ -64,9 +64,6 @@ Add this example
 ![CubeDivide](https://github.com/user-attachments/assets/57d1de3c-ef72-4f83-a1fd-ee91994605a6)
 ![CubeDivide](https://github.com/user-attachments/assets/c31cb16d-4da3-4134-ba2e-29632dc70d72)
 
-## Remove Internal
-![RemoveInternal](https://github.com/user-attachments/assets/4dd3b92b-ff7e-4a8f-8cbb-0711097cbe8a)
-![RemoveInternal_out-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/e341b6df-5116-4836-9d0e-2f7fa4a90f04)
 
 ## Random Walker
 ![Randomwalker](https://github.com/user-attachments/assets/9bbf87bb-6979-42ef-b68a-cb83e3254462)
