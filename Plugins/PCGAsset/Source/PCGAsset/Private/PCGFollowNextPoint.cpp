@@ -13,6 +13,13 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGFollowNextPoint"
 
+/**********************************************************************
+To do list
+- if there is only 1 point in input, it will crash
+- Last point is still out of control
+- This node should be called "Follow Neighbor Point" - it can be next point or previous point
+
+***********************************************************************/
 
 UPCGFollowNextPointSettings::UPCGFollowNextPointSettings()
 {
@@ -35,7 +42,7 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const FVector& CustomOffset = Settings->CustomOffset;
+	//const FVector& CustomOffset = Settings->CustomOffset;
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -82,7 +89,6 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 			if((Index+1) < InputPoints.Num())
 			{
 				const FPCGPoint& NextPoint = InputPoints[Index+1];
-				//This is the final output transform data. Initialize it first
 				FTransform SourceTransform = InputPoint.Transform;
 				FVector SourceLocation = SourceTransform.GetLocation();
 				FTransform NextPointTransform = NextPoint.Transform;
@@ -94,10 +100,16 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 			}
 			else
 			{
-				//Last point just use the previous point rotation
+				//Last point will use previous point to calculate the rotation
 				const FPCGPoint& PreviousLastPoint = InputPoints[(InputPoints.Num()-2)];
-				FQuat PreviousLastRotation = PreviousLastPoint.Transform.GetRotation();
-				FinalTransform.SetRotation(PreviousLastRotation);
+				FTransform PreviousLastPointTransform = PreviousLastPoint.Transform;
+				FVector PreviousLastPointLocation = PreviousLastPointTransform.GetLocation();
+				FTransform LastPointTransform = InputPoint.Transform;
+				FVector LastPointLocation = LastPointTransform.GetLocation();
+				FVector LastPointDirection = PreviousLastPointLocation - LastPointLocation;
+				FRotator LastPointRotation = UKismetMathLibrary::MakeRotFromX(LastPointDirection);
+
+				FinalTransform.SetRotation(LastPointRotation.Quaternion());
 			}
 			
 			/*******************************************
