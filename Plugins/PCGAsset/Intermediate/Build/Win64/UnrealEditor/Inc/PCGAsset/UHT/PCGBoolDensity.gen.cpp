@@ -10,7 +10,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodePCGBoolDensity() {}
 
 // Begin Cross Module References
-COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 PCG_API UClass* Z_Construct_UClass_UPCGSettings();
 PCGASSET_API UClass* Z_Construct_UClass_UPCGBoolDensitySettings();
 PCGASSET_API UClass* Z_Construct_UClass_UPCGBoolDensitySettings_NoRegister();
@@ -33,7 +32,7 @@ struct Z_Construct_UClass_UPCGBoolDensitySettings_Statics
 		{ "IncludePath", "PCGBoolDensity.h" },
 		{ "ModuleRelativePath", "Public/PCGBoolDensity.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CustomOffset_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RandomDensityPercentage_MetaData[] = {
 		{ "Category", "Settings" },
 #if !UE_BUILD_SHIPPING
 		{ "Comment", "/*******************************************\n\x09Promote variables that will be shown in details panel\n\x09********************************************///Control the Perlin noise height and scale\n" },
@@ -44,13 +43,7 @@ struct Z_Construct_UClass_UPCGBoolDensitySettings_Statics
 		{ "ToolTip", "Promote variables that will be shown in details panel\n******************************************//Control the Perlin noise height and scale" },
 #endif
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RandomDensityPercentage_MetaData[] = {
-		{ "Category", "Settings" },
-		{ "ModuleRelativePath", "Public/PCGBoolDensity.h" },
-		{ "PCG_Overridable", "" },
-	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FStructPropertyParams NewProp_CustomOffset;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_RandomDensityPercentage;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -59,10 +52,8 @@ struct Z_Construct_UClass_UPCGBoolDensitySettings_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UPCGBoolDensitySettings_Statics::NewProp_CustomOffset = { "CustomOffset", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGBoolDensitySettings, CustomOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CustomOffset_MetaData), NewProp_CustomOffset_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGBoolDensitySettings_Statics::NewProp_RandomDensityPercentage = { "RandomDensityPercentage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGBoolDensitySettings, RandomDensityPercentage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RandomDensityPercentage_MetaData), NewProp_RandomDensityPercentage_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGBoolDensitySettings_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGBoolDensitySettings_Statics::NewProp_CustomOffset,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGBoolDensitySettings_Statics::NewProp_RandomDensityPercentage,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGBoolDensitySettings_Statics::PropPointers) < 2048);
@@ -106,10 +97,10 @@ UPCGBoolDensitySettings::~UPCGBoolDensitySettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGBoolDensity_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGBoolDensitySettings, UPCGBoolDensitySettings::StaticClass, TEXT("UPCGBoolDensitySettings"), &Z_Registration_Info_UClass_UPCGBoolDensitySettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGBoolDensitySettings), 1147611333U) },
+		{ Z_Construct_UClass_UPCGBoolDensitySettings, UPCGBoolDensitySettings::StaticClass, TEXT("UPCGBoolDensitySettings"), &Z_Registration_Info_UClass_UPCGBoolDensitySettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGBoolDensitySettings), 2765562901U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGBoolDensity_h_1664698368(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGBoolDensity_h_1298264319(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGBoolDensity_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGBoolDensity_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

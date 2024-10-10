@@ -15,7 +15,7 @@
 //Override PCG Settings' default value
 UPCGBoolDensitySettings::UPCGBoolDensitySettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGBoolDensitySettings::CreateElement() const
@@ -34,7 +34,6 @@ bool FPCGBoolDensityElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const FVector& CustomOffset = Settings->CustomOffset;
 	const float& RandomDensityPercentage = Settings->RandomDensityPercentage;
 
 
@@ -81,7 +80,7 @@ bool FPCGBoolDensityElement::ExecuteInternal(FPCGContext* Context) const
 			//This is the final output transform data. Initialize it first
 			FTransform SourceTransform = InputPoint.Transform;
 			FTransform FinalTransform = InputPoint.Transform;
-			FVector FinalPosition = FVector(SourceTransform.GetLocation() + CustomOffset);
+			FVector FinalPosition = FVector(SourceTransform.GetLocation());
 			FinalTransform.SetLocation(FinalPosition);
 
 			//Change point density to 0 and 1 only
