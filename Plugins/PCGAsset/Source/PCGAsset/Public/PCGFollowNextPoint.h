@@ -37,7 +37,6 @@ public:
 	/*******************************************
 	Promote variables that will be shown in details panel
 	********************************************/
-	//UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	
 	
 };

@@ -16,7 +16,6 @@
 /**********************************************************************
 To do list
 - if there is only 1 point in input, it will crash
-- Last point need to rotate 180 degree
 
 ***********************************************************************/
 
@@ -41,7 +40,6 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	//const FVector& CustomOffset = Settings->CustomOffset;
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -99,16 +97,20 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 			}
 			else
 			{
-				//Last point will use previous point to calculate the rotation
-				const FPCGPoint& PreviousLastPoint = InputPoints[(InputPoints.Num()-2)];
-				FTransform PreviousLastPointTransform = PreviousLastPoint.Transform;
-				FVector PreviousLastPointLocation = PreviousLastPointTransform.GetLocation();
-				FTransform LastPointTransform = InputPoint.Transform;
-				FVector LastPointLocation = LastPointTransform.GetLocation();
-				FVector LastPointDirection = LastPointLocation - PreviousLastPointLocation;
-				FRotator LastPointRotation = UKismetMathLibrary::MakeRotFromX(LastPointDirection);
+				if((InputPoints.Num()-2) > 0)
+				{
+					//Last point will use previous point to calculate the rotation
+					const FPCGPoint& PreviousLastPoint = InputPoints[(InputPoints.Num()-2)];
+					FTransform PreviousLastPointTransform = PreviousLastPoint.Transform;
+					FVector PreviousLastPointLocation = PreviousLastPointTransform.GetLocation();
+					FTransform LastPointTransform = InputPoint.Transform;
+					FVector LastPointLocation = LastPointTransform.GetLocation();
+					FVector LastPointDirection = LastPointLocation - PreviousLastPointLocation;
+					FRotator LastPointRotation = UKismetMathLibrary::MakeRotFromX(LastPointDirection);
 
-				FinalTransform.SetRotation(LastPointRotation.Quaternion());
+					FinalTransform.SetRotation(LastPointRotation.Quaternion());
+				}
+				
 			}
 			
 			/*******************************************
