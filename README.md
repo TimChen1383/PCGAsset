@@ -84,9 +84,9 @@ Distance node will generate a gradient density value. Mask will force cut off th
 ![BoolDensity](https://github.com/user-attachments/assets/55eeb9c5-7c8a-428c-8ed1-0b1da1495e3f)
 ![BoolDensity](https://github.com/user-attachments/assets/eb1a6286-7b55-4080-8536-ed3348e6a62e)
 
-
-
-
+## Follow Next Point
+![FollowNextPoint](https://github.com/user-attachments/assets/b04f0a4f-b71b-4cab-9912-e5ce014e8611)
+![FollowNextPoint](https://github.com/user-attachments/assets/58b48578-548a-4077-863d-eaa627ac9adb)
 
 
 
