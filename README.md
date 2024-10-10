@@ -75,6 +75,10 @@
 ![Random90Rotate](https://github.com/user-attachments/assets/4488897e-95fc-499c-81b0-587522513212)
 ![Random90Rotate-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/84ea926d-1b3e-482e-9616-e9367db428eb)
 
+## Point Density Mask
+![PointDensityMask](https://github.com/user-attachments/assets/f399e4a5-ff51-4699-914d-f7c046812281)
+![PointDensityMask](https://github.com/user-attachments/assets/373adc95-b344-40d1-b4ec-e22912a80b8b)
+
 
 
 
