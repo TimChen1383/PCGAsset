@@ -44,6 +44,11 @@ struct Z_Construct_UClass_UPCGPointMaskSettings_Statics
 		{ "ToolTip", "Promote variables that will be shown in details panel\n******************************************//Control the Perlin noise height and scale" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InvertMaskDensityValue_MetaData[] = {
+		{ "Category", "Settings" },
+		{ "ModuleRelativePath", "Public/PCGPointMask.h" },
+		{ "PCG_Overridable", "" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InvertMask_MetaData[] = {
 		{ "Category", "Settings" },
 		{ "ModuleRelativePath", "Public/PCGPointMask.h" },
@@ -56,6 +61,8 @@ struct Z_Construct_UClass_UPCGPointMaskSettings_Statics
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_DistanceLength;
+	static void NewProp_InvertMaskDensityValue_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_InvertMaskDensityValue;
 	static void NewProp_InvertMask_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_InvertMask;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_MaskCenter;
@@ -67,6 +74,11 @@ struct Z_Construct_UClass_UPCGPointMaskSettings_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_DistanceLength = { "DistanceLength", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGPointMaskSettings, DistanceLength), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DistanceLength_MetaData), NewProp_DistanceLength_MetaData) };
+void Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_InvertMaskDensityValue_SetBit(void* Obj)
+{
+	((UPCGPointMaskSettings*)Obj)->InvertMaskDensityValue = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_InvertMaskDensityValue = { "InvertMaskDensityValue", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UPCGPointMaskSettings), &Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_InvertMaskDensityValue_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InvertMaskDensityValue_MetaData), NewProp_InvertMaskDensityValue_MetaData) };
 void Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_InvertMask_SetBit(void* Obj)
 {
 	((UPCGPointMaskSettings*)Obj)->InvertMask = 1;
@@ -75,6 +87,7 @@ const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UPCGPointMaskSet
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_MaskCenter = { "MaskCenter", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGPointMaskSettings, MaskCenter), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaskCenter_MetaData), NewProp_MaskCenter_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGPointMaskSettings_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_DistanceLength,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_InvertMaskDensityValue,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_InvertMask,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPointMaskSettings_Statics::NewProp_MaskCenter,
 };
@@ -119,10 +132,10 @@ UPCGPointMaskSettings::~UPCGPointMaskSettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointMask_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGPointMaskSettings, UPCGPointMaskSettings::StaticClass, TEXT("UPCGPointMaskSettings"), &Z_Registration_Info_UClass_UPCGPointMaskSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGPointMaskSettings), 2941658546U) },
+		{ Z_Construct_UClass_UPCGPointMaskSettings, UPCGPointMaskSettings::StaticClass, TEXT("UPCGPointMaskSettings"), &Z_Registration_Info_UClass_UPCGPointMaskSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGPointMaskSettings), 304962478U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointMask_h_3235069380(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointMask_h_2083175135(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointMask_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPointMask_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

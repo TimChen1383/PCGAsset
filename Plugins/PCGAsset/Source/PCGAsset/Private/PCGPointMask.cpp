@@ -35,8 +35,9 @@ bool FPCGPointMaskElement::ExecuteInternal(FPCGContext* Context) const
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
 	const float& DistanceLength = Settings->DistanceLength;
-	const bool& InvertMask = Settings->InvertMask;
+	const bool& InvertMaskDensityValue = Settings->InvertMaskDensityValue;
 	const FVector& MaskCenter = Settings->MaskCenter;
+	const bool& InvertMask = Settings->InvertMask;
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -86,18 +87,31 @@ bool FPCGPointMaskElement::ExecuteInternal(FPCGContext* Context) const
 			//Use origin point (0,0,0) as calculating point at the moment 
 			FVector CurrentLocation = SourceTransform.GetLocation();
 			float PointDistance = FVector::Distance(CurrentLocation, MaskCenter);
-			if (PointDistance > DistanceLength)
+
+			if(InvertMask == false)
 			{
-				if(InvertMask == true)
+				if (PointDistance > DistanceLength)
+				{
+					OutPoint.Density = 0;
+					//if(InvertMaskDensityValue == true)
+					//{
+						//OutPoint.Density = 0;
+					//}
+					//else
+					//{
+						//OutPoint.Density = 1;
+					//}
+				
+				}
+			}
+			else
+			{
+				if (PointDistance < DistanceLength)
 				{
 					OutPoint.Density = 0;
 				}
-				else
-				{
-					OutPoint.Density = 1;
-				}
-				
 			}
+			
 			
 			FVector FinalPosition = FVector(SourceTransform.GetLocation());
 			FinalTransform.SetLocation(FinalPosition);
