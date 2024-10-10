@@ -80,6 +80,10 @@ Distance node will generate a gradient density value. Mask will force cut off th
 ![PointDensityMask](https://github.com/user-attachments/assets/f399e4a5-ff51-4699-914d-f7c046812281)
 ![PointDensityMask](https://github.com/user-attachments/assets/373adc95-b344-40d1-b4ec-e22912a80b8b)
 
+## Bool Density
+![BoolDensity](https://github.com/user-attachments/assets/55eeb9c5-7c8a-428c-8ed1-0b1da1495e3f)
+![BoolDensity](https://github.com/user-attachments/assets/eb1a6286-7b55-4080-8536-ed3348e6a62e)
+
 
 
 
