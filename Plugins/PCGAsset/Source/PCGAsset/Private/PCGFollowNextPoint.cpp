@@ -16,8 +16,7 @@
 /**********************************************************************
 To do list
 - if there is only 1 point in input, it will crash
-- Last point is still out of control
-- This node should be called "Follow Neighbor Point" - it can be next point or previous point
+- Last point need to rotate 180 degree
 
 ***********************************************************************/
 
@@ -106,7 +105,7 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 				FVector PreviousLastPointLocation = PreviousLastPointTransform.GetLocation();
 				FTransform LastPointTransform = InputPoint.Transform;
 				FVector LastPointLocation = LastPointTransform.GetLocation();
-				FVector LastPointDirection = PreviousLastPointLocation - LastPointLocation;
+				FVector LastPointDirection = LastPointLocation - PreviousLastPointLocation;
 				FRotator LastPointRotation = UKismetMathLibrary::MakeRotFromX(LastPointDirection);
 
 				FinalTransform.SetRotation(LastPointRotation.Quaternion());
