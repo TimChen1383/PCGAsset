@@ -22,10 +22,9 @@
 ![ConnectSplinebyID](https://github.com/user-attachments/assets/8c5a13c2-c42c-4608-9af8-74100e155cd8)
 
 ## Point Array
-Add this example
-![Screenshot 2024-09-09 235434](https://github.com/user-attachments/assets/dc558463-db42-4463-8b94-a0418e238598)
 ![PointArray](https://github.com/user-attachments/assets/027af6f7-3fdc-4566-965b-21ac1adf3c5a)
 ![PointArray](https://github.com/user-attachments/assets/7f1b58c7-bc06-4ab0-bb07-b8371d242bc2)
+![PointArray2_out-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/8682802d-055b-4c65-acda-96198403b5d0)
 
 ## Create Sphere Points
 ![CreateSpherePoints](https://github.com/user-attachments/assets/e5032fda-0317-4a42-aa4c-6752525019df)
@@ -46,7 +45,7 @@ Add this example
 ![SineWave2D](https://github.com/user-attachments/assets/d2481caa-7a33-4c5c-98d4-ef7df2fe6780)
 ![SineWave2D](https://github.com/user-attachments/assets/0538f027-1150-45bf-9728-d489072cb853)
 
-## Spiral Curve - this can be pruned by multiple splines
+## Spiral Curve
 ![SpiralCurve](https://github.com/user-attachments/assets/5c9b7dd4-50bf-40e7-a536-dbafbc540f2e)
 ![SpiralCurve](https://github.com/user-attachments/assets/63544d70-0eb9-406b-b11b-e83e37006345)
 ![SpiralPrune](https://github.com/user-attachments/assets/539aaf23-9b4c-41b9-984a-e9dda30bf01b)
