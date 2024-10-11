@@ -19,6 +19,7 @@
 			"PCGPointDensityMask.cpp.obj",
 			"PCGRandom90Rotate.cpp.obj",
 			"PCGRandomWalker.cpp.obj",
+			"PCGSetDensity.cpp.obj",
 			"PCGSineWave.cpp.obj",
 			"PCGTemplate.cpp.obj",
 			"PCGWorleyNoise.cpp.obj"
