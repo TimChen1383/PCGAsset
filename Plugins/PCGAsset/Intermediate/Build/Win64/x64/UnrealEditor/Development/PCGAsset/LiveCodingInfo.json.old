@@ -16,7 +16,7 @@
 			"PCGFollowNextPoint.cpp.obj",
 			"PCGPerlinNoise.cpp.obj",
 			"PCGPointArray.cpp.obj",
-			"PCGPointMask.cpp.obj",
+			"PCGPointDensityMask.cpp.obj",
 			"PCGRandom90Rotate.cpp.obj",
 			"PCGRandomWalker.cpp.obj",
 			"PCGRotateAroundCenter.cpp.obj",
