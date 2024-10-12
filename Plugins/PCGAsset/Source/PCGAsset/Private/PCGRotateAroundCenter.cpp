@@ -36,6 +36,7 @@ bool FPCGRotateAroundCenterElement::ExecuteInternal(FPCGContext* Context) const
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
 	const FVector& CenterLocation = Settings->CenterLocation;
 	const float& RotateDegree = Settings->RotateDegree;
+	const EPCGRotateAroundCenterMode& RotateAxis = Settings->RotateAxis;
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -83,7 +84,20 @@ bool FPCGRotateAroundCenterElement::ExecuteInternal(FPCGContext* Context) const
 			FTransform FinalTransform = InputPoint.Transform;
 			FVector SourceLoc = SourceTransform.GetLocation();
 			FVector RotateLoc =  SourceLoc - CenterLocation;
-			FVector FinalPosition = CenterLocation + (RotateLoc.RotateAngleAxis(RotateDegree,FVector(0,0,1)));
+			FVector FinalPosition = FVector::Zero();
+			if(RotateAxis == EPCGRotateAroundCenterMode::Z)
+			{
+				FinalPosition = CenterLocation + (RotateLoc.RotateAngleAxis(RotateDegree,FVector(0,0,1)));
+			}
+			else if (RotateAxis == EPCGRotateAroundCenterMode::Y)
+			{
+				FinalPosition = CenterLocation + (RotateLoc.RotateAngleAxis(RotateDegree,FVector(0,1,0)));
+			}
+			else
+			{
+				FinalPosition = CenterLocation + (RotateLoc.RotateAngleAxis(RotateDegree,FVector(1,0,0)));
+			}
+			
 			FinalTransform.SetLocation(FinalPosition);
 			
 			

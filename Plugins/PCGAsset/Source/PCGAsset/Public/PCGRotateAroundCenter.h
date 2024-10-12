@@ -6,6 +6,15 @@
 #include "PCGSettings.h"
 #include "PCGRotateAroundCenter.generated.h"
 
+UENUM()
+enum class EPCGRotateAroundCenterMode : uint8
+{
+	X,
+	Y,
+	Z
+};
+
+
 UCLASS()
 //Override PCG Settings
 class PCGASSET_API UPCGRotateAroundCenterSettings : public UPCGSettings
@@ -42,6 +51,8 @@ public:
 	FVector CenterLocation = FVector::Zero();
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	float RotateDegree = 0.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	EPCGRotateAroundCenterMode RotateAxis = EPCGRotateAroundCenterMode::Z;
 	
 };
 
