@@ -83,7 +83,7 @@ bool FPCGRotateAroundCenterElement::ExecuteInternal(FPCGContext* Context) const
 			FTransform FinalTransform = InputPoint.Transform;
 			FVector SourceLoc = SourceTransform.GetLocation();
 			FVector RotateLoc =  SourceLoc - CenterLocation;
-			FVector FinalPosition = (RotateLoc.RotateAngleAxis(RotateDegree,FVector(0,0,1)));
+			FVector FinalPosition = SourceLoc + (RotateLoc.RotateAngleAxis(RotateDegree,FVector(0,0,1)));
 			FinalTransform.SetLocation(FinalPosition);
 			
 			
