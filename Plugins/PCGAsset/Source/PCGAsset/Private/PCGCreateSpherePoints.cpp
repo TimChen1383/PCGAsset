@@ -22,7 +22,7 @@ To do list:
 
 UPCGCreateSpherePointsSettings::UPCGCreateSpherePointsSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGCreateSpherePointsSettings::CreateElement() const
