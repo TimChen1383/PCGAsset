@@ -2,7 +2,6 @@
 #### Unreal Engine Version : 5.4
 
 ## Installation
-<style>h1,h2,h3,h4 { border-bottom: 0; } </style>
 - Plugins need to be enabled : Procedural Content Generation Framework(PCG), Procedural Content Generation Framework(PCG) Geometrt Script Interop
 - Add the plugin into project's Plugins folder then ready to go
 
