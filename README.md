@@ -11,6 +11,8 @@
 
 # Assets
 ## Spline Scatter
+![SplineScatter](https://github.com/user-attachments/assets/0fad0946-99ac-4d36-8dd3-98e5fcd43785)
+
 
 # Custom Nodes
 ## Create Circle Points
