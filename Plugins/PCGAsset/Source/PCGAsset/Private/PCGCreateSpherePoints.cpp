@@ -12,14 +12,6 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGCreateSpherePoints"
 
-/*******************************************
-To do list:
-- Do I need to use the Async loop? May I use for loop directly? Performance?
-
-
-
-********************************************/
-
 UPCGCreateSpherePointsSettings::UPCGCreateSpherePointsSettings()
 {
 	bUseSeed = false;

@@ -78,11 +78,6 @@ bool FPCGEmitPointsElement::ExecuteInternal(FPCGContext* Context) const
 			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
 			const FPCGPoint& InputPoint = InputPoints[Index];
 			OutPoint = InputPoint;
-
-			/*******************************************
-			Actual Point adjustment - start
-			********************************************/
-
 			
 			//Orginal point transform
 			FVector EmitDirection = FVector(EmitVelocity,0,0);
@@ -101,11 +96,6 @@ bool FPCGEmitPointsElement::ExecuteInternal(FPCGContext* Context) const
 			
 			FTransform FinalTransform = InputPoint.Transform;
 			FinalTransform.SetLocation(FinalPosition);
-			
-			
-			/*******************************************
-			Actual Point adjustment - end
-			********************************************/
 			
 			//Assign back 
 			OutPoint.Transform = FinalTransform;

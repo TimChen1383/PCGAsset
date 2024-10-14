@@ -25,7 +25,7 @@ FPCGElementPtr UPCGPointDensityMaskSettings::CreateElement() const
 
 bool FPCGPointDensityMaskElement::ExecuteInternal(FPCGContext* Context) const
 {
-		//Store PCG Settings. Use it for get access to all variables we declared or adjusted in PCG Settings in header
+	//Store PCG Settings. Use it for get access to all variables we declared or adjusted in PCG Settings in header
 	const UPCGPointDensityMaskSettings* Settings = Context->GetInputSettings<UPCGPointDensityMaskSettings>();
 	check(Settings);
 	
@@ -75,10 +75,6 @@ bool FPCGPointDensityMaskElement::ExecuteInternal(FPCGContext* Context) const
 			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
 			const FPCGPoint& InputPoint = InputPoints[Index];
 			OutPoint = InputPoint;
-
-			/*******************************************
-			Actual Point adjustment - start
-			********************************************/
 			
 			//This is the final output transform data. Initialize it first
 			FTransform SourceTransform = InputPoint.Transform;
@@ -123,10 +119,6 @@ bool FPCGPointDensityMaskElement::ExecuteInternal(FPCGContext* Context) const
 			
 			FVector FinalPosition = FVector(SourceTransform.GetLocation());
 			FinalTransform.SetLocation(FinalPosition);
-			
-			/*******************************************
-			Actual Point adjustment - end
-			********************************************/
 			
 			//Assign back 
 			OutPoint.Transform = FinalTransform;

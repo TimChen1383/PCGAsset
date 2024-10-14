@@ -13,18 +13,6 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGCreateSpiralSpline"
 
-/*******************************************
-To do list:
-- Currently only spiral points. Create a spline component later. - Can decide to show it or hide it
-- Make sure the object rotation face the center
-- The size can be bigger and bigger
-- The size can be big > small > big
-- for arch shape, can be combined with my twist spline node (If we use big > small > big scale)
-- for arch shape, we can have 3 splines with slightly offset. The shape will looks cooler
-https://www.youtube.com/watch?v=JlQZZg2akDk&ab_channel=Om.egvo
-- We can also have multiple spline twisted together
-https://www.youtube.com/watch?v=3xhevkiefMA&ab_channel=webduncetv
-********************************************/
 
 UPCGCreateSpiralSplineSettings::UPCGCreateSpiralSplineSettings()
 {
@@ -63,10 +51,6 @@ bool FPCGCreateSpiralSplineElement::ExecuteInternal(FPCGContext* Context) const
 	{
 		OutPoint = FPCGPoint();
 			
-		/*******************************************
-		Actual Point adjustment - start
-		********************************************/
-			
 		//Create new points
 		FTransform PointTransform = FTransform::Identity;
 		int64 CurrentPointDegree = IncrementDegree * Index;
@@ -77,10 +61,7 @@ bool FPCGCreateSpiralSplineElement::ExecuteInternal(FPCGContext* Context) const
 		FVector OutScale = FVector(1,1,1);
 		FTransform FinalTransform = FTransform(LookAtRot,PointPos,OutScale);
 		PointTransform = FinalTransform;
-			
-		/*******************************************
-		Actual Point adjustment - end
-		********************************************/
+		
 		OutPoint.Transform = PointTransform;
 		OutPoint.Seed = PCGHelpers::ComputeSeedFromPosition(PointTransform.GetLocation());
 	

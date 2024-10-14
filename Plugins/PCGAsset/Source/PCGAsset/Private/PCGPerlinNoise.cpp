@@ -14,15 +14,6 @@
 #define LOCTEXT_NAMESPACE "PCGPerlinNoise"
 
 
-/**********************************************************************
-To do list
-- maybe we can have multiple perlin noise overlap on top of each other - each layer with different value
-- Should be able to choose whether to change the height location directly or set to a density attribute
-- I think change from .Transform to .Density I should be able to store the Perlin Noise attribute into attribute
-
-***********************************************************************/
-
-
 UPCGPerlinNoise2DSettings::UPCGPerlinNoise2DSettings()
 {
 	bUseSeed = false;
@@ -35,7 +26,7 @@ FPCGElementPtr UPCGPerlinNoise2DSettings::CreateElement() const
 
 bool FPCGPerlinNoise2DElement::ExecuteInternal(FPCGContext* Context) const
 {
-		//Store PCG Settings. Use it for get access to all variables we declared or adjusted in PCG Settings in header
+	//Store PCG Settings. Use it for get access to all variables we declared or adjusted in PCG Settings in header
 	const UPCGPerlinNoise2DSettings* Settings = Context->GetInputSettings<UPCGPerlinNoise2DSettings>();
 	check(Settings);
 	
@@ -83,10 +74,7 @@ bool FPCGPerlinNoise2DElement::ExecuteInternal(FPCGContext* Context) const
 			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
 			const FPCGPoint& InputPoint = InputPoints[Index];
 			OutPoint = InputPoint;
-
-			/*******************************************
-			Actual Point adjustment - start
-			********************************************/
+			
 			//This is the final output transform data. Initialize it first
 			FTransform FinalTransform = InputPoint.Transform;
 			FTransform SourceTransform = InputPoint.Transform;
@@ -106,12 +94,6 @@ bool FPCGPerlinNoise2DElement::ExecuteInternal(FPCGContext* Context) const
 				FVector PerlinLocation3D = FVector(SourceTransform.GetLocation().X + (PerlinFloat3D * PerlinHeightMultiplier), SourceTransform.GetLocation().Y+ (PerlinFloat3D * PerlinHeightMultiplier), SourceTransform.GetLocation().Z+ (PerlinFloat3D * PerlinHeightMultiplier));
 				FinalTransform.SetLocation(PerlinLocation3D);
 			}
-	
-			
-
-			/*******************************************
-			Actual Point adjustment - end
-			********************************************/
 			
 			//Assign back 
 			OutPoint.Transform = FinalTransform;

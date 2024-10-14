@@ -12,12 +12,6 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGSineWave"
 
-/**********************************************************************
-To do list
-- Currently there is only 1 sine wave center. Try add multiple sine wave centers
-
-***********************************************************************/
-
 UPCGSineWaveSettings::UPCGSineWaveSettings()
 {
 	bUseSeed = false;
@@ -81,9 +75,7 @@ bool FPCGSineWaveElement::ExecuteInternal(FPCGContext* Context) const
 			const FPCGPoint& InputPoint = InputPoints[Index];
 			OutPoint = InputPoint;
 
-			/*******************************************
-			Actual Point adjustment - start
-			********************************************/
+	
 			
 			//This is the final output transform data. Initialize it first
 			FTransform SourceTransform = InputPoint.Transform;
@@ -97,10 +89,7 @@ bool FPCGSineWaveElement::ExecuteInternal(FPCGContext* Context) const
 			float FinalPointHeight = SourcePointHeight + FMath::Sin(SineDistance * SineWaveFrequency) * SineWaveAltitude;
 			FVector FinalPosition = SourceTransform.GetLocation() + FVector(0,0,FinalPointHeight);
 			FinalTransform.SetLocation(FinalPosition);
-
-			/*******************************************
-			Actual Point adjustment - end
-			********************************************/
+			
 			
 			//Assign back 
 			OutPoint.Transform = FinalTransform;

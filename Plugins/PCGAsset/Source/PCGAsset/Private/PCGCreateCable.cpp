@@ -19,14 +19,6 @@
 
 #define LOCTEXT_NAMESPACE "PCGCreateCable"
 
-
-/**********************************************************************
-To do list
-- the spline component doesn't work with local transform
-- create a new custom parameter which can be used for setting up the mesh direction
-- Point 1 and Point 2 shouldn't be the same point - add an if condition
-***********************************************************************/
-
 //Create a spline actor and attach under main PCG Actor?
 UPCGCreateCableSettings::UPCGCreateCableSettings(const FObjectInitializer& ObjectInitializer)
 	: UPCGSettings(ObjectInitializer)

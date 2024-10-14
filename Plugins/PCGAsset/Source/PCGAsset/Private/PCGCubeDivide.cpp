@@ -12,10 +12,6 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGCubeDivide"
 
-/**********************************************************************
-To do list
-- 
-***********************************************************************/
 namespace PCGOctreeConstants
 {
 	const FName OutputLabelA = TEXT("Original");

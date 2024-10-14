@@ -13,18 +13,6 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGCreateCirclePoints"
 
-/*******************************************
-To do list:
-- when circle point counts more than 40, it will not be a full circle (generate a gap) - close Loop?
-- add sine wave to the circle
-- Sine wave works very weird. Suppose to generate star shape base on frequency 1,2,3,4,5...(but it generated a weird shape)
-- choose the point to face center or face tangent
-- direction face in, direction face out
-- rotate along circle
-- Do something like this : https://www.youtube.com/watch?v=s7bJrqeDQCY&ab_channel=MustafaMahirAtar
-- How to achieve this : https://www.youtube.com/watch?v=_vP2vukNEZo&ab_channel=Qworco-UnrealEngine
-********************************************/
-
 //Override PCG Settings' default value
 UPCGCreateCircleSettings::UPCGCreateCircleSettings()
 {
@@ -74,13 +62,6 @@ bool FPCGCreateCircleElement::ExecuteInternal(FPCGContext* Context) const
 	{
 		//Create new points
 		OutPoint = FPCGPoint();
-		/*******************************************
-		Actual Point adjustment - start
-		********************************************/
-
-
-
-
 		
 		FTransform PointTransform = FTransform::Identity;
 		int64 CurrentPointDegree = CircleDegree/CirclePointCounts*Index;
@@ -109,10 +90,7 @@ bool FPCGCreateCircleElement::ExecuteInternal(FPCGContext* Context) const
 		FVector OutScale = FVector(1,1,1);
 		FTransform FinalTransform = FTransform(LookAtRot,CenterDirectVec,OutScale);
 		PointTransform = FinalTransform;
-			
-		/*******************************************
-		Actual Point adjustment - end
-		********************************************/
+		
 		OutPoint.Transform = PointTransform;
 		OutPoint.Seed = PCGHelpers::ComputeSeedFromPosition(PointTransform.GetLocation());
 	

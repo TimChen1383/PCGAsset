@@ -72,18 +72,8 @@ bool FPCGSetDensityElement::ExecuteInternal(FPCGContext* Context) const
 			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
 			const FPCGPoint& InputPoint = InputPoints[Index];
 			OutPoint = InputPoint;
-
-			/*******************************************
-			Actual Point adjustment - start
-			********************************************/
 			
 			OutPoint.Density = DensityValue;
-			
-			/*******************************************
-			Actual Point adjustment - end
-			********************************************/
-			
-
 			
 			return true;
 		}

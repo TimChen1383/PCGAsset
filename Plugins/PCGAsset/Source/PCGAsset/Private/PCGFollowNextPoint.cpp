@@ -13,12 +13,6 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGFollowNextPoint"
 
-/**********************************************************************
-To do list
-- if there is only 1 point in input, it will crash
-
-***********************************************************************/
-
 UPCGFollowNextPointSettings::UPCGFollowNextPointSettings()
 {
 	bUseSeed = false;
@@ -77,10 +71,7 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
 			const FPCGPoint& InputPoint = InputPoints[Index];
 			OutPoint = InputPoint;
-
-			/*******************************************
-			Actual Point adjustment - start
-			********************************************/
+			
 			FTransform FinalTransform = InputPoint.Transform;
 			
 			if((Index+1) < InputPoints.Num())
@@ -112,10 +103,6 @@ bool FPCGFollowNextPointElement::ExecuteInternal(FPCGContext* Context) const
 				}
 				
 			}
-			
-			/*******************************************
-			Actual Point adjustment - end
-			********************************************/
 			
 			//Assign back 
 			OutPoint.Transform = FinalTransform;

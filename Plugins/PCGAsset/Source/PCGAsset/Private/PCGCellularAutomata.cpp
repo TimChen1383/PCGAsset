@@ -13,20 +13,6 @@
 #define LOCTEXT_NAMESPACE "PCGCellularAutomata"
 
 
-/**********************************************************************
-To do list
-- how to change the random seed?
-- let user choose 2D or 3D version - when the mode change to 3D, the parameters should change as well
-
-
-Optimize :
-- The seed parameter on this node we are not using it. What is it? Should I remove it?
-- remove the parameter "iteration count" - we are not using it - Keep it, let user decide to go for 2D or 3D
-- Change some code into function
-- Do some design that can avoid crash - ex: input point counts need to match with the grid size
-- fix this bug :   Plugin 'PCGAsset' does not list plugin 'PCG' as a dependency, but module 'PCGAsset' depends on module 'PCG'.
-***********************************************************************/
-
 
 UPCGCellularAutomataSettings::UPCGCellularAutomataSettings()
 {
@@ -96,20 +82,12 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					                                const FPCGPoint& InputPoint = InputPoints[Index];
 					                                OutPoint = InputPoint;
 
-					                                /*******************************************
-					                                Actual Point adjustment - start
-					                                ********************************************/
-
 					                                //This is the final output transform data. Initialize it first
 					                                FTransform SourceTransform = InputPoint.Transform;
 					                                FTransform FinalTransform = InputPoint.Transform;
 					                                FVector FinalPosition = FVector(
 						                                SourceTransform.GetLocation() + (ZOffset * IterationCount));
 					                                FinalTransform.SetLocation(FinalPosition);
-
-					                                /*******************************************
-					                                Actual Point adjustment - end
-					                                ********************************************/
 
 					                                //Assign back 
 					                                OutPoint.Transform = FinalTransform;
@@ -177,13 +155,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 								}
 							}
 
-
-							//Debug neighbor count
-							//UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
-
-							//Debug output point order - this is correct
-							//int32 OutputPointOrder = (GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount;
-							//UE_LOG(LogTemp, Warning, TEXT("Output Point Order : %d"), OutputPointOrder);
+							
 
 							if (TempOutputPoints[(GridHeightPointCount * GridHeightPointCounts) + GridWidthPointCount].
 								Density == 1)
@@ -234,7 +206,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 			}
 			else
 			{
-								//Output : New PCG Points > PCG Point Data > PCG Tagged Data > reference output PCG Tagged Data Array
+				//Output : New PCG Points > PCG Point Data > PCG Tagged Data > reference output PCG Tagged Data Array
 				FPCGTaggedData& Output = Outputs.Add_GetRef(InputsTaggedData);
 				UPCGPointData* OutputPointData = NewObject<UPCGPointData>();
 				OutputPointData->InitializeFromData(InputPointData);
@@ -249,10 +221,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					                                //Get each single point. Output Point's value will be the final output value. Initialize with Input value first
 					                                const FPCGPoint& InputPoint = InputPoints[Index];
 					                                OutPoint = InputPoint;
-
-					                                /*******************************************
-					                                Actual Point adjustment - start
-					                                ********************************************/
+				                                	
 
 					                                //This is the final output transform data. Initialize it first
 					                                FTransform SourceTransform = InputPoint.Transform;
@@ -260,10 +229,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 					                                FVector FinalPosition = FVector(
 						                                SourceTransform.GetLocation());
 					                                FinalTransform.SetLocation(FinalPosition);
-
-					                                /*******************************************
-					                                Actual Point adjustment - end
-					                                ********************************************/
+				                                	
 
 					                                //Assign back 
 					                                OutPoint.Transform = FinalTransform;
@@ -289,10 +255,6 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 						{
 							//the counter that count the neighbor wall count
 							int32 NeighborWallCounts = 0;
-
-							//Print current point number for debugging
-							//int32 CurrentPointNum = GridHeightPointCount*GridHeightPointCounts + GridWidthPointCount;
-							//UE_LOG(LogTemp, Warning, TEXT("Current Point : %d"), CurrentPointNum);
 
 							//looping grid's neighbor, from left to right
 							for (int32 HeightCheckPoint = (GridHeightPointCount - 1); HeightCheckPoint <= (
@@ -330,14 +292,7 @@ bool FPCGCellularAutomataElement::ExecuteInternal(FPCGContext* Context) const
 									}
 								}
 							}
-
-
-							//Debug neighbor count
-							//UE_LOG(LogTemp, Warning, TEXT("NeighborWallCounts : %d"), NeighborWallCounts);
-
-							//Debug output point order - this is correct
-							//int32 OutputPointOrder = (GridHeightPointCount*GridHeightPointCounts) + GridWidthPointCount;
-							//UE_LOG(LogTemp, Warning, TEXT("Output Point Order : %d"), OutputPointOrder);
+							
 
 							if (TempOutputPoints[(GridHeightPointCount * GridHeightPointCounts) + GridWidthPointCount].
 								Density == 1)

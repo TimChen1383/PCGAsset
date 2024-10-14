@@ -12,13 +12,6 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGPointArray"
 
-/**********************************************************************
-To do list
-- This node should has 1 input pin and 3 output pins
-- If I do the scale offset, the mesh will have some overlap. Is there a way to avoid it?
-
-***********************************************************************/
-
 UPCGPointArraySettings::UPCGPointArraySettings()
 {
 	bUseSeed = false;

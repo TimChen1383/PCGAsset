@@ -12,10 +12,7 @@
 #include UE_INLINE_GENERATED_CPP_BY_NAME(PCGRandomWalker)
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGRandomWalker"
-/**********************************************************************
-To do list
-- Random walker should not need input point
-***********************************************************************/
+
 UPCGRandomWalkerSettings::UPCGRandomWalkerSettings()
 {
 	bUseSeed = false;
@@ -77,20 +74,11 @@ bool FPCGRandomWalkerElement::ExecuteInternal(FPCGContext* Context) const
 			WalkerStep = FVector(-WalkStepSize,0,0);
 		}
 		WalkerLocation += WalkerStep;
-
-		/*******************************************
-		Actual Point adjustment - start
-		********************************************/
 			
 		//This is the final output transform data. Initialize it first
 		FTransform PointTransform = FTransform::Identity;
 		FVector FinalPosition = WalkerLocation;
 		PointTransform.SetLocation(FinalPosition);
-			
-			
-		/*******************************************
-		Actual Point adjustment - end
-		********************************************/
 			
 		//Assign back 
 		OutPoint.Transform = PointTransform;

@@ -21,17 +21,6 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGConnectSplinebyID"
 
-/**********************************************************************
-To do list
-- How to control the object direction on spline?
-- Am I able to sweep the gap of spline?
-- How to work with spline sampler?
-- How to control the object distance between every object?
-- if the source and target input point counts are different, it should return error message
-- should I remove the settings override?
-- is create element override needed?
-
-***********************************************************************/
 
 UPCGConnectSplinebyIDSettings::UPCGConnectSplinebyIDSettings()
 {
@@ -74,8 +63,7 @@ bool FPCGConnectSplinebyIDElement::ExecuteInternal(FPCGContext* Context) const
 	const TArray<FPCGTaggedData> Sources = Context->InputData.GetInputsByPin(PCGConnectSplinebyIDConstants::SourcePointsLabel);
 	const TArray<FPCGTaggedData> Targets = Context->InputData.GetInputsByPin(PCGConnectSplinebyIDConstants::TargetPointsLabel);
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
-
-	//User Custom Value - here
+	
 	//const int32& CableCounts = Settings->CableCounts;
 	EPCGConnectSplinebyIDMode Mode = Settings->Mode;
 
@@ -164,7 +152,6 @@ bool FPCGConnectSplinebyIDElement::ExecuteInternal(FPCGContext* Context) const
 					EndPointTransform.GetScale3D(),
 					PointType);
 			
-					//Seems like this will use the spline points to re-sample the Spline Data. The point counts may be different compare to input
 					//This will sample by a default distance. EX: no matter input 10 points or 60 points, it will output 30 points as final
 					SplineData->Initialize(SplinePoints, false, FTransform(SplineActorTransform.GetLocation() ));
 
@@ -180,7 +167,7 @@ bool FPCGConnectSplinebyIDElement::ExecuteInternal(FPCGContext* Context) const
 						SplineComponent->ComponentTags.Add(Context->SourceComponent.Get()->GetFName());
 						SplineComponent->ComponentTags.Add(PCGHelpers::DefaultPCGTag);
 
-						//Seems like using Spline Component to initialize spline data
+						//Using Spline Component to initialize spline data
 						SplineData->ApplyTo(SplineComponent);
 
 						SplineComponent->RegisterComponent();//Why I need to register? look like new object need to be registered

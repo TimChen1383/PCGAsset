@@ -160,10 +160,6 @@ bool FPCGWorleyNoiseElement::ExecuteInternal(FPCGContext* Context) const
 			//Get each single point. Output Point's value will be the final output value. Initialize with Input value first
 			const FPCGPoint& InputPoint = InputPoints[Index];
 			OutPoint = InputPoint;
-
-			/*******************************************
-			Actual Point adjustment - start
-			********************************************/
 			
 			//This is the final output transform data. Initialize it first
 			FTransform SourceTransform = InputPoint.Transform;
@@ -184,11 +180,6 @@ bool FPCGWorleyNoiseElement::ExecuteInternal(FPCGContext* Context) const
 				FVector FinalPosition = FVector(PointLocX + WorleyNoiseHeight, PointLocY + WorleyNoiseHeight, PointLocZ + WorleyNoiseHeight);
 				FinalTransform.SetLocation(FinalPosition);
 			}
-			
-
-			/*******************************************
-			Actual Point adjustment - end
-			********************************************/
 			
 			//Assign back 
 			OutPoint.Transform = FinalTransform;
