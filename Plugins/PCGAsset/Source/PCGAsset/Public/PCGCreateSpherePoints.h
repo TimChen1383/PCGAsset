@@ -39,8 +39,6 @@ public:
 	********************************************/
 	//Control the Perlin noise height and scale
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	FVector CustomOffset = FVector::Zero();
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 Resolution = 30;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
