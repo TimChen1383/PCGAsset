@@ -9,7 +9,7 @@
 - There are some simple examples of using the custom nodes 
 ![examples](https://github.com/user-attachments/assets/95eca0be-0c96-4c13-8b97-a7678f44b868)
 
-# Assets
+# BP_Assets
 ## Spline Scatter
 ![SplineScatter](https://github.com/user-attachments/assets/0fad0946-99ac-4d36-8dd3-98e5fcd43785)
 
