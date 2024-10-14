@@ -35,7 +35,7 @@ To do list
 
 UPCGConnectSplinebyIDSettings::UPCGConnectSplinebyIDSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 TArray<FPCGPinProperties> UPCGConnectSplinebyIDSettings::InputPinProperties() const

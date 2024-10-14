@@ -30,7 +30,7 @@ Optimize :
 
 UPCGCellularAutomataSettings::UPCGCellularAutomataSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGCellularAutomataSettings::CreateElement() const

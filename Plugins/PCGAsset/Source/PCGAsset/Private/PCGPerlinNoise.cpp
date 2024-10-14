@@ -25,7 +25,7 @@ To do list
 
 UPCGPerlinNoise2DSettings::UPCGPerlinNoise2DSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGPerlinNoise2DSettings::CreateElement() const

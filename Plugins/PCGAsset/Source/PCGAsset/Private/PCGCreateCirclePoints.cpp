@@ -28,7 +28,7 @@ To do list:
 //Override PCG Settings' default value
 UPCGCreateCircleSettings::UPCGCreateCircleSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 TArray<FPCGPinProperties> UPCGCreateCircleSettings::InputPinProperties() const

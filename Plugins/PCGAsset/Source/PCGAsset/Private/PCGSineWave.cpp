@@ -20,7 +20,7 @@ To do list
 
 UPCGSineWaveSettings::UPCGSineWaveSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGSineWaveSettings::CreateElement() const

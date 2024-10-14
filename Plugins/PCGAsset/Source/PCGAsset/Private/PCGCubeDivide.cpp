@@ -24,7 +24,7 @@ namespace PCGOctreeConstants
 
 UPCGCubeDivideSettings::UPCGCubeDivideSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 TArray<FPCGPinProperties> UPCGCubeDivideSettings::OutputPinProperties() const

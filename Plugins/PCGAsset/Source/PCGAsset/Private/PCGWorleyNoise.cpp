@@ -14,7 +14,7 @@
 
 UPCGWorleyNoiseSettings::UPCGWorleyNoiseSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGWorleyNoiseSettings::CreateElement() const

@@ -28,7 +28,7 @@ https://www.youtube.com/watch?v=3xhevkiefMA&ab_channel=webduncetv
 
 UPCGCreateSpiralSplineSettings::UPCGCreateSpiralSplineSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGCreateSpiralSplineSettings::CreateElement() const

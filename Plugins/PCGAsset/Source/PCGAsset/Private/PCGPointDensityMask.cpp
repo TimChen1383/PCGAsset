@@ -14,7 +14,7 @@
 
 UPCGPointDensityMaskSettings::UPCGPointDensityMaskSettings()
 {
-	bUseSeed = true;
+	bUseSeed = false;
 }
 
 FPCGElementPtr UPCGPointDensityMaskSettings::CreateElement() const
