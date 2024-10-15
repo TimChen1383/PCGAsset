@@ -38,10 +38,10 @@ public:
 	Promote variables that will be shown in details panel
 	********************************************/
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	float SineWaveFrequency = 0.01f;
+	float ScaleMultiplier = 0.01f;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	float SineWaveAltitude = 100.0f;
+	float HeightMultiplier = 100.0f;
 };
 
 //Override PCG Execution

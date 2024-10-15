@@ -32,7 +32,7 @@ struct Z_Construct_UClass_UPCGSineWaveSettings_Statics
 		{ "IncludePath", "PCGSineWave.h" },
 		{ "ModuleRelativePath", "Public/PCGSineWave.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SineWaveFrequency_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ScaleMultiplier_MetaData[] = {
 		{ "Category", "Settings" },
 #if !UE_BUILD_SHIPPING
 		{ "Comment", "/*******************************************\n\x09Promote variables that will be shown in details panel\n\x09********************************************/" },
@@ -43,14 +43,14 @@ struct Z_Construct_UClass_UPCGSineWaveSettings_Statics
 		{ "ToolTip", "Promote variables that will be shown in details panel" },
 #endif
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SineWaveAltitude_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HeightMultiplier_MetaData[] = {
 		{ "Category", "Settings" },
 		{ "ModuleRelativePath", "Public/PCGSineWave.h" },
 		{ "PCG_Overridable", "" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_SineWaveFrequency;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_SineWaveAltitude;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ScaleMultiplier;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_HeightMultiplier;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -58,11 +58,11 @@ struct Z_Construct_UClass_UPCGSineWaveSettings_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGSineWaveSettings_Statics::NewProp_SineWaveFrequency = { "SineWaveFrequency", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGSineWaveSettings, SineWaveFrequency), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SineWaveFrequency_MetaData), NewProp_SineWaveFrequency_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGSineWaveSettings_Statics::NewProp_SineWaveAltitude = { "SineWaveAltitude", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGSineWaveSettings, SineWaveAltitude), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SineWaveAltitude_MetaData), NewProp_SineWaveAltitude_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGSineWaveSettings_Statics::NewProp_ScaleMultiplier = { "ScaleMultiplier", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGSineWaveSettings, ScaleMultiplier), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ScaleMultiplier_MetaData), NewProp_ScaleMultiplier_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPCGSineWaveSettings_Statics::NewProp_HeightMultiplier = { "HeightMultiplier", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGSineWaveSettings, HeightMultiplier), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HeightMultiplier_MetaData), NewProp_HeightMultiplier_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGSineWaveSettings_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGSineWaveSettings_Statics::NewProp_SineWaveFrequency,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGSineWaveSettings_Statics::NewProp_SineWaveAltitude,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGSineWaveSettings_Statics::NewProp_ScaleMultiplier,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGSineWaveSettings_Statics::NewProp_HeightMultiplier,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGSineWaveSettings_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPCGSineWaveSettings_Statics::DependentSingletons[])() = {
@@ -105,10 +105,10 @@ UPCGSineWaveSettings::~UPCGSineWaveSettings() {}
 struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGSineWave_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGSineWaveSettings, UPCGSineWaveSettings::StaticClass, TEXT("UPCGSineWaveSettings"), &Z_Registration_Info_UClass_UPCGSineWaveSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGSineWaveSettings), 1055273507U) },
+		{ Z_Construct_UClass_UPCGSineWaveSettings, UPCGSineWaveSettings::StaticClass, TEXT("UPCGSineWaveSettings"), &Z_Registration_Info_UClass_UPCGSineWaveSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGSineWaveSettings), 1469549597U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGSineWave_h_3194745487(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGSineWave_h_3213120295(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGSineWave_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGSineWave_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

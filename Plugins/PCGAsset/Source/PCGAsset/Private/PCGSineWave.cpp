@@ -33,8 +33,8 @@ bool FPCGSineWaveElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const float& SineWaveFrequency = Settings->SineWaveFrequency;
-	const float& SineWaveAltitude = Settings->SineWaveAltitude;
+	const float& ScaleMultiplier = Settings->ScaleMultiplier;
+	const float& HeightMultiplier = Settings->HeightMultiplier;
 
 	
 
@@ -86,7 +86,7 @@ bool FPCGSineWaveElement::ExecuteInternal(FPCGContext* Context) const
 
 			float SineDistance = FVector::Distance(SourceTransform.GetLocation(), SineCenter);;
 			float SourcePointHeight = SourceTransform.GetLocation().Z;
-			float FinalPointHeight = SourcePointHeight + FMath::Sin(SineDistance * SineWaveFrequency) * SineWaveAltitude;
+			float FinalPointHeight = SourcePointHeight + FMath::Sin(SineDistance * ScaleMultiplier) * HeightMultiplier;
 			FVector FinalPosition = SourceTransform.GetLocation() + FVector(0,0,FinalPointHeight);
 			FinalTransform.SetLocation(FinalPosition);
 			

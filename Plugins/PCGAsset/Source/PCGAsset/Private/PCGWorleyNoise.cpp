@@ -119,7 +119,7 @@ bool FPCGWorleyNoiseElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const float& NoiseCellSize = Settings->NoiseCellSize;
+	const float& ScaleMultiplier = Settings->ScaleMultiplier;
 	const float& NoiseAttenuation = Settings->NoiseAttenuation;
 	const float& HeightMultiplier = Settings->HeightMultiplier;
 	EPCGWorleyNoiseMode Mode = Settings->Mode;
@@ -170,13 +170,13 @@ bool FPCGWorleyNoiseElement::ExecuteInternal(FPCGContext* Context) const
 
 			if(Mode == EPCGWorleyNoiseMode::WorleyNoise2D)
 			{
-				float WorleyNoiseHeight = UPCGWorleyNoiseSettings::WorleyNoise2D(PointLocX,PointLocY,1,NoiseCellSize,NoiseAttenuation) * HeightMultiplier;
+				float WorleyNoiseHeight = UPCGWorleyNoiseSettings::WorleyNoise2D(PointLocX,PointLocY,1,ScaleMultiplier,NoiseAttenuation) * HeightMultiplier;
 				FVector FinalPosition = FVector(PointLocX, PointLocY, PointLocZ + WorleyNoiseHeight);
 				FinalTransform.SetLocation(FinalPosition);
 			}
 			else
 			{
-				float WorleyNoiseHeight = UPCGWorleyNoiseSettings::WorleyNoise3D(PointLocX, PointLocY, PointLocZ, 1, NoiseCellSize, NoiseAttenuation) * HeightMultiplier;
+				float WorleyNoiseHeight = UPCGWorleyNoiseSettings::WorleyNoise3D(PointLocX, PointLocY, PointLocZ, 1, ScaleMultiplier, NoiseAttenuation) * HeightMultiplier;
 				FVector FinalPosition = FVector(PointLocX + WorleyNoiseHeight, PointLocY + WorleyNoiseHeight, PointLocZ + WorleyNoiseHeight);
 				FinalTransform.SetLocation(FinalPosition);
 			}
