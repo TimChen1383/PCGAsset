@@ -7,7 +7,8 @@
 
 ## Example Files
 - There are some simple examples of the custom nodes 
-![Examples](https://github.com/user-attachments/assets/92f9cbe5-351c-4f3b-ad78-d6041e89b1ec)
+![Examples](https://github.com/user-attachments/assets/9438c3a8-8500-493d-8a07-91f9ef64dc1d)
+
 
 
 ## BP_Assets
