@@ -3,10 +3,10 @@
 
 ## Installation
 - Plugins need to be enabled : Procedural Content Generation Framework(PCG), Procedural Content Generation Framework(PCG) Geometrt Script Interop (this plugin should enable them automatically)
-- Add the plugin into project's Plugins folder then ready to go
+- Add the plugin into project's Plugins folder and ready to go
 
 ## Example Files
-- There are some simple examples of using the custom nodes 
+- There are some simple examples of the custom nodes 
 ![examples](https://github.com/user-attachments/assets/95eca0be-0c96-4c13-8b97-a7678f44b868)
 
 ## BP_Assets
