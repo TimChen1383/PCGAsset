@@ -57,11 +57,11 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	int32 RandomSeed = 100;
 	
-	UPROPERTY(meta = (PCG_Overridable))
+	//UPROPERTY(meta = (PCG_Overridable))
 	TSoftObjectPtr<AActor> TargetActor;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (EditCondition = "Mode==EPCGCreateCableMode::CreateNewActor", EditConditionHides))
-	EPCGAttachOptions AttachOptions = EPCGAttachOptions::Attached; // Note that this is no longer the default value for new nodes, it is now EPCGAttachOptions::InFolder
+	EPCGAttachOptions AttachOptions = EPCGAttachOptions::Attached; 
 	
 };
 

@@ -17,7 +17,7 @@ void EmptyLinkFunctionForGeneratedCodePCGAsset_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x4367CAC8,
+				0xE29CA87B,
 				0x6AFA09BB,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -25,5 +25,5 @@ void EmptyLinkFunctionForGeneratedCodePCGAsset_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_PCGAsset.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_PCGAsset(Z_Construct_UPackage__Script_PCGAsset, TEXT("/Script/PCGAsset"), Z_Registration_Info_UPackage__Script_PCGAsset, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x4367CAC8, 0x6AFA09BB));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_PCGAsset(Z_Construct_UPackage__Script_PCGAsset, TEXT("/Script/PCGAsset"), Z_Registration_Info_UPackage__Script_PCGAsset, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xE29CA87B, 0x6AFA09BB));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

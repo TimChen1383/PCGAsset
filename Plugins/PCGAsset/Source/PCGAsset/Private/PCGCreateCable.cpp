@@ -19,7 +19,7 @@
 
 #define LOCTEXT_NAMESPACE "PCGCreateCable"
 
-//Create a spline actor and attach under main PCG Actor?
+
 UPCGCreateCableSettings::UPCGCreateCableSettings(const FObjectInitializer& ObjectInitializer)
 	: UPCGSettings(ObjectInitializer)
 {
@@ -36,7 +36,7 @@ FText UPCGCreateCableSettings::GetNodeTooltipText() const
 }
 #endif
 
-//Change Output pin type. Not normal point data type
+//Change Output pin type to spline
 TArray<FPCGPinProperties> UPCGCreateCableSettings::OutputPinProperties() const
 {
 	TArray<FPCGPinProperties> PinProperties;
@@ -50,14 +50,14 @@ FPCGElementPtr UPCGCreateCableSettings::CreateElement() const
 	return MakeShared<FPCGCreateCableElement>();
 }
 
-//What does this mean?
+
 bool FPCGCreateCableElement::CanExecuteOnlyOnMainThread(FPCGContext* Context) const
 {
 	const UPCGCreateCableSettings* Settings = Context->GetInputSettings<UPCGCreateCableSettings>();
 	return Settings && Settings->Mode == EPCGCreateCableMode::CreateNewActor;
 }
 
-//Why we need to set up Is Cacheable?
+
 bool FPCGCreateCableElement::IsCacheable(const UPCGSettings* InSettings) const
 {
 	const UPCGCreateCableSettings* Settings = Cast<const UPCGCreateCableSettings>(InSettings);
