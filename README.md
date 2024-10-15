@@ -91,7 +91,7 @@ Distance node will generate a gradient density value. Mask will force cut off th
 ![FollowNextPoint](https://github.com/user-attachments/assets/58b48578-548a-4077-863d-eaa627ac9adb)
 
 ### Set Density
-Set the density attribute value directly. No need to create a new attribute > copy the attribute value to density value > remove the new attribute
+Set the density attribute value directly.(No need to create a new attribute > copy the attribute value to density value > remove the new attribute)
 ![SetDensity](https://github.com/user-attachments/assets/b3cc9951-ea7c-4e0d-b03b-9fc4e47d735c)
 
 ### Rotate Around Center
