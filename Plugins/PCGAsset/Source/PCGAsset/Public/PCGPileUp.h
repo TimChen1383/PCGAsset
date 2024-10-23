@@ -6,6 +6,13 @@
 #include "PCGSettings.h"
 #include "PCGPileUp.generated.h"
 
+UENUM()
+enum class EPCGPileUpMode : uint8
+{
+	Bottom,
+	Center,
+};
+
 UCLASS()
 //Override PCG Settings
 class PCGASSET_API UPCGPileUpSettings : public UPCGSettings
@@ -39,7 +46,7 @@ public:
 	********************************************/
 	//Control the Perlin noise height and scale
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	FVector CustomOffset = FVector::Zero();
+	EPCGPileUpMode PivotLocation = EPCGPileUpMode::Center;
 	
 };
 

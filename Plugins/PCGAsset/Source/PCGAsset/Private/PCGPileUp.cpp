@@ -13,7 +13,7 @@
 #define LOCTEXT_NAMESPACE "PCGPileUp"
 
 //////////////////////////////////////////////
-//I should add next mesh's height not current mesh's height
+//Let user choose the pivot is at the center or at the bottom - currently at the bottom
 
 
 //////////////////////////////////////////////
@@ -41,7 +41,7 @@ bool FPCGPileUpElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const FVector& CustomOffset = Settings->CustomOffset;
+	const EPCGPileUpMode& PivotLocation = Settings->PivotLocation;
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -88,11 +88,35 @@ bool FPCGPileUpElement::ExecuteInternal(FPCGContext* Context) const
 
 			FTransform SourceTransform = InputPoint.Transform;
 			FTransform FinalTransform = InputPoint.Transform;
-			FVector FinalPosition = FVector(0,0,CurrentHeight);
-			float BoundsHeight = 0.0f;
-			BoundsHeight = abs((InputPoint.BoundsMax.Z) - (InputPoint.BoundsMin.Z));
-			CurrentHeight += BoundsHeight;
-			FinalTransform.SetLocation(FinalPosition);
+
+			if(PivotLocation == EPCGPileUpMode::Bottom)
+			{
+				FVector FinalPosition = FVector(0,0,CurrentHeight);
+				float BoundsHeight = 0.0f;
+				BoundsHeight = abs((InputPoint.BoundsMax.Z) - (InputPoint.BoundsMin.Z));
+				CurrentHeight += BoundsHeight;
+				FinalTransform.SetLocation(FinalPosition);
+			}
+			else
+			{
+				//Mesh pivot at the center
+				if(Index == 0)
+				{
+					float HalfBoundsHeight = (abs((InputPoint.BoundsMax.Z) - (InputPoint.BoundsMin.Z))/2);
+					FVector FinalPosition = FVector(0,0,HalfBoundsHeight);
+					FinalTransform.SetLocation(FinalPosition);
+				}
+				else
+				{
+					float HalfBoundsHeight = (abs((InputPoint.BoundsMax.Z) - (InputPoint.BoundsMin.Z))/2);
+					float HalfPreviousBoundsHeight = (abs((InputPoints[Index-1].BoundsMax.Z) - (InputPoints[Index-1].BoundsMin.Z))/2);
+					CurrentHeight += (HalfBoundsHeight + HalfPreviousBoundsHeight);
+					FVector FinalPosition = FVector(0,0,CurrentHeight);
+					FinalTransform.SetLocation(FinalPosition);
+				}
+
+			}
+
 			
 			
 			/*******************************************
