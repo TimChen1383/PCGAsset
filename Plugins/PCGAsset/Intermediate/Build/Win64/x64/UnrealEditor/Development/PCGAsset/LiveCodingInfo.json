@@ -15,6 +15,7 @@
 			"PCGEmitPoints.cpp.obj",
 			"PCGFollowNextPoint.cpp.obj",
 			"PCGPerlinNoise.cpp.obj",
+			"PCGPileUp.cpp.obj",
 			"PCGPointArray.cpp.obj",
 			"PCGPointDensityMask.cpp.obj",
 			"PCGRandom90Rotate.cpp.obj",
