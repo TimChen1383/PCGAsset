@@ -84,7 +84,7 @@ struct Z_Construct_UClass_UPCGPileUpSettings_Statics
 		{ "IncludePath", "PCGPileUp.h" },
 		{ "ModuleRelativePath", "Public/PCGPileUp.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PivotLocation_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MeshPivotLocation_MetaData[] = {
 		{ "Category", "Settings" },
 #if !UE_BUILD_SHIPPING
 		{ "Comment", "/*******************************************\n\x09Promote variables that will be shown in details panel\n\x09********************************************///Control the Perlin noise height and scale\n" },
@@ -96,8 +96,8 @@ struct Z_Construct_UClass_UPCGPileUpSettings_Statics
 #endif
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FBytePropertyParams NewProp_PivotLocation_Underlying;
-	static const UECodeGen_Private::FEnumPropertyParams NewProp_PivotLocation;
+	static const UECodeGen_Private::FBytePropertyParams NewProp_MeshPivotLocation_Underlying;
+	static const UECodeGen_Private::FEnumPropertyParams NewProp_MeshPivotLocation;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -105,11 +105,11 @@ struct Z_Construct_UClass_UPCGPileUpSettings_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UPCGPileUpSettings_Statics::NewProp_PivotLocation_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UPCGPileUpSettings_Statics::NewProp_PivotLocation = { "PivotLocation", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGPileUpSettings, PivotLocation), Z_Construct_UEnum_PCGAsset_EPCGPileUpMode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PivotLocation_MetaData), NewProp_PivotLocation_MetaData) }; // 211079835
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UPCGPileUpSettings_Statics::NewProp_MeshPivotLocation_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UPCGPileUpSettings_Statics::NewProp_MeshPivotLocation = { "MeshPivotLocation", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGPileUpSettings, MeshPivotLocation), Z_Construct_UEnum_PCGAsset_EPCGPileUpMode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MeshPivotLocation_MetaData), NewProp_MeshPivotLocation_MetaData) }; // 211079835
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGPileUpSettings_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPileUpSettings_Statics::NewProp_PivotLocation_Underlying,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPileUpSettings_Statics::NewProp_PivotLocation,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPileUpSettings_Statics::NewProp_MeshPivotLocation_Underlying,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGPileUpSettings_Statics::NewProp_MeshPivotLocation,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGPileUpSettings_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPCGPileUpSettings_Statics::DependentSingletons[])() = {
@@ -155,10 +155,10 @@ struct Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_
 		{ EPCGPileUpMode_StaticEnum, TEXT("EPCGPileUpMode"), &Z_Registration_Info_UEnum_EPCGPileUpMode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 211079835U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPCGPileUpSettings, UPCGPileUpSettings::StaticClass, TEXT("UPCGPileUpSettings"), &Z_Registration_Info_UClass_UPCGPileUpSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGPileUpSettings), 3739962981U) },
+		{ Z_Construct_UClass_UPCGPileUpSettings, UPCGPileUpSettings::StaticClass, TEXT("UPCGPileUpSettings"), &Z_Registration_Info_UClass_UPCGPileUpSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGPileUpSettings), 2260833462U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPileUp_h_2241619841(TEXT("/Script/PCGAsset"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPileUp_h_2728265739(TEXT("/Script/PCGAsset"),
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPileUp_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPileUp_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPileUp_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealProjects_PCGDemo_Plugins_PCGAsset_Source_PCGAsset_Public_PCGPileUp_h_Statics::EnumInfo));

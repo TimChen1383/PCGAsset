@@ -41,7 +41,7 @@ bool FPCGPileUpElement::ExecuteInternal(FPCGContext* Context) const
 	TArray<FPCGTaggedData>& Outputs = Context->OutputData.TaggedData;
 
 	//Pass the UPROPERTY variable here. A bit different from normal actor. We can't get access to the data directly
-	const EPCGPileUpMode& PivotLocation = Settings->PivotLocation;
+	const EPCGPileUpMode& MeshPivotLocation = Settings->MeshPivotLocation;
 
 
 	//Loop through all the input PCG Tagged Data. Most of the time we should only have 1 PCG Tagged Data input
@@ -89,7 +89,7 @@ bool FPCGPileUpElement::ExecuteInternal(FPCGContext* Context) const
 			FTransform SourceTransform = InputPoint.Transform;
 			FTransform FinalTransform = InputPoint.Transform;
 
-			if(PivotLocation == EPCGPileUpMode::Bottom)
+			if(MeshPivotLocation == EPCGPileUpMode::Bottom)
 			{
 				FVector FinalPosition = FVector(0,0,CurrentHeight);
 				float BoundsHeight = 0.0f;
@@ -104,6 +104,7 @@ bool FPCGPileUpElement::ExecuteInternal(FPCGContext* Context) const
 				{
 					float HalfBoundsHeight = (abs((InputPoint.BoundsMax.Z) - (InputPoint.BoundsMin.Z))/2);
 					FVector FinalPosition = FVector(0,0,HalfBoundsHeight);
+					CurrentHeight += HalfBoundsHeight;
 					FinalTransform.SetLocation(FinalPosition);
 				}
 				else

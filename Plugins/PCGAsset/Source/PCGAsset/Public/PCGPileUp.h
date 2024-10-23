@@ -46,7 +46,7 @@ public:
 	********************************************/
 	//Control the Perlin noise height and scale
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	EPCGPileUpMode PivotLocation = EPCGPileUpMode::Center;
+	EPCGPileUpMode MeshPivotLocation = EPCGPileUpMode::Center;
 	
 };
 
