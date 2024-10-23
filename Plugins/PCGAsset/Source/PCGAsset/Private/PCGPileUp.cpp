@@ -12,6 +12,14 @@
 //Using Name Space to avoid variable name conflict with engine code. Just add it
 #define LOCTEXT_NAMESPACE "PCGPileUp"
 
+//////////////////////////////////////////////
+//I should add next mesh's height not current mesh's height
+
+
+//////////////////////////////////////////////
+
+
+
 UPCGPileUpSettings::UPCGPileUpSettings()
 {
 	bUseSeed = false;
@@ -77,12 +85,13 @@ bool FPCGPileUpElement::ExecuteInternal(FPCGContext* Context) const
 			/*******************************************
 			Actual Point adjustment - start
 			********************************************/
-			float BoundsHeight = 0.0f;
-			BoundsHeight = abs((InputPoint.BoundsMax.Z) - (InputPoint.BoundsMin.Z));
-			CurrentHeight += BoundsHeight;
+
 			FTransform SourceTransform = InputPoint.Transform;
 			FTransform FinalTransform = InputPoint.Transform;
 			FVector FinalPosition = FVector(0,0,CurrentHeight);
+			float BoundsHeight = 0.0f;
+			BoundsHeight = abs((InputPoint.BoundsMax.Z) - (InputPoint.BoundsMin.Z));
+			CurrentHeight += BoundsHeight;
 			FinalTransform.SetLocation(FinalPosition);
 			
 			
